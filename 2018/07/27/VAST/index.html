@@ -1,0 +1,2111 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="VAST,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
+
+
+
+
+
+
+<meta name="description" content="VAST 3.0  概述几个专业术语 Companion Ad ：伴随广告，通常包含视频体验的文字广告，展示广告，rich media富媒体或皮肤。这些广告有多种尺寸和形状，它出现在视频播放器之外，一般是横幅广告或者富媒体广告。   Rich Media并不是一种具体的互联网媒体形式，而是指具有动画、声音、视频或交互性的信息传播方法，包含下列常见的形式之一或者几种的组合：流媒体、声音、Flash、">
+<meta name="keywords" content="VAST">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VAST 3.0文档梳理">
+<meta property="og:url" content="https://www.lynnjy.cn/2018/07/27/VAST/index.html">
+<meta property="og:site_name" content="Lynn-jyu&#39;s Blog">
+<meta property="og:description" content="VAST 3.0  概述几个专业术语 Companion Ad ：伴随广告，通常包含视频体验的文字广告，展示广告，rich media富媒体或皮肤。这些广告有多种尺寸和形状，它出现在视频播放器之外，一般是横幅广告或者富媒体广告。   Rich Media并不是一种具体的互联网媒体形式，而是指具有动画、声音、视频或交互性的信息传播方法，包含下列常见的形式之一或者几种的组合：流媒体、声音、Flash、">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://www.lynnjy.cn/2018/07/27/VAST/1.jpg">
+<meta property="og:image" content="https://www.lynnjy.cn/2018/07/27/VAST/2.jpg">
+<meta property="og:image" content="https://www.lynnjy.cn/2018/07/27/VAST/3.jpg">
+<meta property="og:updated_time" content="2020-04-10T14:04:12.151Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="VAST 3.0文档梳理">
+<meta name="twitter:description" content="VAST 3.0  概述几个专业术语 Companion Ad ：伴随广告，通常包含视频体验的文字广告，展示广告，rich media富媒体或皮肤。这些广告有多种尺寸和形状，它出现在视频播放器之外，一般是横幅广告或者富媒体广告。   Rich Media并不是一种具体的互联网媒体形式，而是指具有动画、声音、视频或交互性的信息传播方法，包含下列常见的形式之一或者几种的组合：流媒体、声音、Flash、">
+<meta name="twitter:image" content="https://www.lynnjy.cn/2018/07/27/VAST/1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://www.lynnjy.cn/2018/07/27/VAST/">
+
+
+
+
+
+  <title>VAST 3.0文档梳理 | Lynn-jyu's Blog</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lynn-jyu's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">just a blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://www.lynnjy.cn/2018/07/27/VAST/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lynn-jyu">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lynn-jyu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">VAST 3.0文档梳理</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-27T11:36:44+08:00">
+                2018-07-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="VAST-3-0-概述"><a href="#VAST-3-0-概述" class="headerlink" title="VAST 3.0  概述"></a>VAST 3.0  概述</h1><h2 id="几个专业术语"><a href="#几个专业术语" class="headerlink" title="几个专业术语"></a>几个专业术语</h2><ul>
+<li>Companion Ad ：<strong>伴随广告</strong>，通常包含视频体验的文字广告，展示广告，<strong>rich media</strong>富媒体或皮肤。这些广告有多种尺寸和形状，它出现在视频播放器之外，<strong>一般是横幅广告或者富媒体广告</strong>。</li>
+</ul>
+<blockquote>
+<p>Rich Media并不是一种具体的互联网媒体形式，而是指具有动画、声音、视频或交互性的信息传播方法，包含下列常见的形式之一或者几种的组合：流媒体、声音、Flash、以及Java、Javascript、DHTML等程序设计语言</p>
+</blockquote>
+<ul>
+<li><p>InLine Ad：<strong>线内广告</strong>，包含显示广告视觉体验所需的<strong>所有元素</strong>的VAST文档。( 当VAST的线内广告收到响应后，无需调用其他所需要的广告服务器 )</p>
+</li>
+<li><p>Linear Video Ad:<strong>线性视频广告</strong>，广告在用户使用视频内容之前，之中或之后呈现，其方式与电视广告在所选节目之前，期间或之后可以播放的方式非常相似。</p>
+</li>
+<li><p>Non-linear Video Ad：<strong>非线性视频广告</strong>，这种广告会与视频内容同时运行因此用户会在观看内容的同时也在看广告。Non-linear Video Ad可以作为文字广告，图形广告或视频叠加层投放。</p>
+</li>
+<li><p>Primary Ad Server:<strong>主广告服务器</strong>，由<strong>视频播放器</strong>或<strong>其他框架</strong>调用的第一个广告投放系统。假设在大多数情况下，publisher将通过其主广告服务器（无论是自行开发还是第三方）发出所有初始广告请求，然后根据需要重定向到其他广告服务器。( 从主广告服务器返回的数据不一定是我们所需的广告视频，还有可能是另一个广告服务器的地址，也就是下面介绍的二级广告服务器 。)</p>
+</li>
+<li><p>Secondary Ad Server：<strong>次广告服务器</strong>或<strong>二级广告服务器</strong>，该广告服务器被广告网络或广告买方用于投放广告素材，跟踪结果和优化广告素材的广告服务器。(如果主广告服务器返回的不是视频广告的内容，而是一个重定向，指向另一个广告服务器，而这一级的广告服务器也不一定是最后一跳，也就是说还有可能有三级广告服务器、四级广告服务器，以此类推。但是最后一跳的广告服务器一定会提供包含视频广告信息的VAST响应。)</p>
+</li>
+<li><p>VAST (Video Ad Serving Template)：<strong>XML文档格式</strong>，<strong>描述</strong>要在视频播放器或指向要请求的<strong>下游</strong>VAST文档的包装器中，上方或周围显示的广告。</p>
+</li>
+<li><p>Video Player：<strong>播放插播视频内容的环境</strong>。视频播放器可以由publisher或由vendor(供应商)提供。</p>
+</li>
+<li><p>Wrapper Ad : <strong>封装广告</strong>。VAST文档，指向来自其他服务器的另一个VAST文档。++意味着我们需要访问Wrapper中提供的URI访问下一级广告服务器。</p>
+</li>
+<li><p>Ad Pod： <strong>广告荚</strong>，包含一系列的线性视频广告。</p>
+<h2 id="如何工作"><a href="#如何工作" class="headerlink" title="如何工作"></a>如何工作</h2></li>
+</ul>
+<h3 id="直接从主广告服务器获取"><a href="#直接从主广告服务器获取" class="headerlink" title="直接从主广告服务器获取"></a>直接从主广告服务器获取</h3><ol>
+<li>videoplayer–&gt;发出VAST Request–&gt;PrimaryAdServer(publisher)</li>
+<li>PrimaryAdServer(publisher)–&gt;返回VAST Response–&gt;video player</li>
+<li>video player–&gt;Tracking URIs pinged(跟踪uri)–&gt;PrimaryAdServer(publisher)</li>
+</ol>
+<h3 id="从多级广告服务器上获取广告信息"><a href="#从多级广告服务器上获取广告信息" class="headerlink" title="从多级广告服务器上获取广告信息"></a>从多级广告服务器上获取广告信息</h3><ol>
+<li>videoplayer–&gt;发出VAST Request–&gt;PrimaryAdServer(publisher)</li>
+<li>PrimaryAdServer(publisher)–&gt;返回VAST Redirect(Wrapper)–&gt;videoplayer</li>
+<li>videoplayer-&gt;发出VAST Request–&gt;SecondaryAdServer</li>
+<li>SecondaryAdServer–&gt;返回VAST Inline Response–&gt;videoplayer</li>
+<li>videoplayer–&gt;Tracking URIs pinged(跟踪uri)–&gt;各级Ad Server</li>
+</ol>
+<hr>
+<p>一些解释</p>
+<ul>
+<li><p>VAST Request: video player 发送一个 request 给 primary ad server。</p>
+</li>
+<li><p>VAST Redirect：广告方(可能是代理商或网盟) 发送一个VAST Wrapper response识别Secondary Ad Server中的资源。<br>写法举个栗子：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">VAST</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">Ad</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">Wrapper</span>&gt;</span></span><br><span class="line">            …</span><br><span class="line">            <span class="tag">&lt;<span class="name">VASTAdTagURI</span>&gt;</span></span><br><span class="line">                http://SecondaryAdServer.vast.tag</span><br><span class="line">            <span class="tag">&lt;/<span class="name">VASTAdTagURI</span>&gt;</span></span><br><span class="line">            …</span><br><span class="line">        <span class="tag">&lt;/<span class="name">Wrapper</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;/<span class="name">Ad</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">VAST</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>VAST Request: video player解析了VAST response后会使用 Primary Ad Server 的VAST response提供的URI向 Secondary Ad Server  发送请求。</p>
+</li>
+<li><p>VAST Inline Response：Secondary Ad Server发送VAST响应，其中包含要显示的广告的所有必要详细信息。</p>
+</li>
+</ul>
+<ul>
+<li>Tracking URIs Pinged：video player在触发广告的指定事件后，将使用提供的跟踪URI通知每个广告服务器。</li>
+</ul>
+<h2 id="VAST-3-0支持的广告类型"><a href="#VAST-3-0支持的广告类型" class="headerlink" title="VAST 3.0支持的广告类型"></a>VAST 3.0支持的广告类型</h2><blockquote>
+<p>线性广告<br>非线性的广告<br>可跳过线性广告<br>伴随线性广告<br>广告荚</p>
+</blockquote>
+<p>其中，可跳过的线性广告以及广告荚是3.0新增的两种格式。</p>
+<h1 id="VAST-实现细节"><a href="#VAST-实现细节" class="headerlink" title="VAST 实现细节"></a>VAST 实现细节</h1><h2 id="最低限度要求"><a href="#最低限度要求" class="headerlink" title="最低限度要求"></a>最低限度要求</h2><ol>
+<li>Inline和Wrapper Ads</li>
+<li>Tracking Events</li>
+<li>Error Reporting</li>
+<li>Industry Icons (such as for in-ads notice supporting OBA self-regulation)</li>
+</ol>
+<p>使用任何符合VAST标准的技术时，公司应该能够期望支持所有上述一般功能。</p>
+<h2 id="跨域安全信任问题"><a href="#跨域安全信任问题" class="headerlink" title="跨域安全信任问题"></a>跨域安全信任问题</h2><h3 id="crossdomain-xml-for-Flash"><a href="#crossdomain-xml-for-Flash" class="headerlink" title="crossdomain.xml for Flash"></a>crossdomain.xml for Flash</h3><p>ad servers必须提供一个crossdomain.xml 文件在他们的域名根目录下</p>
+<p>举个栗子</p>
+<p>adserver.com 需要提供文件：</p>
+<pre><code>http://adserver.ccom/crossdomain.xml
+</code></pre><p>该xml是一个简单的文件 其结构如下</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">cross-domain-policy</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">allow-access-from</span> <span class="attr">domain</span>=<span class="string">”*”</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">cross-domain-policy</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Cross-Origin-Resource-Sharing-CORS-for-JavaScript"><a href="#Cross-Origin-Resource-Sharing-CORS-for-JavaScript" class="headerlink" title="Cross Origin Resource Sharing (CORS) for JavaScript"></a>Cross Origin Resource Sharing (CORS) for JavaScript</h3><p>要使JavaScript video players 能够接收VAST response,ad servers必须在封装了VAST response的文件中包含一个 CORS header<br>其结构如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Access-Control-Allow-Origin: &lt;origin header value&gt;</span><br><span class="line">Access-Control-Allow-Credentials: true</span><br></pre></td></tr></table></figure></p>
+<p>Access-Control-Allow-Origin 的值对应的是随着广告请求一起发送的Origin的header</p>
+<p>Access-Control-Allow-Credentials 设置为true将确保cookies会被正确发送和接收</p>
+<h2 id="构建VAST文档结构"><a href="#构建VAST文档结构" class="headerlink" title="构建VAST文档结构"></a>构建VAST文档结构</h2><h3 id="声明-VAST-response"><a href="#声明-VAST-response" class="headerlink" title="声明 VAST response"></a>声明 VAST response</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">VAST</span> <span class="attr">version</span>=<span class="string">”3.0”</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Ad</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--ad details go here--&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">Ad</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">VAST</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>各类广告需要的结点如下：</p>
+<table>
+<thead>
+<tr>
+<th>VAST Ad 标签</th>
+<th>Linear Ads</th>
+<th>Companion Ads</th>
+<th>Skippable Ad</th>
+<th>NonLinear Ads</th>
+<th>Ad pods</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&lt;Ad&gt;(no sequence)</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;Ad sequence=”n”&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>√</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;Linear&gt;(no skipoffset)</td>
+<td>√</td>
+<td>√</td>
+<td></td>
+<td></td>
+<td>√</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;Linear skipoffset=”HH:MM:SS”&gt;</td>
+<td></td>
+<td></td>
+<td>√</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;NonLinearAds&gt;</td>
+<td></td>
+<td>√</td>
+<td></td>
+<td>√</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;CompanionAds&gt;</td>
+<td></td>
+<td></td>
+<td>√</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="Ad节点"><a href="#Ad节点" class="headerlink" title="Ad节点"></a>Ad节点</h3><p>一个&lt;VAST&gt;内可以有一个或多个&lt;Ad&gt;元素，&lt;Ad&gt;元素包含视频播放器显示和跟踪广告素材所需的所有信息， VAST响应可能会提供多个广告。</p>
+<p>单个&lt;Ad&gt;元素是最常见的，代表视频播放器只显示一个广告的情况。</p>
+<p>在VAST 3.0之前只考虑了单个广告案例，现在有多个广告的可能。</p>
+<p>结构：每个Ad节点包含<strong>InLine</strong>或者<strong>Wrapper</strong>结点，但仅会是<strong>其中一个</strong>。</p>
+<p>属性：</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>该广告的广告服务器定义的标识符字符串</td>
+</tr>
+<tr>
+<td>sequence</td>
+<td>一个大于0的数字，用于标识广告应播放的顺序,所有具有序列值的&lt;Ad&gt;元素是Ad pods荚的一部分，并且是按顺序播放的</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Wrapper节点"><a href="#Wrapper节点" class="headerlink" title="Wrapper节点"></a>Wrapper节点</h3><p>结构：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;Wrapper&gt;</span><br><span class="line">    …</span><br><span class="line">    &lt;VASTAdTagURI&gt;</span><br><span class="line">        http://SecondaryAdServer.vast.tag</span><br><span class="line">    &lt;/VASTAdTagURI&gt;</span><br><span class="line">    …</span><br><span class="line">&lt;/Wrapper&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="InLine节点"><a href="#InLine节点" class="headerlink" title="InLine节点"></a>InLine节点</h3><p>&lt;InLine&gt;元素是广告供应链中的最后一个广告服务器提供&lt;InLine&gt;元素。 在&lt;InLine&gt;元素中，是显示广告所需的所有内容。</p>
+<p>元素：</p>
+<table>
+<thead>
+<tr>
+<th>标签</th>
+<th>意义</th>
+<th>是否必须</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&lt;AdSystem&gt;</td>
+<td>返回广告的广告服务器的名称</td>
+<td>是</td>
+</tr>
+<tr>
+<td>&lt;AdTitle&gt;</td>
+<td>广告标题</td>
+<td>是</td>
+</tr>
+<tr>
+<td>&lt;Impression&gt;</td>
+<td>当视频播放器在显示广告的第一帧时应请求的URI</td>
+<td>是</td>
+</tr>
+<tr>
+<td>&lt;Creatives&gt;</td>
+<td>一个或多个<creative>元素</creative></td>
+<td>是</td>
+</tr>
+<tr>
+<td>&lt;Description&gt;</td>
+<td>广告描述</td>
+<td>否</td>
+</tr>
+<tr>
+<td>&lt;Advertiser&gt;</td>
+<td>广告主定义的广告客户名称， 此元素可用于防止与广告客户竞争对手展示广告</td>
+<td>否 </td>
+</tr>
+<tr>
+<td>&lt;Survey&gt;</td>
+<td>测量Url，例如类型属性可用于指定MIME类型，可设置为type =“text/javascript”</td>
+<td>否</td>
+</tr>
+<tr>
+<td>&lt;Error&gt;</td>
+<td>错误Url</td>
+<td>否</td>
+</tr>
+<tr>
+<td>&lt;Pricing&gt;</td>
+<td>提供一个代表实时出价（RTB）系统可以使用的价格的值。</td>
+<td>否</td>
+</tr>
+<tr>
+<td>&lt;Extensions&gt;</td>
+<td>自定义节点，如：&lt;Extensions&gt; &lt;CustomXML&gt;…&lt;/CustomXML&gt;&lt;/Extensions&gt;</td>
+<td>否</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>VAST虽然不是为了处理RTB而设计的，但可能存在其他用法，如果需要价格，这个元素可以提供解决方案。 如果使用，必须识别以下两个属性：</p>
+</blockquote>
+<blockquote>
+<p>1、model：将定价模型标识为“CPM”，“CPC”，“CPE”或“CPV”之一。</p>
+</blockquote>
+<blockquote>
+<p>2、currency：标识所提供价值货币（即美元，英镑等）的3个字母的ISO-4217货币符号。当作为广告链中的VAST Wrapper的一部分时，只需要考虑第一个Wrapper中提供的值</p>
+</blockquote>
+<h3 id="VAST-Tracking"><a href="#VAST-Tracking" class="headerlink" title="VAST Tracking"></a>VAST Tracking</h3><p>视频播放器必须向跟踪元素中提供的URI进行监测，这些跟踪元素均包含发送VAST response的广告服务器上的资源文件或位置的URI。视频播放器不需要对返回的响应做任何事情。此响应通常为200，响应主体中具有1x1像素图像（也可能是其他类型）。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">VAST</span>&gt;</span> Tracking Elements：</span><br><span class="line">  <span class="tag">&lt;<span class="name">Error</span>&gt;</span>视频播放器在收到“无广告”响应时应请求监测URI </span><br><span class="line"><span class="tag">&lt;<span class="name">InLine</span>&gt;</span> and <span class="tag">&lt;<span class="name">Wrapper</span>&gt;</span> Tracking Elements：</span><br><span class="line">   <span class="tag">&lt;<span class="name">Error</span>&gt;</span> 视频播放器在服务器因为某些原因无法提供InLine广告时应该请求的监测URI  </span><br><span class="line">   <span class="tag">&lt;<span class="name">Impression</span>&gt;</span> 视频播放器通常在将InLine广告的第一帧显示时请求的监测URI，通常作为计算广告“展示次数”指标。</span><br><span class="line"><span class="tag">&lt;<span class="name">Linear</span>&gt;</span> Tracking Elements ：</span><br><span class="line">  <span class="tag">&lt;<span class="name">TrackingEvents</span>&gt;</span> 包含以下元素：   </span><br><span class="line">       <span class="tag">&lt;<span class="name">Tracking</span>&gt;</span> 视频播放器在播放线性广告素材期间发生特定的命名事件时请求（事件名称作为该元素的属性传递）的监测URI。  </span><br><span class="line">  <span class="tag">&lt;<span class="name">VideoClicks</span>&gt;</span>包含以下元素:   </span><br><span class="line">      <span class="tag">&lt;<span class="name">ClickThrough</span>&gt;</span> 当用户在线性广告播放期间点击视频帧时，在浏览器上打开的网页URI（落地页）; 服务器可以使用此URI的请求来跟踪“点击率”指标                                                    </span><br><span class="line">      <span class="tag">&lt;<span class="name">ClickTracking</span>&gt;</span>  当用户在线性广告播放期间点击视频帧时应该请求的URI; 服务器可以使用此URI的请求来跟踪“点击率”指标</span><br><span class="line">      <span class="tag">&lt;<span class="name">CustomClick</span>&gt;</span> 当用户点击特定按钮，链接或其他与线性广告相关联的其他呼叫行为时请求的URI，但不会在Web中打开新的页面; 不应同时请求ClickThrough和CustomClick网址（即同一次点击）</span><br><span class="line">  <span class="tag">&lt;<span class="name">IconClicks</span>&gt;</span>包含以下元素: </span><br><span class="line">      <span class="tag">&lt;<span class="name">IconClickThrough</span>&gt;</span>当用户点击与广告相关联的图标广告素材时，视频播放器应在Web浏览器窗口中打开的网页的URI; 也可以用来跟踪点击。</span><br><span class="line">      <span class="tag">&lt;<span class="name">IconClickTracking</span>&gt;</span> 当用户点击图标广告素材时视频播放器应该请求的监测URI。</span><br><span class="line">  <span class="tag">&lt;<span class="name">IconViewTracking</span>&gt;</span> 当向用户显示图标/图标广告素材时视频播放器应该请求的监测URI。</span><br><span class="line"><span class="tag">&lt;<span class="name">Companion</span>&gt;</span> Tracking Elements：</span><br><span class="line">  <span class="tag">&lt;<span class="name">CompanionClickThrough</span>&gt;</span> 当用户点击伴随广告素材时视频播放器应在Web浏览器窗口中打开的网页URI; URI也可以用于跟踪点击 </span><br><span class="line">  <span class="tag">&lt;<span class="name">CompanionClickTracking</span>&gt;</span> 当用户点击伴随广告素材时视频播放器应该请求的监测URI; 用于在广告素材处理点击时跟踪InLine广告素材的点击次数; 在Wrapper广告中，URI用于跟踪Wrapper之后产生的InLine响应的点击</span><br><span class="line"><span class="tag">&lt;<span class="name">NonLinearAds</span>&gt;</span> Tracking Elements：</span><br><span class="line">  <span class="tag">&lt;<span class="name">TrackingEvents</span>&gt;</span>包含以下元素:                 </span><br><span class="line">      <span class="tag">&lt;<span class="name">Tracking</span>&gt;</span> 视频播放器在播放非线性广告素材期间发生特定的命名事件时请求（事件名称作为该元素的属性传递）的监测URI。</span><br><span class="line"><span class="tag">&lt;<span class="name">NonLinear</span>&gt;</span> Tracking Elements：</span><br><span class="line">  <span class="tag">&lt;<span class="name">NonLinearClickThrough</span>&gt;</span> 当用户点击非线性广告素材时，视频播放器应在Web浏览器窗口中打开的网页的URI </span><br><span class="line">  <span class="tag">&lt;<span class="name">NonLinearClickTracking</span>&gt;</span> 当用户点击非线性广告素材时视频播放器应该请求的监测URI; 用于在广告素材处理点击时跟踪InLine点击; 在Wrapper广告中，URI用于跟踪Wrapper之后产生的InLine响应的点击</span><br></pre></td></tr></table></figure></p>
+<h3 id="impression节点"><a href="#impression节点" class="headerlink" title="impression节点"></a>impression节点</h3><p>VAST响应中的&lt;InLine&gt;元素包含一个或多个&lt;Impression&gt;元素。 每个&lt;Impression&gt;元素只包含一个子CDATA Ad wrapped URI。 如果广告素材需要多个展示资源文件（例如，当多个系统希望被通知展示时），则必须为每个展示资源都包含一个&lt;Impression&gt;元素，每个展示资源都具有唯一的URI。 可能包含潜在危险字符的VAST URI应包装在CDATA块中。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Impression</span> <span class="attr">id</span>=<span class="string">”myserver”</span>&gt;</span>           </span><br><span class="line">    <span class="tag">&lt;<span class="name">[CDATA[</span>  <span class="attr">http:</span>//<span class="attr">ad.server.com</span>/<span class="attr">impression</span>/<span class="attr">dot.gif</span> ]]&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">Impression</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>Impression URI应用于广告的第一帧显示时发送。但是，广告可能由多个广告素材组成。如果广告主除追踪广告展示外，还想跟踪何时启动个别广告素材，则VAST响应应在要跟踪广告素材的&lt;TrackingEvents&gt;元素下包含一个’Start’事件。</p>
+<blockquote>
+<p>Multiple Impressions,多重印象，使用多个印象URI可让广告服务器与其他广告投放系统（例如广告客户使用的供应商广告服务器）共享展示监测信息。当VAST响应中包含多个展示元素时，视频播放器需要在同一时间请求全部印象。展示请求之间的任何重大延迟可能导致广告投放系统之间的计数差异。如果提供了多个&lt;Impression&gt;元素，则必须在同一时间或尽可能接近的时间请求它们。特别是对于包含&lt;Linear&gt;元素的VAST响应视频播放器，要求在向用户显示线性广告素材的第一帧时请求所有的展示URI。如果任何请求被显著延迟，则可能导致参与广告投放系统计数差异。</p>
+</blockquote>
+<h3 id="Creatives节点"><a href="#Creatives节点" class="headerlink" title="Creatives节点"></a>Creatives节点</h3><p>在&lt;InLine&gt;元素中有一个&lt;Creatives&gt;元素。 &lt;Creatives&gt;元素提供有关要作为广告体验一部分的每个<strong>广告素材</strong>的文件的详细信息，每个嵌套的&lt;Creative&gt;元素包含以下之一：&lt;Linear&gt;，&lt;NonLinear&gt;或&lt;CompanionAds&gt;。</p>
+<p>其属性<strong>均为可选</strong></p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>广告素材的广告服务器定义的标识符</td>
+</tr>
+<tr>
+<td>sequence</td>
+<td>每个广告素材应显示的数字顺序（不要与用于定义广告投放位置的Ad序列属性混淆）</td>
+</tr>
+<tr>
+<td>adId</td>
+<td>标识广告素材所属广告Id</td>
+</tr>
+<tr>
+<td>apiFramework</td>
+<td>标识API</td>
+</tr>
+</tbody>
+</table>
+<p>举个栗子：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">**此响应表示具有随播广告的线性广告**</span><br><span class="line"><span class="tag">&lt;<span class="name">VAST</span> <span class="attr">version</span>=<span class="string">”3.0”</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Ad</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">InLine</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">AdSystem</span>&gt;</span>My Ad Server<span class="tag">&lt;/<span class="name">AdSystem</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">AdTitle</span>&gt;</span>XX Company<span class="tag">&lt;/<span class="name">AdTitle</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">Impression</span>&gt;</span>...<span class="tag">&lt;/<span class="name">Impression</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">Creatives</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Creative</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">Linear</span>&gt;</span>...<span class="tag">&lt;/<span class="name">Linear</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">Creative</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Creative</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">CompanionAds</span>&gt;</span>...<span class="tag">&lt;/<span class="name">CompanionAds</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">Creative</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">Creatives</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">InLine</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">Ad</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">VAST</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>Creative Extensions扩展</li>
+</ul>
+<p>当需要特定API框架来执行广告素材时，可以在&lt;Creative&gt;下添加&lt;CreativeExtensions&gt;元素</p>
+<p>此扩展可用于加载无论是不是媒体文件的可执行广告素材。</p>
+<p>一个&lt;CreativeExtension&gt;元素嵌套在&lt;CreativeExtensions&gt;元素下，此外，此扩展中使用的任何xml标识避免应与VAST元素名称混淆。</p>
+<p>&lt;CreativeExtension&gt;具有两个属性</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td>指定了执行扩展所需的MIME类型</td>
+</tr>
+<tr>
+<td>apiFramework</td>
+<td>标识执行广告素材所需的API。若未指定，则播放器忽略广告素材。若无法执行，则忽略，并使用&lt;error&gt;元素(在&lt;Ad&gt;元素下方通知广告服务器该广告无法显示。)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Linear-Ad"><a href="#Linear-Ad" class="headerlink" title="Linear Ad"></a>Linear Ad</h2><p>&lt;Linear&gt;元素具有两个 <strong>必需</strong> 的子元素，<strong>&lt;Duration&gt;</strong> 和 <strong>&lt;MediaFiles&gt;</strong> 元素</p>
+<p>以及四个 <strong>可选</strong> 的子元素，<strong>&lt;VideoClicks&gt;</strong>，<strong>&lt;AdParameters&gt;</strong>，<strong>&lt;TrackingEvents&gt;</strong>和<strong>&lt;Icons&gt;</strong>。</p>
+<h3 id="The-Duration-Element（必须）"><a href="#The-Duration-Element（必须）" class="headerlink" title="The Duration Element（必须）"></a>The Duration Element（必须）</h3><p>线性广告素材的广告持续时间在&lt;Duration&gt;元素中表示，持续时间以“HH：MM：SS.mmm”格式表示（.mmm表示毫秒，可选）。 </p>
+<p>举个栗子，30s的视频表示方法：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Duration</span>&gt;</span> 00:00:30 <span class="tag">&lt;/<span class="name">Duration</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>或者</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Duration</span>&gt;</span> 00：00：30.000 <span class="tag">&lt;/<span class="name">Duration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>尽可能使用毫秒的.mmm扩展 以避免过早停掉Creative。 &lt;MediaFiles&gt;元素可以包含多个&lt;MediaFile&gt;元素，每个元素必须是在线性元素中定义的持续时间。</p>
+<h3 id="The-MediaFiles-Element（必须）"><a href="#The-MediaFiles-Element（必须）" class="headerlink" title="The MediaFiles Element（必须）"></a>The MediaFiles Element（必须）</h3><p>&lt;MediaFiles&gt;元素是一个包含了一个或多个&lt;MediaFile&gt;元素的容器，每个&lt;MediaFile&gt;元素 <strong>都包含</strong> 要为Linear Creative下载或流式传输的媒体文件的CDATA-wrapped URI。</p>
+<p>Linear Creative线性广告素材通常是视频文件，但也可以使用静态图像。</p>
+<p>&lt;MediaFiles&gt;元素可能包含多个&lt;MediaFile&gt;元素，每个元素最适合于不同的技术或设备。</p>
+<blockquote>
+<p>　当广告可以被投放到多个视频平台时，为了适配不同的设备的编码和比特率的视频文件，VAST文档通常包含多个替代的&lt;MediaFile&gt;元素，每个元素具有不同的containerd-codec版本，并具有几种不同的比特率，每个媒体文件的广告内容应该相同，应该只显示与视频播放器系统最匹配的媒体文件。</p>
+</blockquote>
+<p>&lt;MediaFile&gt;元素具有多个属性：</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>意义</th>
+<th>是否必须</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>delivery</td>
+<td>传输协议，progressive（如HTTP）或者streaming</td>
+<td>是</td>
+</tr>
+<tr>
+<td>type</td>
+<td>文件MIME类型。 流行的MIME类型包括但不限于Flash视频的“video/ x-flv”和MP4的“video/mp4”</td>
+<td>是</td>
+</tr>
+<tr>
+<td>width</td>
+<td>视频文件的宽度，单位：px(若为音频，则可为0)</td>
+<td>是</td>
+</tr>
+<tr>
+<td>height</td>
+<td>视频文件的高度，单位：px(若为音频，则可为0)</td>
+<td>是</td>
+</tr>
+<tr>
+<td>codec</td>
+<td>用于对符合RFC-4281规定的文件进行编码</td>
+<td>否</td>
+</tr>
+<tr>
+<td>id</td>
+<td>媒体文件的标识符</td>
+<td>否</td>
+</tr>
+<tr>
+<td>bitrate/minBitrate/maxBitrate</td>
+<td>否 使用文件的确定比特率值或者平均比特率或者可以使用minBitrate和maxBitrate来指定流式视频的最小和最大比特率来加载视频</td>
+<td>否</td>
+</tr>
+<tr>
+<td>scalable</td>
+<td>标识文件可以放大的最大比例</td>
+<td>否</td>
+</tr>
+<tr>
+<td>maintainAspectRatio</td>
+<td>一个布尔值，标识是否可以将媒体文件进行等比例缩放</td>
+<td>否</td>
+</tr>
+<tr>
+<td>apiFramework</td>
+<td>标识执行交互式媒体文件所需的API</td>
+<td>否</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>MediaFiles通常包含多个媒体文件，视频播放器仅需要选择一个最适合的&lt;MediaFile&gt;元素来显示，视频播放器应该在选择一个显示之前遍历所有媒体文件。</p>
+</blockquote>
+<ul>
+<li>Linear Creative中使用静态图片Media文件 </li>
+</ul>
+<blockquote>
+<p>为获得最佳效果，线性广告点中使用的静态图像应转码为视频媒体文件。 但是，当静态图像作为媒体文件提供，视频播放器应该是只需要Duration元素来显示图像。 视频播放器应该向用户指示图像正在展示中，以避免用户在广告播放期间冻结视频播放器。 如果静态图像无法显示，则视频播放器应使用error事件URI发送事件错误（error405可能是最合适的）</p>
+</blockquote>
+<h3 id="可选Element"><a href="#可选Element" class="headerlink" title="可选Element"></a>可选Element</h3><ul>
+<li>VideoClicks Element（可选）</li>
+</ul>
+<p>当用户点击视频播放器时，如果提供了&lt;VideoClicks&gt;元素，它<strong>必须</strong>包含<strong>一个</strong>单独的&lt;ClickThrough&gt;元素，并且<strong>可以包含一个或多个</strong>&lt;ClickTracking&gt;和&lt;CustomClick&gt;元素。<br>&lt;VideoClicks&gt;的嵌套元素：</p>
+<table>
+<thead>
+<tr>
+<th>标签</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&lt;ClickThrough&gt;</td>
+<td>点击时视频播放器在web浏览器窗口中打开此 URI</td>
+</tr>
+<tr>
+<td>&lt;ClickTracking&gt;</td>
+<td>用于在广告素材文件处理点击时跟踪点击</td>
+</tr>
+<tr>
+<td>&lt;CustomClick&gt;</td>
+<td>元素用于跟踪线性广告素材中的其他非点击点击次数</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>TrackingEvents Element（可选）</li>
+</ul>
+<p>&lt;TrackingEvents&gt;元素可能包含多个&lt;Tracking&gt;元素，&lt;Tracking&gt;元素的<strong>event</strong>属性标识需跟踪的事件类型。<br>在VAST response中的示例如下</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">TrackingEvents</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">Tracking</span> <span class="attr">event</span> =<span class="string">"firstQuartile"</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">[CDATA</span> [<span class="attr">http:</span>//<span class="attr">adserver.com</span>/<span class="attr">firstQuartilePixel.gif</span>]&gt;</span> </span><br><span class="line">    <span class="tag">&lt;/<span class="name">Tracking</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">TrackingEvents</span> &gt;</span></span><br></pre></td></tr></table></figure>
+<p>若Tracking事件存在，当在线性广告素材的播放中发生相应的事件时，视频播放器发送对应的请求URI。</p>
+<p>Tracking事件类型 event可取的值如下：</p>
+<table>
+<thead>
+<tr>
+<th>event value</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>creativeView</td>
+<td>不要与展示混淆，此事件表示已查看广告的单个广告素材部分。展示指示广告的第一帧显示；然而，广告可能由多个广告素材或广告素材组成，这些广告素材并不是在所有平台上都能展示。</td>
+</tr>
+<tr>
+<td>start</td>
+<td>此事件用于指示广告中的单个广告素材已加载，开始播放。与creativeView一样，此事件是跟踪广告素材回放的另一种方式。</td>
+</tr>
+<tr>
+<td>firstQuartile</td>
+<td>素材至少播放了25%</td>
+</tr>
+<tr>
+<td>midpoint</td>
+<td>素材至少播放了50%</td>
+</tr>
+<tr>
+<td>thirdQuartile</td>
+<td>素材至少播放了75%</td>
+</tr>
+<tr>
+<td>complete</td>
+<td>素材以正常速度播放完毕</td>
+</tr>
+<tr>
+<td>mute</td>
+<td>用户对素材静音</td>
+</tr>
+<tr>
+<td>unmute</td>
+<td>用户对素材取消静音</td>
+</tr>
+<tr>
+<td>pause</td>
+<td>用户暂停了素材的播放</td>
+</tr>
+<tr>
+<td>rewind</td>
+<td>用户回放了素材</td>
+</tr>
+<tr>
+<td>resume</td>
+<td>用户停止或暂停素材后，又重新开始播放素材</td>
+</tr>
+<tr>
+<td>fullscreen</td>
+<td>用户点击了全屏播放按钮</td>
+</tr>
+<tr>
+<td>exitFullscreen</td>
+<td>用户退出全屏播放，回到初始大小</td>
+</tr>
+<tr>
+<td>expand</td>
+<td>用户点击某个按钮展开素材</td>
+</tr>
+<tr>
+<td>collapse</td>
+<td>用户点击某个按钮将素材缩小到初始大小</td>
+</tr>
+<tr>
+<td>acceptInvitationLinear</td>
+<td>用户激活启动了素材的附加部分，此事件用于线性广告。</td>
+</tr>
+<tr>
+<td>closeLinear</td>
+<td>用户点击了素材上的关闭按钮，此事件用于线性广告</td>
+</tr>
+<tr>
+<td>skip</td>
+<td>用户点击了跳过按钮以跳过广告素材，这与用于关闭按钮不同。</td>
+</tr>
+<tr>
+<td>progress</td>
+<td>广告素材以正常速度播放持续时间等于或大于属性中的offset值。offset可以是格式为HH:MM:SS或HH:MM:SS.mmm或格式为n％的百分比值。可以使用多个不同的值来跟踪线性广告素材时间轴上的多个进度点。</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>AdParameters Element（可选）</p>
+<p>一些广告投放系统可能希望在首次初始化时将一些数据发送到媒体文件。例如，媒体文件可以使用这些数据识别展示哪个素材，请求哪个服务器等。</p>
+</li>
+</ul>
+<p>Linear Ad素材的可选&lt;AdParameters&gt;元素可启用此数据交换，属性xmlEncoded可用于标识&lt;AdParameters&gt;参数是否为xmldencoded。如果为true，则视频播放器必须使用xml来解码数据。</p>
+<p>VAST中的&lt;AdParameters&gt;值应该包装在CDATA块中。</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>xmlEncoded</td>
+<td>布尔值，用于标识&lt;AdParameters&gt;参数是否为xmldencoded </td>
+</tr>
+</tbody>
+</table>
+<h2 id="Skippable-Linear-Creative"><a href="#Skippable-Linear-Creative" class="headerlink" title="Skippable Linear Creative"></a>Skippable Linear Creative</h2><p>广告服务器必须在&lt;Linear&gt;元素中包含skipoffset属性，skipoffset值的格式为HH:MM:SS或HH:MM:SS.mmm或格式为n％的百分比的时间值。skipoffset中的.mmm值表示毫秒，是可选的。此skipoffset值表示在广告素材开始播放后应该提供跳过控件的时间。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">**Time skipoffset：以下示例提供了一个skipoffset：05秒。** </span><br><span class="line"><span class="tag">&lt;<span class="name">Creative</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">Linear</span> <span class="attr">skipoffset</span>=<span class="string">“00:00:05”</span>&gt;</span> ... <span class="tag">&lt;/<span class="name">Linear</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">Creative</span>&gt;</span></span><br><span class="line"></span><br><span class="line">**百分比skipoffset：以下示例提供10％的skipoffset。** </span><br><span class="line"><span class="tag">&lt;<span class="name">Creative</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">Linear</span> <span class="attr">skipoffset</span>=<span class="string">“10％”</span>&gt;</span> ... <span class="tag">&lt;/<span class="name">Linear</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">Creative</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>广告的视频播放器必须在可接受的skipoffset值指示的时间内在界面中提供“跳过”按钮。</p>
+<h3 id="skip-event"><a href="#skip-event" class="headerlink" title="skip event"></a>skip event</h3><p>若用户跳过素材，发送此事件跟踪URI</p>
+<p>示例：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">TrackingEvents</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Tracking</span> <span class="attr">event</span> =<span class="string">“skip”</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">[CDATA</span> [<span class="attr">http:</span>//<span class="attr">ad.server.com</span>/<span class="attr">skip</span>/<span class="attr">dot.gif</span>]]&gt;</span> </span><br><span class="line">    <span class="tag">&lt;/<span class="name">Tracking</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">TrackingEvents</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>skip事件不应该与close事件混淆，只有当用户采取行动关闭播放器或窗口时，才会触发close事件。 而skip事件在点击跳过控件时被触发。</p>
+</blockquote>
+<h3 id="progress-event"><a href="#progress-event" class="headerlink" title="progress event"></a>progress event</h3><p>进度事件包括提供时间值（HH：MM：SS或HH：MM：SS.mmm）或百分比（n％）值的偏移属性，表示记录视图的时间。</p>
+<p>以下示例提供了在线性广告素材播放至少30秒后触发的进度事件的跟踪URI。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">TrackingEvents</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">Tracking</span> <span class="attr">event</span> = <span class="string">"progress"</span> <span class="attr">offset</span> =<span class="string">"00:00:30.000"</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">[CDATA</span> [<span class="attr">http:</span>//<span class="attr">ad.server.com</span>/<span class="attr">view.gif</span>]]&gt;</span> </span><br><span class="line">    <span class="tag">&lt;/<span class="name">Tracking</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">TrackingEvents</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>视频播放器可以使用具有不同offset值的多个进度事件来跟踪线性广告素材时间轴中的不同时间点。</p>
+<p>当进度offset设置为25％，50％，75％和100％时虽然与四分位数跟踪事件（即25%，50%，75%，100%）相同的时间点，但是四分位数跟踪事件仍需要单独支持。</p>
+<h2 id="Companion-Ad"><a href="#Companion-Ad" class="headerlink" title="Companion Ad"></a>Companion Ad</h2><p>一般结构</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">…</span><br><span class="line">    <span class="tag">&lt;<span class="name">InLine</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Creatives</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Creative</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">Linear</span>&gt;</span></span><br><span class="line">                    …</span><br><span class="line">                <span class="tag">&lt;/<span class="name">Linear</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">Creative</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Creative</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">CompanionAds</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">Companion</span>&gt;</span></span><br><span class="line">                        …</span><br><span class="line">                    <span class="tag">&lt;/<span class="name">Companion</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">CompanionAds</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">Creative</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">Creatives</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">InLine</span>&gt;</span></span><br><span class="line">…</span><br></pre></td></tr></table></figure>
+<h3 id="CompanionAds-element"><a href="#CompanionAds-element" class="headerlink" title="CompanionAds element"></a>CompanionAds element</h3><p>&lt;CompanionAds&gt;元素可能包含一个或多个Companion ad伴随广告，每个Companion都在其自己的&lt;Companion&gt;元素中。</p>
+<h4 id="CompanionAds的属性"><a href="#CompanionAds的属性" class="headerlink" title="CompanionAds的属性"></a>CompanionAds的属性</h4><p>require属性决定了在提供多个Companions时要显示哪个Companion广告素材的信息，以及是否可以在没有其Companion广告素材的情况下显示广告。</p>
+<p>require属性具有三个value:</p>
+<table>
+<thead>
+<tr>
+<th>value</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>all</td>
+<td>视频播放器必须尝试显示所提供的所有&lt;Companion&gt;元素的内容;如果无法显示所有Companion广告素材，则应忽略广告，并使用&lt;Error&gt;元素通知广告服务器</td>
+</tr>
+<tr>
+<td>any</td>
+<td>视频播放器必须尝试显示来自至少一个所提供的&lt;Companion&gt;元素的内容（即显示具有最适合页面的尺寸的元素）;如果无法显示任何Companion广告素材，则应忽略广告，并使用&lt;Error&gt;元素通知广告服务器</td>
+</tr>
+<tr>
+<td>none</td>
+<td>视频播放器可能选择不显示任何Companion广告素材，但不限制这样做;当广告客户更喜欢使用或不使用Companion广告素材显示主广告时，广告服务器可以使用此选项</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Companion-Element"><a href="#Companion-Element" class="headerlink" title="Companion Element"></a>Companion Element</h3><h4 id="Companion的属性"><a href="#Companion的属性" class="headerlink" title="Companion的属性"></a>Companion的属性</h4><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>意义</th>
+<th>是否必须</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>width</td>
+<td>广告素材所对应的的展示位置广告位的像素宽度</td>
+<td>是</td>
+</tr>
+<tr>
+<td>height</td>
+<td>广告素材所针对的展示位置广告位的像素高度</td>
+<td>是</td>
+</tr>
+<tr>
+<td>id</td>
+<td>一个可选择的广告素材的标识符</td>
+<td>否</td>
+</tr>
+<tr>
+<td>assetWidth</td>
+<td>广告素材的像素宽度</td>
+<td>否</td>
+</tr>
+<tr>
+<td>assetHeight</td>
+<td>广告素材的像素高度</td>
+<td>否</td>
+</tr>
+<tr>
+<td>expandedWidth</td>
+<td>广告素材在可拓展条件下的最大像素宽度</td>
+<td>否</td>
+</tr>
+<tr>
+<td>expandedHeight</td>
+<td>广告素材在可拓展条件下的最大像素高度</td>
+<td>否</td>
+</tr>
+<tr>
+<td>apiFramework</td>
+<td>与广告素材进行通信所需的API（如果有）</td>
+<td>否</td>
+</tr>
+<tr>
+<td>adSlotID</td>
+<td>用于在发布商的页面上标识所需的展示位置;应在发布商和广告商之间讨论要使用的值</td>
+<td>否</td>
+</tr>
+<tr>
+<td>required</td>
+<td>“all,” “any,” or “none”用于标识广告中是否应显示（以及多少）随播广告素材</td>
+<td>否</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>每个&lt;Companion&gt;元素必须使用width和height属性以像素为单位指定预期的显示放置尺寸。这些尺寸应反映目标网页上展示位置的尺寸，以便视频播放器可以使用它们将Companion与页面上正确的广告位相匹配。</p>
+</blockquote>
+<h4 id="Companion-Resource-Elements"><a href="#Companion-Resource-Elements" class="headerlink" title="Companion Resource Elements"></a>Companion Resource Elements</h4><p>每个&lt;Companion&gt;元素 <strong>必须至少指定一个</strong> 资源文件，该文件可以是以下之一：&lt;StaticResource&gt;，&lt;IFrameResource&gt;或&lt;HTMLResource&gt;。</p>
+<p>使用的资源标识广告素材文件的格式，并为文件提供CDATA-wrapped URI</p>
+<p>&lt;Companion&gt;下有三个标签 <strong>&lt;StaticResource&gt;，&lt;IFrameResource&gt;，&lt;HTMLResource&gt;</strong></p>
+<table>
+<thead>
+<tr>
+<th>标签</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&lt;StaticResource&gt;*</td>
+<td>描述非html广告素材，其中creativeType的属性用于标识广告素材资源平台</td>
+</tr>
+<tr>
+<td>&lt;IFrameResource&gt;</td>
+<td>描述可以在发布者页面上的Iframe中显示的HTML页面的资源</td>
+</tr>
+<tr>
+<td>&lt;HTMLResource&gt;</td>
+<td>描述要直接插入发布者的HTML页面代码中的HTML代码的“片段”</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>&lt;StaticResource&gt; 具有 <strong>type</strong> 的属性，其属性值如下：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>value</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image/gif, image/jpeg, image/png</td>
+<td>使用HTML标记&lt;img&gt;和资源URI作为src属性显示。</td>
+</tr>
+<tr>
+<td>Application/x-javascript</td>
+<td>使用HTML标记&lt;script&gt;和资源URI作为src属性显示</td>
+</tr>
+<tr>
+<td>application/x-shockwave-flash</td>
+<td>使用flash播放器显示</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>VAST 3.0允许在一个&lt;Companion&gt;元素中使用多个资源文件。视频播放器应轮询每个&lt;Companion&gt;元素中的资源文件，以找到要显示的最合适的文件。</p>
+</blockquote>
+<p>多个resource files 的例子：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">CompanionAds</span> <span class="attr">required</span>=<span class="string">”all”</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Companion</span> <span class="attr">id</span>=<span class="string">1</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">StaticResource</span> <span class="attr">type</span>=<span class="string">”image/jpg”</span>&gt;</span></span><br><span class="line">            &lt;![CDATA[http://AdServer.com/companion1.jpg]&gt;</span><br><span class="line">        &lt;/StaticResource&gt;</span><br><span class="line">        &lt;HTMLResource&gt;</span><br><span class="line">            &lt;!CDATA[http://AdServer.com/companion1.html]&gt;</span><br><span class="line">        &lt;/HTMLResource&gt;</span><br><span class="line">    &lt;/Companion&gt;</span><br><span class="line">    &lt;Companion id=2&gt;</span><br><span class="line">        &lt;StaticResource type=”image/jpg”&gt;</span><br><span class="line">            &lt;![CDATA[http://AdServer.com/companion2.jpg]&gt;</span><br><span class="line">        &lt;/StaticResource&gt;</span><br><span class="line">        &lt;HTMLResource&gt;</span><br><span class="line">            &lt;!CDATA[http://AdServer.com/companion2.html]&gt;</span><br><span class="line">        &lt;/HTMLResource&gt;</span><br><span class="line">    &lt;/Companion&gt;</span><br><span class="line">&lt;/CompanionAds&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="其他-Companion-Elements"><a href="#其他-Companion-Elements" class="headerlink" title="其他 Companion Elements"></a>其他 Companion Elements</h4><table>
+<thead>
+<tr>
+<th>标签</th>
+<th>意义</th>
+<th>是否必须</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&lt;AltText&gt;</td>
+<td>用于提供当用户将鼠标悬停在Companion广告素材上时显示的图像说明</td>
+<td>否</td>
+</tr>
+<tr>
+<td>&lt;CompanionClickThrough&gt;</td>
+<td>当用户点击广告时，为与广告客户相关的网页提供网址;仅对缺少提供点击的技术的静态资源文件来说是所必需的</td>
+<td>否</td>
+</tr>
+<tr>
+<td>&lt;CompanionClickTracking&gt;</td>
+<td>用于跟踪Companion点击次数</td>
+<td>否</td>
+</tr>
+<tr>
+<td>&lt;TrackingEvents&gt;</td>
+<td><tracking>元素的容器，用于跟踪由event属性定义的已定义指标</tracking></td>
+<td>否</td>
+</tr>
+<tr>
+<td>&lt;AdParameters&gt;</td>
+<td>用于将信息传递给广告素材单元;包括属性xmlEncoded，该属性是一个布尔值，用于标识<adparameters>值是否为xml编码</adparameters></td>
+<td>否</td>
+</tr>
+</tbody>
+</table>
+<h2 id="NonLinear-Ad"><a href="#NonLinear-Ad" class="headerlink" title="NonLinear Ad"></a>NonLinear Ad</h2><p>非线性广告（也称为“叠加”）不会中断视频内容;它<br>在视频内容播放时显示，通常沿视频内容显示区域的底部。一个或多个&lt;NonLinear&gt;广告可以包含在&lt;NonLinearAds&gt;元素中</p>
+<h3 id="NonLinearAds-element"><a href="#NonLinearAds-element" class="headerlink" title="NonLinearAds element"></a>NonLinearAds element</h3><p>&lt;NonLinearAds&gt;下有&lt;NonLinear&gt;和&lt;TrackingEvents&gt;</p>
+<h4 id="NonLinear-element"><a href="#NonLinear-element" class="headerlink" title="NonLinear element"></a>NonLinear element</h4><h5 id="NonLinear-属性"><a href="#NonLinear-属性" class="headerlink" title="NonLinear 属性"></a>NonLinear 属性</h5><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>意义</th>
+<th>是否必须</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>width</td>
+<td>广告素材所对应的的展示位置广告位的像素宽度</td>
+<td>是</td>
+</tr>
+<tr>
+<td>height</td>
+<td>广告素材所针对的展示位置广告位的像素高度</td>
+<td>是</td>
+</tr>
+<tr>
+<td>id</td>
+<td>一个可选择的广告素材的标识符</td>
+<td>否</td>
+</tr>
+<tr>
+<td>expandedWidth</td>
+<td>广告素材在可拓展条件下的最大像素宽度</td>
+<td>否</td>
+</tr>
+<tr>
+<td>expandedHeight</td>
+<td>广告素材在可拓展条件下的最大像素高度</td>
+<td>否</td>
+</tr>
+<tr>
+<td>scalable</td>
+<td>一个布尔值，用于标识在调整视频播放器大小时，广告素材是否可以相对于视频播放器缩放到新维度</td>
+<td>否</td>
+</tr>
+<tr>
+<td>maintainAspectRatio</td>
+<td>一个布尔值，用于标识在调整视频播放器大小时将广告缩放到新维度时是否应保留广告素材的宽高比</td>
+<td>否</td>
+</tr>
+<tr>
+<td>minSuggestedDuration</td>
+<td>应显示广告素材的最短建议持续时间，duration的格式为HH：MM：SS.mmm（其中.mmm以毫秒为单位，是可选的）</td>
+<td>否</td>
+</tr>
+<tr>
+<td>apiFramework</td>
+<td>与广告素材进行通信所需的API（如果有）</td>
+<td>否</td>
+</tr>
+</tbody>
+</table>
+<h5 id="NonLinear-Resource-Elements"><a href="#NonLinear-Resource-Elements" class="headerlink" title="NonLinear Resource Elements"></a>NonLinear Resource Elements</h5><p>和&lt;Companion&gt;类似，一个&lt;NonLinear&gt;可以有<strong>一个或多个</strong>resource element</p>
+<table>
+<thead>
+<tr>
+<th>标签</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&lt;StaticResource&gt;*</td>
+<td>描述非html广告素材，其中creativeType的属性用于标识广告素材资源平台</td>
+</tr>
+<tr>
+<td>&lt;IFrameResource&gt;</td>
+<td>描述可以在发布者页面上的Iframe中显示的HTML页面的资源</td>
+</tr>
+<tr>
+<td>&lt;HTMLResource&gt;</td>
+<td>描述要直接插入发布者的HTML页面代码中的HTML代码的“片段”</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>&lt;StaticResource&gt; 具有 <strong>type</strong> 的属性，其属性值如下：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>value</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image/gif, image/jpeg, image/png</td>
+<td>使用HTML标记&lt;img&gt;和资源URI作为src属性显示。</td>
+</tr>
+<tr>
+<td>Application/x-javascript</td>
+<td>使用HTML标记&lt;script&gt;和资源URI作为src属性显示</td>
+</tr>
+<tr>
+<td>application/x-shockwave-flash</td>
+<td>使用flash播放器显示</td>
+</tr>
+</tbody>
+</table>
+<h5 id="其他-NonLinear-Elements"><a href="#其他-NonLinear-Elements" class="headerlink" title="其他 NonLinear Elements"></a>其他 NonLinear Elements</h5><table>
+<thead>
+<tr>
+<th>标签</th>
+<th>意义</th>
+<th>是否必须</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&lt;NonLinearClickThrough&gt;</td>
+<td>当用户点击广告时，为与广告客户相关的网页提供网址;仅对缺少提供点击的技术的静态资源文件来说是所必需的</td>
+<td>否</td>
+</tr>
+<tr>
+<td>&lt;NonLinearClickTracking&gt;</td>
+<td>NonLinear广告素材中，此元素用于在广告素材处理点击的情况下跟踪非线性点击，例如在使用类似VPAID的API时</td>
+<td>否</td>
+</tr>
+<tr>
+<td>&lt;AdParameters&gt;</td>
+<td>用于将信息传递给Creative广告素材单元;包括属性xmlEncoded，该属性是一个布尔值，用于标识&lt;AdParameters&gt;值是否为xml编码</td>
+<td>否</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>注意，&lt;TrackingEvents&gt;与&lt;NonLinear&gt;元素处于同一级别。此结构意味着跟踪元素可能应用于多个&lt;NonLinear&gt;元素。通常，视频播放器仅选择一个&lt;NonLinear&gt;元素来显示。可以提供其他&lt;NonLinear&gt;元素以提供多种格式供视频播放器选择。但是，如果显示多个&lt;NonLinear&gt;广告素材，则必须在NonLinear广告素材中的一个或两个中发生关联事件时触发跟踪事件</p>
+</blockquote>
+<h3 id="NonLinear-Tracking-Events"><a href="#NonLinear-Tracking-Events" class="headerlink" title="NonLinear Tracking Events"></a>NonLinear Tracking Events</h3><p>示例</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">TrackingEvents</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Tracking</span> <span class="attr">event</span>=<span class="string">”firstQuartile”</span>&gt;</span></span><br><span class="line">        &lt;![CDATA[http://adserver.com/firstQuartilePixel.gif]&gt;</span><br><span class="line">    &lt;/Tracking&gt;</span><br><span class="line">&lt;/TrackingEvents&gt;</span><br></pre></td></tr></table></figure>
+<p>Tracking事件类型 event可取的值如下：</p>
+<table>
+<thead>
+<tr>
+<th>event value</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>creativeView</td>
+<td>不要与展示混淆，此事件表示已查看广告的单个广告素材部分。impression指示广告的第一帧显示；然而，广告可能由多个广告素材或广告素材组成，这些广告素材并不是在所有平台上都能展示。</td>
+</tr>
+<tr>
+<td>start</td>
+<td>此事件用于指示广告中的单个广告素材已加载，开始播放。与creativeView一样，此事件是跟踪广告素材回放的另一种方式。</td>
+</tr>
+<tr>
+<td>firstQuartile</td>
+<td>素材至少播放了25%</td>
+</tr>
+<tr>
+<td>midpoint</td>
+<td>素材至少播放了50%</td>
+</tr>
+<tr>
+<td>thirdQuartile</td>
+<td>素材至少播放了75%</td>
+</tr>
+<tr>
+<td>complete</td>
+<td>素材以正常速度播放完毕</td>
+</tr>
+<tr>
+<td>mute</td>
+<td>用户对素材静音</td>
+</tr>
+<tr>
+<td>unmute</td>
+<td>用户对素材取消静音</td>
+</tr>
+<tr>
+<td>pause</td>
+<td>用户暂停了素材的播放</td>
+</tr>
+<tr>
+<td>rewind</td>
+<td>用户回放了素材</td>
+</tr>
+<tr>
+<td>resume</td>
+<td>用户停止或暂停素材后，又重新开始播放素材</td>
+</tr>
+<tr>
+<td>fullscreen</td>
+<td>用户点击了全屏播放按钮</td>
+</tr>
+<tr>
+<td>exitFullscreen</td>
+<td>用户退出全屏播放，回到初始大小</td>
+</tr>
+<tr>
+<td>expand</td>
+<td>用户点击某个按钮展开素材</td>
+</tr>
+<tr>
+<td>collapse</td>
+<td>用户点击某个按钮将素材缩小到初始大小</td>
+</tr>
+<tr>
+<td>acceptInvitation</td>
+<td>用户激活了一个控件，该控件启动了广告素材的其他部分。</td>
+</tr>
+<tr>
+<td>close</td>
+<td>用户点击了素材上的关闭按钮</td>
+</tr>
+<tr>
+<td>progress</td>
+<td>在正常速度下播放的广告素材等于或大于偏移量的附加属性中提供的值。偏移值可以是格式为HH：MM：SS或HH：MM：SS.mmm的时间或格式为n％的百分比值。具有不同值的多个进度事件可用于跟踪线性广告素材时间轴中的多个进度点。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Ad-Pods"><a href="#Ad-Pods" class="headerlink" title="Ad Pods"></a>Ad Pods</h2><p>视频播放器必须在显示 <strong>几个Ad Pod</strong>或 <strong>一个或多个独立广告</strong>之间进行选择。在VAST响应中，Pod的三个元素不需要以正确的顺序或背靠背显示，但视频播放器必须按顺序查找和显示Pod广告。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">VAST</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Ad</span> <span class="attr">sequence</span>=<span class="string">1</span>&gt;</span>…<span class="tag">&lt;/<span class="name">Ad</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Ad</span> <span class="attr">sequence</span>=<span class="string">2</span>&gt;</span>…<span class="tag">&lt;/<span class="name">Ad</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Ad</span> <span class="attr">sequence</span>=<span class="string">3</span>&gt;</span>…<span class="tag">&lt;/<span class="name">Ad</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Ad</span>&gt;</span>…<span class="tag">&lt;/<span class="name">Ad</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Ad</span>&gt;</span>…<span class="tag">&lt;/<span class="name">Ad</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">VAST</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>如果Ad Pod是跟随VAST &lt;Wrapper&gt;的结果，则会在Pod中播放每个广告时调用VAST &lt;Wrapper&gt;中的相同impression和tracking URIs。</p>
+<p>如果来自Sercondary Ad Server的“no ad”响应后，Pod中的广告无法播放，则视频播放器应替换响应中未播放的独立广告</p>
+<h2 id="VAST的一般要求"><a href="#VAST的一般要求" class="headerlink" title="VAST的一般要求"></a>VAST的一般要求</h2><p>在VAST 3.0中，无论支持哪种VAST广告格式，都必须支持VAST技术的三个常规领域。 这三个技术领域是：</p>
+<ul>
+<li>VAST Wrapper Ads（广告服务器重定向）：在涉及多个广告服务系统时实现跨平台互操作性。</li>
+<li>Error Reporting：可以改善整个行业的诊断，减少错误并改善用户和相关系统的整体视频广告体验</li>
+<li>Industry Icon Support：支持OBA自我监管和其他需要使用图标的计划。</li>
+</ul>
+<h3 id="为广告服务器重定向使用VAST-Wrapper-Ads"><a href="#为广告服务器重定向使用VAST-Wrapper-Ads" class="headerlink" title="为广告服务器重定向使用VAST Wrapper Ads"></a>为广告服务器重定向使用VAST Wrapper Ads</h3><h4 id="Wrapper结构"><a href="#Wrapper结构" class="headerlink" title="Wrapper结构"></a>Wrapper结构</h4><p>&lt;Wrapper&gt;下的标签</p>
+<table>
+<thead>
+<tr>
+<th>标签</th>
+<th>作用</th>
+<th>是否必须</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&lt;AdSystem&gt;</td>
+<td>为VAST Wrapper响应提供服务的系统的名称;  属性version可用于标识系统使用的VAST版本</td>
+<td>是</td>
+</tr>
+<tr>
+<td>&lt;Impression&gt;</td>
+<td>包含显示内联广告时请求的跟踪资源的URI</td>
+<td>是</td>
+</tr>
+<tr>
+<td>&lt;VASTAdTagURI&gt;</td>
+<td>将URI重定向到下一个VAST响应</td>
+<td>是</td>
+</tr>
+<tr>
+<td>&lt;Creatives&gt;</td>
+<td>包含描述包装广告素材的广告素材元素</td>
+<td>否</td>
+</tr>
+<tr>
+<td>&lt;Error&gt;</td>
+<td>在Wrapper本身，任何后续Wrappers或最终内联广告中发生错误时请求的跟踪资源的URI</td>
+</tr>
+<tr>
+<td>&lt;Extentions&gt;</td>
+<td>自定义XML扩展;  使用时，自定义元素应嵌套在&lt;Extensions&gt;，用于帮助将自定义XML元素与VAST元素分开</td>
+<td>否</td>
+</tr>
+</tbody>
+</table>
+<p><extentions>示例：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Extensions</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">CustomXML</span>&gt;</span>…<span class="tag">&lt;/<span class="name">CustomXML</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Extensions</span>&gt;</span></span><br></pre></td></tr></table></figure></extentions></p>
+<h4 id="Wrapper属性-包装链和多广告管理"><a href="#Wrapper属性-包装链和多广告管理" class="headerlink" title="Wrapper属性 包装链和多广告管理"></a>Wrapper属性 包装链和多广告管理</h4><p>&lt;Wrapper&gt;属性 ：</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>followAdditonalWrappers</td>
+<td>一个布尔值，用于标识在请求的VAST响应之后是否允许后续包装。如果为false，则应忽略任何接收的Wrappers（即不是Inline VAST响应）。 否则，应接受收到的VAST Wrappers</td>
+</tr>
+<tr>
+<td>allowMultipleAds</td>
+<td>一个布尔值，用于标识在请求的VAST响应中是否允许多个广告。如果为true，则允许使用Pod和独立广告。如果为假，则仅允许所请求的VAST响应中的第一个独立Ad（即，Ad没有序列值）。</td>
+</tr>
+<tr>
+<td>fallbackOnNoAd</td>
+<td>一个布尔值，提供在请求的VAST响应未返回广告时使用可用广告的说明。如果为true，则视频播放器应从可用的任何独立广告中进行选择。如果为false且Wrapper表示Pod中的广告，则视频播放器应移至Pod中的下一个广告; 否则，视频播放器可以自行决定是否进行无广告回复。</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>无限循环<blockquote>
+<p>当服务广告涉及一系列Wrappers时，无限循环是可能的，其中一系列Wrappers永远不会导致最终的InLine VAST响应。 可以对视频播放器进行编程以检测这些循环并做出相应的反应。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="Wrapper下的Creative"><a href="#Wrapper下的Creative" class="headerlink" title="Wrapper下的Creative"></a>Wrapper下的Creative</h4><p>Wrapper中的创意元素通常用于收集在Wrapper之后提供的InLine广告素材的跟踪信息。</p>
+<p>如果&lt;Creatives&gt;元素包含在Wrapper中，则可能包含一个或多个&lt;Creative&gt;元素（<strong>但不是必需的;可以使用空的&lt;Creatives&gt;元素</strong>）。</p>
+<p>每个&lt;Creative&gt;元素<strong>最多可包含以下一个</strong>：&lt;Linear&gt;，&lt;NonLinearAds&gt;或&lt;CompanionAds&gt;。Wrapper Ad与InLine Ad 的Creative是不同的。</p>
+<h5 id="Wrapper下的Linear-Creative"><a href="#Wrapper下的Linear-Creative" class="headerlink" title="Wrapper下的Linear Creative"></a>Wrapper下的Linear Creative</h5><p>Wrapper Linear广告素材与Inline广告素材之间最重要的区别在于，<strong>Wrapper Linear广告素材不存在任何媒体文件</strong></p>
+<p>包装线性广告素材中允许的唯一元素是 <strong>&lt;VideoClicks&gt;</strong> 和 <strong>&lt;TrackingEvents&gt;</strong> 。</p>
+<p>这些跟踪元素可以在包装器中收集跟踪数据，以便在包装器之后提供的内联线性广告素材中发生的任何事件。</p>
+<h4 id="Wrapper下的NonLinear-Creative"><a href="#Wrapper下的NonLinear-Creative" class="headerlink" title="Wrapper下的NonLinear Creative"></a>Wrapper下的NonLinear Creative</h4><p>每个&lt;NonLinear&gt; Wrapper元素可以用于跟踪目的，用于跟踪Wrapper之后服务的Inline NonLinear响应。</p>
+<p>Wrapper &lt;Creative&gt;元素最多可包含一个&lt;NonLinearAds&gt;元素。 可以包括<strong>一个或多个可选</strong>的 <strong>&lt;NonLinear&gt;</strong> 和 <strong>&lt;TrackingEvents&gt;</strong> 元素。</p>
+<p>在Wrapper中，&lt;NonLinear&gt;下不包含&lt;NonLinearClickthrough&gt;元素，因为只能在Inline响应中打开指定的网页。 </p>
+<p>Wrapper中的&lt;NonLinearClickTracking&gt;元素用于跟踪Inline NonLinear广告素材中的点击活动。</p>
+<blockquote>
+<p>VAST 3.0中的Wrapper格式中已经删除NonLinear资源元素。</p>
+</blockquote>
+<h4 id="Wrapper下的Companion-Creative"><a href="#Wrapper下的Companion-Creative" class="headerlink" title="Wrapper下的Companion Creative"></a>Wrapper下的Companion Creative</h4><p>与Linear和NonLinear广告素材不同，Companion广告素材可以直接在VAST Wrapper响应中提供，但也可用于跟踪目的。</p>
+<p>当Companion广告素材未包含在Wrapper响应中时，只需要提供Companion Tracking Events（可选）。用于跟踪目的的Wrapper响应中的Companion的结构包括&lt;CompanionClickThrough&gt;,&lt;CompanionClickTracking&gt;,&lt;TrackingEvents&gt;</p>
+<p>直接在Wrapper中为Companion广告素材提供服务的VAST Wrapper响应的结构与Inline VAST响应的结构相同</p>
+<p>当视频播放器显示直接在&lt;Wrapper&gt;元素中提供的广告素材的伴随广告时，视频播放器应跟踪伴随广告，就像跟踪&lt;InLine&gt;元素中提供的广告一样。</p>
+<ul>
+<li>Wrapper冲突管理和优先级</li>
+</ul>
+<p>当Companion广告素材直接包含在Wrapper响应中时，可能会发生冲突。在VAST广告中，无论是使用多个Wrappers还是在一个Inline响应中，所有提供的广告素材都应该是同一个广告素材概念的一部分，并且视频播放器应该尝试显示响应中呈现的所有广告素材（或响应）。但是，当发生冲突时，视频播放器应该支持<strong>最接近Inline响应的广告素材</strong>。</p>
+<p>例如，如果Wrapper包含Companion广告素材而Inline响应也包含Companion广告素材，则应选择Inline响应中的Companion广告素材（除非可以显示两个广告素材而不会发生冲突）。</p>
+<p>如果任何Companion广告素材没有Inline响应，但两个或多个Wrappers包含Companion广告素材，则应该优先选择最接近Inline响应的Wrapper广告素材。</p>
+<h3 id="Error-Reporting"><a href="#Error-Reporting" class="headerlink" title="Error Reporting"></a>Error Reporting</h3><p>&lt;Error&gt;元素使视频播放器能够在无法投放广告时向广告服务器提供反馈。 </p>
+<p>在VAST 3.0中，提供了详细的错误代码和格式规范，以便为更好的广告服务诊断启用详细的错误记录。</p>
+<p>提供更详细的错误代码可以实现更强大的诊断功能。如果广告服务器可以收集有关无法提供广告或特定广告素材的详细信息，则可以改进其系统以减少错误。</p>
+<p>&lt;Error&gt;元素是嵌套在&lt;InLine&gt;或&lt;Wrapper&gt;元素中的<strong>可选元素</strong>。 它用于跟踪广告的错误。 作为包装广告链一部分的内联广告的错误将为用于投放内联广告的每个包装器产生错误。</p>
+<p>在根VAST级别也提供&lt;Error&gt;元素，主要用于报告“no Ad”响应。</p>
+<h4 id="Error-element"><a href="#Error-element" class="headerlink" title="Error element"></a>Error element</h4><p>&lt;Error&gt;元素包含一个为错误提供跟踪资源的URI。 当视频播放器无法显示广告时，将会调用该error‐tracking resource</p>
+<p>示例</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">InLine</span>&gt;</span></span><br><span class="line">    …</span><br><span class="line">    <span class="tag">&lt;<span class="name">Error</span>&gt;</span></span><br><span class="line">        &lt;![CDATA[http://adserver.com/error.gif]&gt;</span><br><span class="line">    &lt;/Error&gt;</span><br><span class="line">    …</span><br><span class="line">&lt;/InLine&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="Video-Player-相关细节"><a href="#Video-Player-相关细节" class="headerlink" title="Video Player 相关细节"></a>Video Player 相关细节</h3><p>如果在尝试加载广告时发生错误并且提供了&lt;Error&gt;元素，则视频播放器必须：</p>
+<ul>
+<li>使用提供的URI请求错误源文件。</li>
+<li>将[ERRORCODE]宏（如果提供）替换为下表中列出的相应错误代码。至少可以使用错误代码900（未识别的错误），但更具体的错误代码有益于所有相关方。如果广告是在一系列包装广告响应之后投放的，则视频播放器还必须返回错误详细信息。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>code</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>100</td>
+<td>XML解析错误。</td>
+</tr>
+<tr>
+<td>101</td>
+<td>VAST架构验证错误。</td>
+</tr>
+<tr>
+<td>102</td>
+<td>不支持的VAST版本的响应。</td>
+</tr>
+<tr>
+<td>200</td>
+<td>Trafficking错误。 视频播放器收到了一种不期望和/或无法显示的广告类型。</td>
+</tr>
+<tr>
+<td>201</td>
+<td>视频播放器期望不同的线性度。</td>
+</tr>
+<tr>
+<td>202</td>
+<td>视频播放器期望持续时间不同。</td>
+</tr>
+<tr>
+<td>203</td>
+<td>视频播放器需要不同的尺寸。</td>
+</tr>
+<tr>
+<td>300</td>
+<td>General Wrapper错误。</td>
+</tr>
+<tr>
+<td>301</td>
+<td>Wrapper元素中提供的VAST URI超时，或后续Wrapper元素中提供的VAST URI。（URI无法使用或达到视频播放器定义的超时。）</td>
+</tr>
+<tr>
+<td>302</td>
+<td>达到了Wrapper限制，由视频播放器定义。 收到的Wrapper响应太多而没有InLine响应。</td>
+</tr>
+<tr>
+<td>303</td>
+<td>在一个或多个Wrappers之后没有广告VAST响应。</td>
+</tr>
+<tr>
+<td>400</td>
+<td>一般线性错误。 视频播放器无法显示Linear Ad。</td>
+</tr>
+<tr>
+<td>401</td>
+<td>文件未找到。 无法从URI中找到Linear / MediaFile。</td>
+</tr>
+<tr>
+<td>402</td>
+<td>MediaFile URI超时。</td>
+</tr>
+<tr>
+<td>403</td>
+<td>根据MediaFile元素的属性，无法找到此视频播放器支持的MediaFile。</td>
+</tr>
+<tr>
+<td>405</td>
+<td>显示MediaFile时出现问题。视频播放器找到了支持类型但无法显示的MediaFile。MediaFile可能包括：不支持的编解码器，与MediaFile @ type不同的MIME类型，不支持的传送方法等。</td>
+</tr>
+<tr>
+<td>500</td>
+<td>一般的 NonLinearAds错误。</td>
+</tr>
+<tr>
+<td>501</td>
+<td>无法显示NonLinear广告，因为广告素材尺寸与广告素材展示区域不对齐（即广告素材尺寸过大）。</td>
+</tr>
+<tr>
+<td>502</td>
+<td>无法获取NonLinearAds / NonLinear资源。</td>
+</tr>
+<tr>
+<td>503</td>
+<td>无法找到支持类型的NonLinear资源。</td>
+</tr>
+<tr>
+<td>600</td>
+<td>一般的 CompanionAds错误。</td>
+</tr>
+<tr>
+<td>601</td>
+<td>无法显示Companion，因为Creative尺寸不适合Companion显示区域（即没有可用空间）。</td>
+</tr>
+<tr>
+<td>602</td>
+<td>无法显示Required Companion。</td>
+</tr>
+<tr>
+<td>603</td>
+<td>无法获取CompanionAds / Companion资源。</td>
+</tr>
+<tr>
+<td>604</td>
+<td>找不到支持类型的Companion资源。</td>
+</tr>
+<tr>
+<td>900</td>
+<td>未定义错误。</td>
+</tr>
+<tr>
+<td>901</td>
+<td>一般VPAID错误。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="no-Ad-response"><a href="#no-Ad-response" class="headerlink" title="no Ad response"></a>no Ad response</h4><p>当广告服务器没有或无法返回广告时，VAST响应应仅包含root</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">VAST</span> <span class="attr">version</span>=<span class="string">”3.0”</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Error</span>&gt;</span></span><br><span class="line">        &lt;![CDATA[http://adserver.com/noad.gif]&gt;</span><br><span class="line">    &lt;/Error&gt;</span><br><span class="line">&lt;/VAST&gt;</span><br></pre></td></tr></table></figure>
+<p>VAST &lt;Error&gt;元素是<strong>可选的</strong>，但如果包含，则视频播放器必须向VAST响应在一个或多个包装广告链后返回空InLine响应时提供的URI发送请求。</p>
+<p>如果包含[ERRORCODE]宏，则视频播放器应替换为错误代码303。</p>
+<p>除了VAST级别&lt;Error&gt;资源文件之外，在Inline Ad 或任何Wrapper ads中的no Ad response中，视频播放器不需要其他跟踪资源请求。</p>
+<h3 id="行业图标支持"><a href="#行业图标支持" class="headerlink" title="行业图标支持"></a>行业图标支持</h3><h4 id="lt-Icons-gt-元素"><a href="#lt-Icons-gt-元素" class="headerlink" title="&lt;Icons&gt;元素"></a>&lt;Icons&gt;元素</h4><p>&lt;Icons&gt;元素在Inline和Wrapper Ad的&lt;Linear&gt;Creative元素下提供。</p>
+<p>在VAST响应中表示&lt;Icons&gt;元素的一般过程:</p>
+<ol>
+<li>video player–&gt;VAST Request–&gt;Ad SErver</li>
+<li>Ad Server–&gt;VAST Response–&gt;video player</li>
+<li>video player–&gt;Icon Request–&gt;Icon Provider Server</li>
+<li>Icon Provider Server–&gt;Icon Response–&gt;video player</li>
+</ol>
+<h5 id="Icon元素的属性"><a href="#Icon元素的属性" class="headerlink" title="Icon元素的属性"></a>Icon元素的属性</h5><p>&lt;Icons&gt;元素可能包含多个&lt;Icon&gt;元素。 每<br>&lt;Icon&gt;元素包括告诉视频播放器在包含多个图标时如何显示图标的属性，以及当同一个节目的多个图标与广告一起提供时要做什么。</p>
+<p>&lt;Icon&gt;属性如下：</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>作用</th>
+<th>是否必须</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>program</td>
+<td>标识图标支持的行业计划。当多个节目的图标元素在Wrapper广告链中提供时，视频播放器使用此信息仅显示每个节目中的一个图标。</td>
+<td>是</td>
+</tr>
+<tr>
+<td>height</td>
+<td>要覆盖在广告上的图标的高度（以像素为单位）。</td>
+<td>是</td>
+</tr>
+<tr>
+<td>width</td>
+<td>要覆盖在广告上的图标的宽度（以像素为单位）。</td>
+<td>是</td>
+</tr>
+<tr>
+<td>xPosition</td>
+<td>视频播放器用于将图标的左上角相对于广告显示区域（不一定是视频播放器显示区域）放置的水平对齐位置（以像素为单位）。接受的值为“left”，“right”或数值（以像素为单位）。值“0”（零）是广告显示区域的最左侧点。</td>
+<td>是</td>
+</tr>
+<tr>
+<td>yPosition</td>
+<td>视频播放器用于将图标的左上角相对于广告显示区域（不一定是视频播放器显示区域）放置的垂直对齐位置（以像素为单位）。可接受的值为“top”，“bottom”或数值（以像素为单位）。值“0”（零）是广告显示区域的最高点。</td>
+<td>是</td>
+</tr>
+<tr>
+<td>apiFramework</td>
+<td>执行Icon广告素材所需的API（如果适用）。</td>
+<td>否</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>视频播放器应显示图标的开始时间（以HH：MM：SS或HH：MM：SS.mmm格式）。指示的时间偏离首次向用户显示图标的关联&lt;Linear&gt;广告素材时的时间。</td>
+<td>否</td>
+</tr>
+<tr>
+<td>duration</td>
+<td>视频播放器应显示图标的时间量（以HH：MM：SS或HH：MM：SS.mmm格式）。如果不存在，视频播放器应在广告显示时显示图标，或者直到用户与广告或图标进行互动。</td>
+<td>否</td>
+</tr>
+</tbody>
+</table>
+<h5 id="Icon元素的构造"><a href="#Icon元素的构造" class="headerlink" title="Icon元素的构造"></a>Icon元素的构造</h5><p>&lt;Icons&gt;元素是一个或多个&lt;Icon&gt;元素的容器。 每个&lt;Icon&gt;元素<strong>必须</strong>包含以下资源元素：&lt;StaticResource&gt;，&lt;IFrameResource&gt;或<br>&lt;HTMLResource&gt;。 resource元素必须包含CDATA元素，该元素包含图标资源文件的URI。 还提供了可选的跟踪元素，以便图标提供者可以跟踪视图和点击。</p>
+<p>除此之外，&lt;Icon&gt;元素包括一个<strong>可选</strong>的 <strong>&lt;IconClicks&gt;</strong>，但如果提供，则<strong>必须</strong>包含一个&lt;IconClickThrough&gt;元素，该元素包含信息页面的CDATA包装URI。当用户单击图标时，视频播放器必须在新窗口中加载此页面。如果Icon资源是脚本文件，例如Flash，则资源文件可以处理点击细节，可能不需要使用&lt;IconClicks&gt;元素。</p>
+<p>&lt;IconClicks&gt;元素还可以包括用于跟踪点击的一个或多个&lt;IconClickTracking&gt;元素，每个元素具有其自己的CDATA包裹的URI到跟踪资源。当用户单击该图标时，视频播放器会同时在新窗口中加载&lt;IconClickThrough&gt; URI以及任何&lt;IconClickTracking&gt;元素的跟踪资源。</p>
+<p>示例：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Icon</span>&gt;</span></span><br><span class="line">    …</span><br><span class="line">    <span class="tag">&lt;<span class="name">IconClicks</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">IconClickThrough</span>&gt;</span></span><br><span class="line">            &lt;![CDATA[http://iconprovider.com/info]&gt;</span><br><span class="line">        &lt;/IconClickThrough&gt;</span><br><span class="line">        &lt;IconClickTracking&gt;</span><br><span class="line">            &lt;![CDATA[http://iconprovider.com/click.gif]&gt;</span><br><span class="line">        &lt;/IconClickTracking&gt;</span><br><span class="line">    &lt;/IconClicks&gt;</span><br><span class="line">&lt;/Icon&gt;</span><br></pre></td></tr></table></figure>
+<p>要跟踪图标视图（类似于跟踪广告的展示次数），&lt;Icon&gt;元素会提供<strong>可选</strong>的&lt;IconViewTracking&gt;元素。 此元素应包含CDATA包装的URI到跟踪资源，视频播放器必须在图标对用户可见后才能加载。 如果使用&lt;Icon&gt;元素中的offset属性指示时间偏移值，则视频播放器必须暂停加载跟踪资源，直到指示的时间。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Icon</span> [<span class="attr">required</span> <span class="attr">attributes</span>] <span class="attr">offset</span>=<span class="string">”00:00:05”</span>&gt;</span></span><br><span class="line">    …</span><br><span class="line">    <span class="tag">&lt;<span class="name">IconViewTracking</span>&gt;</span></span><br><span class="line">        &lt;![CDATA[http://iconprovider.com/view.gif]&gt;</span><br><span class="line">    &lt;/IconViewTracking&gt;</span><br><span class="line">&lt;/Icon&gt;</span><br></pre></td></tr></table></figure>
+<p>上述示例中&lt;IconViewTracking&gt;元素的跟踪资源不应在用户可见带有图标的广告素材发布后5秒内加载。</p>
+<h4 id="NonLinear-and-Companion-Ads下的Icons"><a href="#NonLinear-and-Companion-Ads下的Icons" class="headerlink" title="NonLinear and Companion Ads下的Icons"></a>NonLinear and Companion Ads下的Icons</h4><p>&lt;NonLinearAds&gt;和&lt;CompanionAds&gt;的现有VAST元素可以分别包含多个&lt;NonLinear&gt;或&lt;Companion&gt;元素，这使得广告服务器可以在不使用&lt;Icon&gt;元素的情况下包含具有这些广告素材类型的图标。</p>
+<p>示例：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Creative</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">NonLinearAds</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">NonLinear</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--link to NonLinear creative--&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">NonLinear</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">NonLinear</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--link to industry icon--&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">NonLinear</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">NonLinearAds</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Creative</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Macros"><a href="#Macros" class="headerlink" title="Macros"></a>Macros</h3><p>有时，广告服务器希望在访问跟踪事件URI时从视频播放器收集元数据。</p>
+<p>以下宏使视频播放器能够在访问跟踪URI时向广告服务器提供某些详细信息:</p>
+<table>
+<thead>
+<tr>
+<th>Macros</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[ERRORCODE]</td>
+<td>当发生相关错误时，替换为第2.4.2.3节中列出的错误代码之一;保留用于错误跟踪URI。</td>
+</tr>
+<tr>
+<td>[CONTENTPLAYHEAD]</td>
+<td>替换为视频内容的当前时间偏移“HH：MM：SS.mmm”。</td>
+</tr>
+<tr>
+<td>[CACHEBUSTING]</td>
+<td>替换为随机的8位数字。</td>
+</tr>
+<tr>
+<td>[ASSETURI]</td>
+<td>替换为正在播放的广告资源的URI。</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>替换宏时，视频播放器必须正确地对RFC 3986定义的任何字符进行百分比编码。<br>VAST不提供有关URI格式的任何指导，但使用[CACHEBUSTING]宏可简化广告投放管理，从而使广告服务器可以轻松搜索并替换相应的宏以进行缓存清除。</p>
+</blockquote>
+<h1 id="结构图"><a href="#结构图" class="headerlink" title="结构图"></a>结构图</h1><p><img src="/2018/07/27/VAST/1.jpg" alt="image"></p>
+<p><img src="/2018/07/27/VAST/2.jpg" alt="image"></p>
+<p><img src="/2018/07/27/VAST/3.jpg" alt="image"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/VAST/" rel="tag"># VAST</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/21/interview-experience/" rel="next" title="java后端开发实习面经">
+                <i class="fa fa-chevron-left"></i> java后端开发实习面经
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/01/mvn-pack/" rel="prev" title="jar包中没有主清单属性 解决方法">
+                jar包中没有主清单属性 解决方法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/uploads/head.jpg" alt="Lynn-jyu">
+          <p class="site-author-name" itemprop="name">Lynn-jyu</p>
+           
+              <p class="site-description motion-element" itemprop="description">人生信条是...<br>少说废话多做事...</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#VAST-3-0-概述"><span class="nav-number">1.</span> <span class="nav-text">VAST 3.0  概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#几个专业术语"><span class="nav-number">1.1.</span> <span class="nav-text">几个专业术语</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何工作"><span class="nav-number">1.2.</span> <span class="nav-text">如何工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#直接从主广告服务器获取"><span class="nav-number">1.2.1.</span> <span class="nav-text">直接从主广告服务器获取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从多级广告服务器上获取广告信息"><span class="nav-number">1.2.2.</span> <span class="nav-text">从多级广告服务器上获取广告信息</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VAST-3-0支持的广告类型"><span class="nav-number">1.3.</span> <span class="nav-text">VAST 3.0支持的广告类型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#VAST-实现细节"><span class="nav-number">2.</span> <span class="nav-text">VAST 实现细节</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#最低限度要求"><span class="nav-number">2.1.</span> <span class="nav-text">最低限度要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#跨域安全信任问题"><span class="nav-number">2.2.</span> <span class="nav-text">跨域安全信任问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#crossdomain-xml-for-Flash"><span class="nav-number">2.2.1.</span> <span class="nav-text">crossdomain.xml for Flash</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cross-Origin-Resource-Sharing-CORS-for-JavaScript"><span class="nav-number">2.2.2.</span> <span class="nav-text">Cross Origin Resource Sharing (CORS) for JavaScript</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建VAST文档结构"><span class="nav-number">2.3.</span> <span class="nav-text">构建VAST文档结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#声明-VAST-response"><span class="nav-number">2.3.1.</span> <span class="nav-text">声明 VAST response</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ad节点"><span class="nav-number">2.3.2.</span> <span class="nav-text">Ad节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Wrapper节点"><span class="nav-number">2.3.3.</span> <span class="nav-text">Wrapper节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#InLine节点"><span class="nav-number">2.3.4.</span> <span class="nav-text">InLine节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VAST-Tracking"><span class="nav-number">2.3.5.</span> <span class="nav-text">VAST Tracking</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#impression节点"><span class="nav-number">2.3.6.</span> <span class="nav-text">impression节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Creatives节点"><span class="nav-number">2.3.7.</span> <span class="nav-text">Creatives节点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linear-Ad"><span class="nav-number">2.4.</span> <span class="nav-text">Linear Ad</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Duration-Element（必须）"><span class="nav-number">2.4.1.</span> <span class="nav-text">The Duration Element（必须）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-MediaFiles-Element（必须）"><span class="nav-number">2.4.2.</span> <span class="nav-text">The MediaFiles Element（必须）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可选Element"><span class="nav-number">2.4.3.</span> <span class="nav-text">可选Element</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Skippable-Linear-Creative"><span class="nav-number">2.5.</span> <span class="nav-text">Skippable Linear Creative</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#skip-event"><span class="nav-number">2.5.1.</span> <span class="nav-text">skip event</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#progress-event"><span class="nav-number">2.5.2.</span> <span class="nav-text">progress event</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Companion-Ad"><span class="nav-number">2.6.</span> <span class="nav-text">Companion Ad</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CompanionAds-element"><span class="nav-number">2.6.1.</span> <span class="nav-text">CompanionAds element</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CompanionAds的属性"><span class="nav-number">2.6.1.1.</span> <span class="nav-text">CompanionAds的属性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Companion-Element"><span class="nav-number">2.6.2.</span> <span class="nav-text">Companion Element</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Companion的属性"><span class="nav-number">2.6.2.1.</span> <span class="nav-text">Companion的属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Companion-Resource-Elements"><span class="nav-number">2.6.2.2.</span> <span class="nav-text">Companion Resource Elements</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他-Companion-Elements"><span class="nav-number">2.6.2.3.</span> <span class="nav-text">其他 Companion Elements</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NonLinear-Ad"><span class="nav-number">2.7.</span> <span class="nav-text">NonLinear Ad</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NonLinearAds-element"><span class="nav-number">2.7.1.</span> <span class="nav-text">NonLinearAds element</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#NonLinear-element"><span class="nav-number">2.7.1.1.</span> <span class="nav-text">NonLinear element</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#NonLinear-属性"><span class="nav-number">2.7.1.1.1.</span> <span class="nav-text">NonLinear 属性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#NonLinear-Resource-Elements"><span class="nav-number">2.7.1.1.2.</span> <span class="nav-text">NonLinear Resource Elements</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#其他-NonLinear-Elements"><span class="nav-number">2.7.1.1.3.</span> <span class="nav-text">其他 NonLinear Elements</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NonLinear-Tracking-Events"><span class="nav-number">2.7.2.</span> <span class="nav-text">NonLinear Tracking Events</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ad-Pods"><span class="nav-number">2.8.</span> <span class="nav-text">Ad Pods</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VAST的一般要求"><span class="nav-number">2.9.</span> <span class="nav-text">VAST的一般要求</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为广告服务器重定向使用VAST-Wrapper-Ads"><span class="nav-number">2.9.1.</span> <span class="nav-text">为广告服务器重定向使用VAST Wrapper Ads</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Wrapper结构"><span class="nav-number">2.9.1.1.</span> <span class="nav-text">Wrapper结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Wrapper属性-包装链和多广告管理"><span class="nav-number">2.9.1.2.</span> <span class="nav-text">Wrapper属性 包装链和多广告管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Wrapper下的Creative"><span class="nav-number">2.9.1.3.</span> <span class="nav-text">Wrapper下的Creative</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Wrapper下的Linear-Creative"><span class="nav-number">2.9.1.3.1.</span> <span class="nav-text">Wrapper下的Linear Creative</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Wrapper下的NonLinear-Creative"><span class="nav-number">2.9.1.4.</span> <span class="nav-text">Wrapper下的NonLinear Creative</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Wrapper下的Companion-Creative"><span class="nav-number">2.9.1.5.</span> <span class="nav-text">Wrapper下的Companion Creative</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Error-Reporting"><span class="nav-number">2.9.2.</span> <span class="nav-text">Error Reporting</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Error-element"><span class="nav-number">2.9.2.1.</span> <span class="nav-text">Error element</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Video-Player-相关细节"><span class="nav-number">2.9.3.</span> <span class="nav-text">Video Player 相关细节</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#no-Ad-response"><span class="nav-number">2.9.3.1.</span> <span class="nav-text">no Ad response</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#行业图标支持"><span class="nav-number">2.9.4.</span> <span class="nav-text">行业图标支持</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#lt-Icons-gt-元素"><span class="nav-number">2.9.4.1.</span> <span class="nav-text">&lt;Icons&gt;元素</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Icon元素的属性"><span class="nav-number">2.9.4.1.1.</span> <span class="nav-text">Icon元素的属性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Icon元素的构造"><span class="nav-number">2.9.4.1.2.</span> <span class="nav-text">Icon元素的构造</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NonLinear-and-Companion-Ads下的Icons"><span class="nav-number">2.9.4.2.</span> <span class="nav-text">NonLinear and Companion Ads下的Icons</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Macros"><span class="nav-number">2.9.5.</span> <span class="nav-text">Macros</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结构图"><span class="nav-number">3.</span> <span class="nav-text">结构图</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lynn-jyu</span>
+</div>
+
+
+<div class="powered-by">
+  El PsyCongroo
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+<script>
+var flag = true;
+var mockUv = 18739;
+var mockPv = 43967;
+var realUv,realPv;
+setTimeout(() => {
+	realUv = parseInt(document.getElementById('busuanzi_value_site_uv').innerHTML);
+	realPv = parseInt(document.getElementById('busuanzi_value_site_pv').innerHTML);
+	//console.log(realUv);
+	//console.log(realPv);
+	if (!isNaN(realUv) && !isNaN(realPv)) {
+		document.getElementById('busuanzi_value_site_uv').innerHTML = mockUv + realUv;
+		document.getElementById('busuanzi_value_site_pv').innerHTML = mockPv + realPv;
+		//console.log('realUv:');
+		//console.log(mockUv + realUv);
+	}
+},5000);
+</script>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  <script>
+// ==UserScript==
+// @name         ���������(Mini ScrollBar)
+// @namespace    https://greasyfork.org/zh-CN/users/104201
+// @version      0.4
+// @description  ���������㻯.(Make scroll bar mini.)
+// @author       ����
+// @include      *
+// @run-at       document-start
+// @compatible chrome
+// @grant        none
+// ==/UserScript==
+;
+(function() {
+  'use strict';
+  const scrollbarWidth = 8,
+    thumbBorderWidth = 1,
+    thumbBorderColor = "rgba(255, 255, 255, 0.4)",
+    scrollbarMouseOverColor = 'rgba(128, 128, 128, 0.2)',
+    thumbColor = 'rgba(0, 0, 0, 0.4)',
+    thumbMouseOverColor = 'rgba(0, 0, 0, 0.8)';
+  const cssText =`
+    ::-webkit-scrollbar{
+    width: ${scrollbarWidth}px !important;
+    height: ${scrollbarWidth}px !important;
+    background:#222;
+    filter: invert();
+    }
+    ::-webkit-scrollbar:hover {
+    background: #555;
+    }
+    ::-webkit-scrollbar-thumb {
+    border: ${thumbBorderWidth}px solid ${thumbBorderColor} !important;
+    background-color: #ffffff !important;
+    z-index: 2147483647;
+    -webkit-border-radius: 12px;
+    background-clip: content-box;
+    }
+    ::-webkit-scrollbar-corner {
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid transparent
+    }
+    ::-webkit-scrollbar-thumb:hover {
+    background-color: ${thumbMouseOverColor} !important;
+    }
+    ::-webkit-scrollbar-thumb:active {
+    background-color: rgba(0, 0, 0, 0.6) !important
+    }
+  `;
+function GMaddStyle(css) {
+  let a = document.createElement('style'),doc;
+  a.textContent = '<!--\n' + css + '\n-->';
+  if (location.origin === "file://") {
+    doc = document.head || document.documentElement;
+  } else {
+    doc = document.body || document.documentElement;
+  }
+  doc.appendChild(a);
+}
+GMaddStyle(cssText);
+
+})();
+</script>
+
+</body>
+</html>

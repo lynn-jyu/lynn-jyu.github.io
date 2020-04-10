@@ -1,0 +1,893 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="java,NIO,BIO,通信,netty,IO,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
+
+
+
+
+
+
+<meta name="description" content="同步、异步、阻塞、非阻塞同步小明上传一个500m的视频，等待这个视频上传成功，返回结果。这个等待成功的通知就是同步。 异步小明上传一个500m的视频，但是设置了一个上传成功提醒的功能，等到视频上传成功，系统会自动提醒，这样的就是异步。 阻塞小明上传一个500m的视频，等待这个视频上传成功，返回结果，在上传视频的过程就只有在等待成功的通知，这个等待的过程就是阻塞 非阻塞小明上传一个500m的视频，等">
+<meta name="keywords" content="java,NIO,BIO,通信,netty,IO">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JAVA BIO和NIO">
+<meta property="og:url" content="https://www.lynnjy.cn/2018/12/26/java-bio-nio/index.html">
+<meta property="og:site_name" content="Lynn-jyu&#39;s Blog">
+<meta property="og:description" content="同步、异步、阻塞、非阻塞同步小明上传一个500m的视频，等待这个视频上传成功，返回结果。这个等待成功的通知就是同步。 异步小明上传一个500m的视频，但是设置了一个上传成功提醒的功能，等到视频上传成功，系统会自动提醒，这样的就是异步。 阻塞小明上传一个500m的视频，等待这个视频上传成功，返回结果，在上传视频的过程就只有在等待成功的通知，这个等待的过程就是阻塞 非阻塞小明上传一个500m的视频，等">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://www.lynnjy.cn/2018/12/26/java-bio-nio/blockedIOModel.png">
+<meta property="og:image" content="https://www.lynnjy.cn/2018/12/26/java-bio-nio/newIOModel.png">
+<meta property="og:image" content="https://www.lynnjy.cn/2018/12/26/java-bio-nio/多路复用IO.png">
+<meta property="og:image" content="https://www.lynnjy.cn/2018/12/26/java-bio-nio/IO信号驱动.png">
+<meta property="og:image" content="https://www.lynnjy.cn/2018/12/26/java-bio-nio/异步IO.png">
+<meta property="og:updated_time" content="2020-04-10T14:04:12.162Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JAVA BIO和NIO">
+<meta name="twitter:description" content="同步、异步、阻塞、非阻塞同步小明上传一个500m的视频，等待这个视频上传成功，返回结果。这个等待成功的通知就是同步。 异步小明上传一个500m的视频，但是设置了一个上传成功提醒的功能，等到视频上传成功，系统会自动提醒，这样的就是异步。 阻塞小明上传一个500m的视频，等待这个视频上传成功，返回结果，在上传视频的过程就只有在等待成功的通知，这个等待的过程就是阻塞 非阻塞小明上传一个500m的视频，等">
+<meta name="twitter:image" content="https://www.lynnjy.cn/2018/12/26/java-bio-nio/blockedIOModel.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://www.lynnjy.cn/2018/12/26/java-bio-nio/">
+
+
+
+
+
+  <title>JAVA BIO和NIO | Lynn-jyu's Blog</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lynn-jyu's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">just a blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://www.lynnjy.cn/2018/12/26/java-bio-nio/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lynn-jyu">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lynn-jyu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JAVA BIO和NIO</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-26T11:35:49+08:00">
+                2018-12-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="同步、异步、阻塞、非阻塞"><a href="#同步、异步、阻塞、非阻塞" class="headerlink" title="同步、异步、阻塞、非阻塞"></a>同步、异步、阻塞、非阻塞</h1><h2 id="同步"><a href="#同步" class="headerlink" title="同步"></a>同步</h2><p>小明上传一个500m的视频，等待这个视频上传成功，返回结果。这个等待成功的通知就是同步。</p>
+<h2 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h2><p>小明上传一个500m的视频，但是设置了一个上传成功提醒的功能，等到视频上传成功，系统会自动提醒，这样的就是异步。</p>
+<h2 id="阻塞"><a href="#阻塞" class="headerlink" title="阻塞"></a>阻塞</h2><p>小明上传一个500m的视频，等待这个视频上传成功，返回结果，在上传视频的过程就只有在等待成功的通知，这个等待的过程就是阻塞</p>
+<h2 id="非阻塞"><a href="#非阻塞" class="headerlink" title="非阻塞"></a>非阻塞</h2><p>小明上传一个500m的视频，等待这个视频上传成功，返回结果，但是在等待的过程中在做其他事情，这样的就是非阻塞</p>
+<p>由前面四个例子，我们可以知道：同步就是需要自己去轮询（每隔一段时间看看视频上传成功了没），异步就是视频上传成功了，会自动通知你。 而阻塞就是在传视频途中你不可以做其他的事情，非阻塞则相反，你可以在执行的同事去干其他事情。</p>
+<ul>
+<li>同步与异步是相对操作结果来说，会不会等待结果返回。</li>
+<li>阻塞与非阻塞是相对于线程是否被阻塞。</li>
+</ul>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>其实，这两者存在本质的区别，它们的<strong>修饰对象</strong>是不同的。阻塞和非阻塞是指进程访问的数据如果尚未就绪，进程是否需要等待，简单说这相当于函数内部的实现区别，也就是未就绪时是直接返回还是等待就绪。</p>
+<p>而同步和异步是指<strong>访问数据的机制</strong>,同步一般指主动请求并等待I/O操作完毕的方式,当数据就绪后在读写的时候必须阻塞,异步则指主动请求数据后便可以继续处理其它任务,随后等待I/O,操作完毕的通知,这可以使进程在数据读写时也不阻塞。</p>
+<h1 id="IO-模型"><a href="#IO-模型" class="headerlink" title="IO 模型"></a>IO 模型</h1><blockquote>
+<p>linux的内核将所有外部设备都看做一个文件来操作，对一个文件的读写操作会调用内核提供的系统命令，返回一个file descriptor(fd，文件描述符)</p>
+</blockquote>
+<h2 id="阻塞IO"><a href="#阻塞IO" class="headerlink" title="阻塞IO"></a>阻塞IO</h2><p>最常用的I/O模型就是阻塞I/O模型，缺省情况下，所有文件操作都是阻塞的。在进程空间recvfrom，其系统调用直到数据包到达且被复制到应用进程的缓冲区中或者发生错误时才返回，在此期间会一直等待，进程从调用recvfrom开始到它返回的整段时间都是被阻塞，因此被称为阻塞I/O模型。</p>
+<p><img src="/2018/12/26/java-bio-nio/./blockedIOModel.png" alt="image"></p>
+<h2 id="非阻塞IO"><a href="#非阻塞IO" class="headerlink" title="非阻塞IO"></a>非阻塞IO</h2><p>recvfrom从应用层到内核的时候，如果该缓冲区没有数据的话，就直接返回一个EWOULDBLOCK错误，一般都对非阻塞I/O模型进行轮询检查这个状态，看内核是不是有数据到来。</p>
+<p><img src="/2018/12/26/java-bio-nio/./newIOModel.png" alt="image"></p>
+<h2 id="IO-复用"><a href="#IO-复用" class="headerlink" title="IO 复用"></a>IO 复用</h2><p>linux提供select/poll，进程通过将一个或多个fd传递给select或者poll系统调用，阻塞在select操作上，这样select/poll可以帮我们监测多个fd是否处于就绪状态。select/poll是顺序扫描fd是否就绪，而且支持的fd数量有限，因此它的使用受到了一些制约。linux还提供了一个epoll系统调用，epoll用于基于事件驱动方式代替顺序扫描，因此性能更高。当有fd就绪的时候，立即回调rollback.</p>
+<p><img src="/2018/12/26/java-bio-nio/./多路复用IO.png" alt="image"></p>
+<h2 id="IO-信号驱动"><a href="#IO-信号驱动" class="headerlink" title="IO 信号驱动"></a>IO 信号驱动</h2><p>首先开启套接口信号驱动I/O功能，并通过系统调用sigaction执行一个信号处理函数（此系统调用立即返回，进程继续工作，它是非阻塞的）。当数据准备就绪时，就为该进程生成一个SIGIO信号，通过信号回调通知应用程序调用recvfrom来读取数据，并通知主循环函数处理数据。</p>
+<p><img src="/2018/12/26/java-bio-nio/./IO信号驱动.png" alt="image"></p>
+<h2 id="异步-IO"><a href="#异步-IO" class="headerlink" title="异步 IO"></a>异步 IO</h2><p>告知内核启动某个操作，并让内核在整个操作完成后（包括将数据从内核复制到用户自己的缓冲区）通知我们。这种模型与信号驱动模型的主要区别是：信号驱动I/O由内核通知我们何时可以开始一个I/O操作；异步I/O模型由内核告诉我们I/O操作何时已经完成。</p>
+<p><img src="/2018/12/26/java-bio-nio/./异步IO.png" alt="image"></p>
+<h1 id="Java-BIO通信"><a href="#Java-BIO通信" class="headerlink" title="Java BIO通信"></a>Java BIO通信</h1><p>采用BIO通信模型的服务端，通常由一个独立的Acceptor线程负责监听客户端的连接，它接收到客户连接请求之后为每个客户端创建一个新的线程进行链路处理，处理完成之后，通过输出流返回应答给客户端，线程销毁。这就是典型的一请求一应答的通信模型。</p>
+<h2 id="同步阻塞I-O"><a href="#同步阻塞I-O" class="headerlink" title="同步阻塞I/O"></a>同步阻塞I/O</h2><p>Demo:</p>
+<p>同步阻塞I/O创建的BioSocketServer:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BioSocketServer</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> port = <span class="number">8080</span>;</span><br><span class="line">        ServerSocket serverSocket = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            serverSocket = <span class="keyword">new</span> ServerSocket(port);</span><br><span class="line">            System.out.println(<span class="string">"The server is satrt in port: "</span> + port);</span><br><span class="line">            Socket socket = <span class="keyword">null</span>;</span><br><span class="line">            <span class="keyword">while</span> (<span class="keyword">true</span>)&#123;</span><br><span class="line">                socket = serverSocket.accept();</span><br><span class="line">                <span class="keyword">new</span> Thread(<span class="keyword">new</span> BioSocketServerHandler(socket)).start();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (serverSocket != <span class="keyword">null</span>)&#123;</span><br><span class="line">                System.out.println(<span class="string">"The server close"</span>);</span><br><span class="line">                serverSocket.close();</span><br><span class="line">                serverSocket = <span class="keyword">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>此处设置绑定8080端口，默认主机localhost，通过while循环来监听客户端的连接，如果没有客户端连接，阻塞在accept操作上。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BioSocketServerHandler</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Socket socket;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BioSocketServerHandler</span> <span class="params">(Socket socket)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.socket = socket;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    	<span class="comment">//创建BufferReader对象读取客户端发送的数据</span></span><br><span class="line">        BufferedReader in = <span class="keyword">null</span>;</span><br><span class="line">		<span class="comment">//创建PrintWriter返回响应信息给客户端</span></span><br><span class="line">        PrintWriter out = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">			<span class="comment">//客户端和服务端数据交互是通过流的方式进行传输交互，所以获取流转换成BufferReader对象</span></span><br><span class="line">            in = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(<span class="keyword">this</span>.socket.getInputStream()));</span><br><span class="line">            <span class="comment">//这里要设置autoFlush为true，实现自动刷新到缓冲区，否则数据是无法进行发送的，除非手动调用flush刷新到缓冲区</span></span><br><span class="line">            out = <span class="keyword">new</span> PrintWriter(<span class="keyword">this</span>.socket.getOutputStream(), <span class="keyword">true</span>);</span><br><span class="line">            String currentTime = <span class="keyword">null</span>;</span><br><span class="line">            String body = <span class="keyword">null</span>;</span><br><span class="line">			<span class="comment">//循环从BufferReader中读取客户端发送的数据，当读到了输入流的尾部，就退出循环</span></span><br><span class="line">            <span class="keyword">while</span> (<span class="keyword">true</span>)&#123;</span><br><span class="line">                body = in.readLine();</span><br><span class="line">                <span class="keyword">if</span> (body == <span class="keyword">null</span>)&#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                System.out.println(<span class="string">"The server receive msg:"</span> + body);</span><br><span class="line">                currentTime = <span class="keyword">new</span> Date(System.currentTimeMillis()).toString();</span><br><span class="line">                <span class="comment">//返回响应信息给客户端</span></span><br><span class="line">                out.println(currentTime);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">            <span class="keyword">if</span> (in != <span class="keyword">null</span>)&#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    in.close();</span><br><span class="line">                &#125;<span class="keyword">catch</span> (IOException e1)&#123;</span><br><span class="line">                    e1.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (out != <span class="keyword">null</span>)&#123;</span><br><span class="line">               out.close();</span><br><span class="line">               out = <span class="keyword">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">this</span>.socket != <span class="keyword">null</span>)&#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    <span class="keyword">this</span>.socket.close();</span><br><span class="line">                &#125;<span class="keyword">catch</span> (IOException e1)&#123;</span><br><span class="line">                    e1.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">this</span>.socket = <span class="keyword">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>当有新客户端连接的时候，调用BioSocketServerHandler进行连接，读写事件处理。</p>
+</blockquote>
+<p>同步阻塞I/O创建的BioSocketClient:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BioSocketClient</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> port = <span class="number">8080</span>;</span><br><span class="line">        Socket socket = <span class="keyword">null</span>;</span><br><span class="line">        BufferedReader in = <span class="keyword">null</span>;</span><br><span class="line">        PrintWriter out = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">        	<span class="comment">//指定连接的host和端口</span></span><br><span class="line">            socket = <span class="keyword">new</span> Socket(<span class="string">"127.0.0.1"</span>, port);</span><br><span class="line">            in = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(socket.getInputStream()));</span><br><span class="line">            out = <span class="keyword">new</span> PrintWriter(socket.getOutputStream(), <span class="keyword">true</span>);</span><br><span class="line">            <span class="comment">//发送数据给服务端</span></span><br><span class="line">            out.println(<span class="string">"hello, I am client"</span>);</span><br><span class="line">            <span class="comment">//接收服务端返回响应信息</span></span><br><span class="line">            String resp = in.readLine();</span><br><span class="line">            System.out.println(<span class="string">"Now is : "</span>+resp);</span><br><span class="line">        &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">        &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (in != <span class="keyword">null</span>)&#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    in.close();</span><br><span class="line">                &#125;<span class="keyword">catch</span> (IOException e1)&#123;</span><br><span class="line">                    e1.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (out != <span class="keyword">null</span>)&#123;</span><br><span class="line">                out.close();</span><br><span class="line">                out = <span class="keyword">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (socket != <span class="keyword">null</span>)&#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    socket.close();</span><br><span class="line">                &#125;<span class="keyword">catch</span> (IOException e1)&#123;</span><br><span class="line">                    e1.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">                socket = <span class="keyword">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>通过上面的BIO的demo，我们发现了每当有一个新客户连接进来的时候，服务端都必须创建一个线程处理新的客户端连接，一个线程只能处理一个客户端连接，在高性能高并发的服务器应用领域，往往可能都是需要能够承受成千上万个连接处理，这样的模型显然不能满足需求。</p>
+<h2 id="伪异步I-O"><a href="#伪异步I-O" class="headerlink" title="伪异步I/O"></a>伪异步I/O</h2><p>优化上面的同步阻塞I/O一个连接需要一个线程处理带来的巨额线程开销，下面使用线程池来进行处理。</p>
+<p>伪异步I/O创建的AsynBioSocketServer:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AsynBioSocketServer</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> port = <span class="number">8080</span>;</span><br><span class="line">        ServerSocket serverSocket = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            serverSocket = <span class="keyword">new</span> ServerSocket(port);</span><br><span class="line">            System.out.println(<span class="string">"The server is satrt in port: "</span> + port);</span><br><span class="line">            Socket socket = <span class="keyword">null</span>;</span><br><span class="line">            <span class="comment">//自定义一个线程池</span></span><br><span class="line">             AsynBioSocketServerHandlerExecutePool singleExecutor = <span class="keyword">new</span> AsynBioSocketServerHandlerExecutePool(<span class="number">50</span>, <span class="number">10000</span>);</span><br><span class="line">            <span class="keyword">while</span> (<span class="keyword">true</span>)&#123;</span><br><span class="line">                socket = serverSocket.accept();</span><br><span class="line">                <span class="comment">//把每次请求封装成一个task放到线程池里面去进行处理</span></span><br><span class="line">                singleExecutor.execute(<span class="keyword">new</span> com.yate.asynbio.AsynBioSocketServerHandler(socket));</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (serverSocket != <span class="keyword">null</span>)&#123;</span><br><span class="line">                System.out.println(<span class="string">"The time server close"</span>);</span><br><span class="line">                serverSocket.close();</span><br><span class="line">                serverSocket = <span class="keyword">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>线程池</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AsynBioSocketServerHandlerExecutePool</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> ExecutorService executor;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AsynBioSocketServerHandlerExecutePool</span> <span class="params">(<span class="keyword">int</span> maxPoolSize, <span class="keyword">int</span> queueSize)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.executor = <span class="keyword">new</span> ThreadPoolExecutor(Runtime.getRuntime().availableProcessors(), maxPoolSize, <span class="number">120L</span>, TimeUnit.SECONDS, <span class="keyword">new</span> ArrayBlockingQueue&lt;Runnable&gt;(queueSize));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(Runnable task)</span></span>&#123;</span><br><span class="line">        executor.execute(task);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>伪异步I/O创建的AsynBioSocketServerHandler:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AsynBioSocketServerHandler</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Socket socket;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AsynBioSocketServerHandler</span><span class="params">(Socket socket)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.socket = socket;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        BufferedReader in = <span class="keyword">null</span>;</span><br><span class="line">        PrintWriter out = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line"></span><br><span class="line">            in = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(<span class="keyword">this</span>.socket.getInputStream()));</span><br><span class="line">            out = <span class="keyword">new</span> PrintWriter(<span class="keyword">this</span>.socket.getOutputStream(), <span class="keyword">true</span>);</span><br><span class="line">            String currentTime = <span class="keyword">null</span>;</span><br><span class="line">            String body = <span class="keyword">null</span>;</span><br><span class="line">            <span class="keyword">while</span> (<span class="keyword">true</span>)&#123;</span><br><span class="line">                body = in.readLine();</span><br><span class="line">                <span class="keyword">if</span> (body == <span class="keyword">null</span>)&#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                System.out.println(<span class="string">"The server receive msg:"</span> + body);</span><br><span class="line">                currentTime = <span class="keyword">new</span> Date(System.currentTimeMillis()).toString();</span><br><span class="line">                out.println(currentTime);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">            <span class="keyword">if</span> (in != <span class="keyword">null</span>)&#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    in.close();</span><br><span class="line">                &#125;<span class="keyword">catch</span> (IOException e1)&#123;</span><br><span class="line">                    e1.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (out != <span class="keyword">null</span>)&#123;</span><br><span class="line">               out.close();</span><br><span class="line">               out = <span class="keyword">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">this</span>.socket != <span class="keyword">null</span>)&#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    <span class="keyword">this</span>.socket.close();</span><br><span class="line">                &#125;<span class="keyword">catch</span> (IOException e1)&#123;</span><br><span class="line">                    e1.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">this</span>.socket = <span class="keyword">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>伪异步I/O创建的AsynBioSocketClient:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AsynBioSocketClient</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> port = <span class="number">8080</span>;</span><br><span class="line">        Socket socket = <span class="keyword">null</span>;</span><br><span class="line">        BufferedReader in = <span class="keyword">null</span>;</span><br><span class="line">        PrintWriter out = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            socket = <span class="keyword">new</span> Socket(<span class="string">"127.0.0.1"</span>, port);</span><br><span class="line">            in = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(socket.getInputStream()));</span><br><span class="line">            out = <span class="keyword">new</span> PrintWriter(socket.getOutputStream(), <span class="keyword">true</span>);</span><br><span class="line">            out.println(<span class="string">"hello, i am client"</span>);</span><br><span class="line">            String resp = in.readLine();</span><br><span class="line">            System.out.println(<span class="string">"Now is : "</span>+resp);</span><br><span class="line">        &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line"></span><br><span class="line">        &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (in != <span class="keyword">null</span>)&#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    in.close();</span><br><span class="line">                &#125;<span class="keyword">catch</span> (IOException e1)&#123;</span><br><span class="line">                    e1.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (out != <span class="keyword">null</span>)&#123;</span><br><span class="line">                out.close();</span><br><span class="line">                out = <span class="keyword">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (socket != <span class="keyword">null</span>)&#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    socket.close();</span><br><span class="line">                &#125;<span class="keyword">catch</span> (IOException e1)&#123;</span><br><span class="line">                    e1.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">                socket = <span class="keyword">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用了线程池来进行优化了，由于线程池和消息队列都是有界的，因此，无论并发量多大，都不会导致线程个数膨胀或者溢出，相比于原本的BIO，是一种改良，但是由于它底层采用的还是同步阻塞模型，因此还是无法从根本上解决问题。在进行read和write操作都是同步阻塞的，阻塞的时间取决于对方的I/O线程的处理速度和网络I/O的传输速度，如果我们的应用程序依赖用户的处理速度，那么可靠性就变得特别差。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>总结一下BIO或者伪异步IO存在的问题:</p>
+<ol>
+<li>服务端处理缓慢，返回应答消息耗费60s，平时只需要10ms</li>
+<li>采用伪异步I/O的线程正在读取故障服务节点的响应，由于读取输入流是阻塞的，它将会被阻塞60s</li>
+<li>假如所有的可用线程都被故障服务器阻塞，那后续所有的I/O消息都将在队列中排队</li>
+<li>由于线程池采用的阻塞队列实现，当队列满了以后，后续入队列的操作将被阻塞</li>
+<li>由于前端只有一个Accptor线程接收客户端接入，它被阻塞在线程池的同步阻塞队列之后，新的客户端请求消息将被拒绝，客户端会发生大量的连接超时</li>
+<li>由于几乎所有的连接都超时，调用者会认为系统已经崩溃，无法接收到新的请求消息。</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/NIO/" rel="tag"># NIO</a>
+          
+            <a href="/tags/BIO/" rel="tag"># BIO</a>
+          
+            <a href="/tags/通信/" rel="tag"># 通信</a>
+          
+            <a href="/tags/netty/" rel="tag"># netty</a>
+          
+            <a href="/tags/IO/" rel="tag"># IO</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/12/jdbc-emoji-bug/" rel="next" title="关于数据库写入Emoji表情的报错的解决方法">
+                <i class="fa fa-chevron-left"></i> 关于数据库写入Emoji表情的报错的解决方法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/19/factory-pattern/" rel="prev" title="工厂模式">
+                工厂模式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/uploads/head.jpg" alt="Lynn-jyu">
+          <p class="site-author-name" itemprop="name">Lynn-jyu</p>
+           
+              <p class="site-description motion-element" itemprop="description">人生信条是...<br>少说废话多做事...</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#同步、异步、阻塞、非阻塞"><span class="nav-number">1.</span> <span class="nav-text">同步、异步、阻塞、非阻塞</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#同步"><span class="nav-number">1.1.</span> <span class="nav-text">同步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异步"><span class="nav-number">1.2.</span> <span class="nav-text">异步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#阻塞"><span class="nav-number">1.3.</span> <span class="nav-text">阻塞</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非阻塞"><span class="nav-number">1.4.</span> <span class="nav-text">非阻塞</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">1.5.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IO-模型"><span class="nav-number">2.</span> <span class="nav-text">IO 模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#阻塞IO"><span class="nav-number">2.1.</span> <span class="nav-text">阻塞IO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非阻塞IO"><span class="nav-number">2.2.</span> <span class="nav-text">非阻塞IO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IO-复用"><span class="nav-number">2.3.</span> <span class="nav-text">IO 复用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IO-信号驱动"><span class="nav-number">2.4.</span> <span class="nav-text">IO 信号驱动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异步-IO"><span class="nav-number">2.5.</span> <span class="nav-text">异步 IO</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-BIO通信"><span class="nav-number">3.</span> <span class="nav-text">Java BIO通信</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#同步阻塞I-O"><span class="nav-number">3.1.</span> <span class="nav-text">同步阻塞I/O</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#伪异步I-O"><span class="nav-number">3.2.</span> <span class="nav-text">伪异步I/O</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.3.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lynn-jyu</span>
+</div>
+
+
+<div class="powered-by">
+  El PsyCongroo
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+<script>
+var flag = true;
+var mockUv = 18739;
+var mockPv = 43967;
+var realUv,realPv;
+setTimeout(() => {
+	realUv = parseInt(document.getElementById('busuanzi_value_site_uv').innerHTML);
+	realPv = parseInt(document.getElementById('busuanzi_value_site_pv').innerHTML);
+	//console.log(realUv);
+	//console.log(realPv);
+	if (!isNaN(realUv) && !isNaN(realPv)) {
+		document.getElementById('busuanzi_value_site_uv').innerHTML = mockUv + realUv;
+		document.getElementById('busuanzi_value_site_pv').innerHTML = mockPv + realPv;
+		//console.log('realUv:');
+		//console.log(mockUv + realUv);
+	}
+},5000);
+</script>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  <script>
+// ==UserScript==
+// @name         ���������(Mini ScrollBar)
+// @namespace    https://greasyfork.org/zh-CN/users/104201
+// @version      0.4
+// @description  ���������㻯.(Make scroll bar mini.)
+// @author       ����
+// @include      *
+// @run-at       document-start
+// @compatible chrome
+// @grant        none
+// ==/UserScript==
+;
+(function() {
+  'use strict';
+  const scrollbarWidth = 8,
+    thumbBorderWidth = 1,
+    thumbBorderColor = "rgba(255, 255, 255, 0.4)",
+    scrollbarMouseOverColor = 'rgba(128, 128, 128, 0.2)',
+    thumbColor = 'rgba(0, 0, 0, 0.4)',
+    thumbMouseOverColor = 'rgba(0, 0, 0, 0.8)';
+  const cssText =`
+    ::-webkit-scrollbar{
+    width: ${scrollbarWidth}px !important;
+    height: ${scrollbarWidth}px !important;
+    background:#222;
+    filter: invert();
+    }
+    ::-webkit-scrollbar:hover {
+    background: #555;
+    }
+    ::-webkit-scrollbar-thumb {
+    border: ${thumbBorderWidth}px solid ${thumbBorderColor} !important;
+    background-color: #ffffff !important;
+    z-index: 2147483647;
+    -webkit-border-radius: 12px;
+    background-clip: content-box;
+    }
+    ::-webkit-scrollbar-corner {
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid transparent
+    }
+    ::-webkit-scrollbar-thumb:hover {
+    background-color: ${thumbMouseOverColor} !important;
+    }
+    ::-webkit-scrollbar-thumb:active {
+    background-color: rgba(0, 0, 0, 0.6) !important
+    }
+  `;
+function GMaddStyle(css) {
+  let a = document.createElement('style'),doc;
+  a.textContent = '<!--\n' + css + '\n-->';
+  if (location.origin === "file://") {
+    doc = document.head || document.documentElement;
+  } else {
+    doc = document.body || document.documentElement;
+  }
+  doc.appendChild(a);
+}
+GMaddStyle(cssText);
+
+})();
+</script>
+
+</body>
+</html>
