@@ -44,6 +44,85 @@
       </tags>
   </entry>
   <entry>
+    <title>ajax学习</title>
+    <url>/2017/07/08/ajax/</url>
+    <content><![CDATA[<h1 id="Ajax全称-Asynchronous-Javascript-And-XML（异步JavaScript和XML）"><a href="#Ajax全称-Asynchronous-Javascript-And-XML（异步JavaScript和XML）" class="headerlink" title="Ajax全称 Asynchronous Javascript And XML（异步JavaScript和XML）"></a>Ajax全称 Asynchronous Javascript And XML（异步JavaScript和XML）</h1><h1 id="XMLHttpRequest对象-以下简称xhr"><a href="#XMLHttpRequest对象-以下简称xhr" class="headerlink" title="XMLHttpRequest对象(以下简称xhr)"></a>XMLHttpRequest对象(以下简称xhr)</h1><p>XMLHttpRequest对象(以下简称xhr)</p>
+<ul>
+<li>异步 通过对象XMLHttpRequest   -&gt; 后台与服务器之间异步交换数据</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> request;</span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">window</span>.XMLHttpRequest)&#123;</span><br><span class="line"></span><br><span class="line">       request=<span class="keyword">new</span> XMLHttpRequest();   <span class="comment">//IE7+,Firefox,Chrome,Opera，Safari</span></span><br><span class="line"></span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line"></span><br><span class="line">request=<span class="keyword">new</span> ActiveXObject（<span class="string">"Microsoft.XMLHTTP"</span>）;<span class="comment">//IE6,IE5</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="一个完整的http请求过程"><a href="#一个完整的http请求过程" class="headerlink" title="一个完整的http请求过程:"></a>一个完整的http请求过程:</h2><ol>
+<li>建立TCP连接</li>
+<li>Web浏览器向Web服务器发送请求命令</li>
+<li>Web浏览器发送请求头信息</li>
+<li>Web服务器应答</li>
+<li>Web服务器发送应答头信息</li>
+<li>Web服务器向浏览器发送数据</li>
+<li>Web服务器关闭TCP连接</li>
+</ol>
+<h2 id="http请求的4部分"><a href="#http请求的4部分" class="headerlink" title="http请求的4部分"></a>http请求的4部分</h2><ol>
+<li>请求方法（post、get之类）</li>
+<li>请求的url</li>
+<li>请求头（环境信息、身份安全信息等）</li>
+<li>请求体（提交的表单、数据等）</li>
+</ol>
+<h2 id="http响应的组成"><a href="#http响应的组成" class="headerlink" title="http响应的组成"></a>http响应的组成</h2><ol>
+<li>一个由数字和文字组成的状态码 用于显示请求成功或失败</li>
+<li>响应头（服务器相关信息，类型、日期、名称之类）</li>
+<li>响应体</li>
+</ol>
+<h2 id="http状态码"><a href="#http状态码" class="headerlink" title="http状态码"></a>http状态码</h2><ul>
+<li>1开头的：信息类表示手打搜web浏览器请求，正在进一步处理中</li>
+<li>2开头的：成功，表示用户请求被正确接受，理解和处理，如 200</li>
+<li>3开头的：重定向，表示请求没有成功，客户必须采取进一步的动作</li>
+<li>4开头的：客户端错误，表示客户端提交的请求有错误404</li>
+<li>5开头的：服务器错误，表示服务器不能完成对请求的处理500</li>
+</ul>
+<h1 id="xhr发送请求"><a href="#xhr发送请求" class="headerlink" title="xhr发送请求"></a>xhr发送请求</h1><h2 id="open方法"><a href="#open方法" class="headerlink" title="open方法"></a>open方法</h2><ol>
+<li>参数：</li>
+</ol>
+<ul>
+<li>method：发送请求方法，get方式还是post方式，不区分大小写，一般使用大写。</li>
+<li>url：请求地址，可以使用相对地址，也就是相对文档的地址，也可以使用绝对地址。</li>
+<li>async：请求同步/异步，一般使用异步请求，这个参数就是true，如要使用同步的话，就是false。默认的是true(异步)，所以，如果是异步请求的话，这个参数可以不写。</li>
+</ul>
+<h2 id="send方法"><a href="#send方法" class="headerlink" title="send方法"></a>send方法</h2><ol>
+<li>send方法将请求发送到服务器上</li>
+<li>参数：</li>
+</ol>
+<ul>
+<li>string:<br>①使用get请求时，实际是没有主体的，所有的参数都拼在url中，所以send参数可以不填，或者填写null。<br>②post请求时，send请求一定要有参数。</li>
+</ul>
+<h2 id="setRequestHeader方法"><a href="#setRequestHeader方法" class="headerlink" title="setRequestHeader方法"></a>setRequestHeader方法</h2><ol>
+<li>设置http的头信息，告诉web服务器要发送一个表单的话，设置Content-type为application/x-www-form-urlencoded。</li>
+<li>Content-type有2种，一般用application/x-www-form-urlencoded，一般如果不发送文件，都采用这种方式。</li>
+<li>request.setRequestHeader()要写在open()和send（）中间，否则会抛出异常。</li>
+</ol>
+<h1 id="服务器响应"><a href="#服务器响应" class="headerlink" title="服务器响应"></a>服务器响应</h1><h2 id="服务器响应成功时得到通知"><a href="#服务器响应成功时得到通知" class="headerlink" title="服务器响应成功时得到通知"></a>服务器响应成功时得到通知</h2><p>readyState属性</p>
+<ul>
+<li>0：请求还未初始化，open还没有调用</li>
+<li>1：服务器连接已建立，open已经调用了</li>
+<li>2：请求已接收，也就是接收到头信息了</li>
+<li>3：请求处理中，也就是接收到响应主体了</li>
+<li>4：请求已完成，且响应已就绪，也就是响应完成了</li>
+</ul>
+<h2 id="获取响应值："><a href="#获取响应值：" class="headerlink" title="获取响应值："></a>获取响应值：</h2><ul>
+<li>responseText  获取字符串形式的响应数据</li>
+<li>responseXML   获得XML形式的响应数据  （一般用JSON）</li>
+<li>status和statusText   以数字和文本形式返回HTTP状态码</li>
+<li>getAllResponseHeader()   获取所有的响应报头</li>
+<li>getResponseHeader()   查询响应中的某个字段的值</li>
+</ul>
+<h1 id="总结-完整使用步骤"><a href="#总结-完整使用步骤" class="headerlink" title="总结 完整使用步骤"></a>总结 完整使用步骤</h1><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//第一步</span></span><br><span class="line">    <span class="keyword">var</span> request=<span class="keyword">new</span> XMLHttpRequest();   <span class="comment">//new一个XHR对象</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//第二步 </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    request.open(<span class="string">'GET'</span>,<span class="string">'get.php'</span>,<span class="literal">true</span>);  <span class="comment">//open一个方法</span></span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"><span class="comment">//第三步 </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    request.send();   <span class="comment">//发送数据</span></span><br><span class="line"></span><br><span class="line">   </span><br><span class="line"></span><br><span class="line"><span class="comment">//第四步 </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    request.onreadystatechange=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(request.readyState===<span class="number">4</span>&amp;&amp;request.status===<span class="number">200</span>)&#123;</span><br><span class="line">        <span class="comment">//做一些事情 </span></span><br><span class="line">        <span class="comment">//对响应进行监听：判断响应结果</span></span><br><span class="line">        request.responseText&#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><blockquote>
+<p><a href="jsonlint.com">jsonlint.com 一个很好的校验json格式的网站</a></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>ajax</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>适配器模式&amp;外观模式</title>
     <url>/2019/05/19/adapter-facade_pattern/</url>
     <content><![CDATA[<p>[toc]</p>
@@ -133,85 +212,6 @@
       <tags>
         <tag>设计模式</tag>
         <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ajax学习</title>
-    <url>/2017/07/08/ajax/</url>
-    <content><![CDATA[<h1 id="Ajax全称-Asynchronous-Javascript-And-XML（异步JavaScript和XML）"><a href="#Ajax全称-Asynchronous-Javascript-And-XML（异步JavaScript和XML）" class="headerlink" title="Ajax全称 Asynchronous Javascript And XML（异步JavaScript和XML）"></a>Ajax全称 Asynchronous Javascript And XML（异步JavaScript和XML）</h1><h1 id="XMLHttpRequest对象-以下简称xhr"><a href="#XMLHttpRequest对象-以下简称xhr" class="headerlink" title="XMLHttpRequest对象(以下简称xhr)"></a>XMLHttpRequest对象(以下简称xhr)</h1><p>XMLHttpRequest对象(以下简称xhr)</p>
-<ul>
-<li>异步 通过对象XMLHttpRequest   -&gt; 后台与服务器之间异步交换数据</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> request;</span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">window</span>.XMLHttpRequest)&#123;</span><br><span class="line"></span><br><span class="line">       request=<span class="keyword">new</span> XMLHttpRequest();   <span class="comment">//IE7+,Firefox,Chrome,Opera，Safari</span></span><br><span class="line"></span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line"></span><br><span class="line">request=<span class="keyword">new</span> ActiveXObject（<span class="string">"Microsoft.XMLHTTP"</span>）;<span class="comment">//IE6,IE5</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="一个完整的http请求过程"><a href="#一个完整的http请求过程" class="headerlink" title="一个完整的http请求过程:"></a>一个完整的http请求过程:</h2><ol>
-<li>建立TCP连接</li>
-<li>Web浏览器向Web服务器发送请求命令</li>
-<li>Web浏览器发送请求头信息</li>
-<li>Web服务器应答</li>
-<li>Web服务器发送应答头信息</li>
-<li>Web服务器向浏览器发送数据</li>
-<li>Web服务器关闭TCP连接</li>
-</ol>
-<h2 id="http请求的4部分"><a href="#http请求的4部分" class="headerlink" title="http请求的4部分"></a>http请求的4部分</h2><ol>
-<li>请求方法（post、get之类）</li>
-<li>请求的url</li>
-<li>请求头（环境信息、身份安全信息等）</li>
-<li>请求体（提交的表单、数据等）</li>
-</ol>
-<h2 id="http响应的组成"><a href="#http响应的组成" class="headerlink" title="http响应的组成"></a>http响应的组成</h2><ol>
-<li>一个由数字和文字组成的状态码 用于显示请求成功或失败</li>
-<li>响应头（服务器相关信息，类型、日期、名称之类）</li>
-<li>响应体</li>
-</ol>
-<h2 id="http状态码"><a href="#http状态码" class="headerlink" title="http状态码"></a>http状态码</h2><ul>
-<li>1开头的：信息类表示手打搜web浏览器请求，正在进一步处理中</li>
-<li>2开头的：成功，表示用户请求被正确接受，理解和处理，如 200</li>
-<li>3开头的：重定向，表示请求没有成功，客户必须采取进一步的动作</li>
-<li>4开头的：客户端错误，表示客户端提交的请求有错误404</li>
-<li>5开头的：服务器错误，表示服务器不能完成对请求的处理500</li>
-</ul>
-<h1 id="xhr发送请求"><a href="#xhr发送请求" class="headerlink" title="xhr发送请求"></a>xhr发送请求</h1><h2 id="open方法"><a href="#open方法" class="headerlink" title="open方法"></a>open方法</h2><ol>
-<li>参数：</li>
-</ol>
-<ul>
-<li>method：发送请求方法，get方式还是post方式，不区分大小写，一般使用大写。</li>
-<li>url：请求地址，可以使用相对地址，也就是相对文档的地址，也可以使用绝对地址。</li>
-<li>async：请求同步/异步，一般使用异步请求，这个参数就是true，如要使用同步的话，就是false。默认的是true(异步)，所以，如果是异步请求的话，这个参数可以不写。</li>
-</ul>
-<h2 id="send方法"><a href="#send方法" class="headerlink" title="send方法"></a>send方法</h2><ol>
-<li>send方法将请求发送到服务器上</li>
-<li>参数：</li>
-</ol>
-<ul>
-<li>string:<br>①使用get请求时，实际是没有主体的，所有的参数都拼在url中，所以send参数可以不填，或者填写null。<br>②post请求时，send请求一定要有参数。</li>
-</ul>
-<h2 id="setRequestHeader方法"><a href="#setRequestHeader方法" class="headerlink" title="setRequestHeader方法"></a>setRequestHeader方法</h2><ol>
-<li>设置http的头信息，告诉web服务器要发送一个表单的话，设置Content-type为application/x-www-form-urlencoded。</li>
-<li>Content-type有2种，一般用application/x-www-form-urlencoded，一般如果不发送文件，都采用这种方式。</li>
-<li>request.setRequestHeader()要写在open()和send（）中间，否则会抛出异常。</li>
-</ol>
-<h1 id="服务器响应"><a href="#服务器响应" class="headerlink" title="服务器响应"></a>服务器响应</h1><h2 id="服务器响应成功时得到通知"><a href="#服务器响应成功时得到通知" class="headerlink" title="服务器响应成功时得到通知"></a>服务器响应成功时得到通知</h2><p>readyState属性</p>
-<ul>
-<li>0：请求还未初始化，open还没有调用</li>
-<li>1：服务器连接已建立，open已经调用了</li>
-<li>2：请求已接收，也就是接收到头信息了</li>
-<li>3：请求处理中，也就是接收到响应主体了</li>
-<li>4：请求已完成，且响应已就绪，也就是响应完成了</li>
-</ul>
-<h2 id="获取响应值："><a href="#获取响应值：" class="headerlink" title="获取响应值："></a>获取响应值：</h2><ul>
-<li>responseText  获取字符串形式的响应数据</li>
-<li>responseXML   获得XML形式的响应数据  （一般用JSON）</li>
-<li>status和statusText   以数字和文本形式返回HTTP状态码</li>
-<li>getAllResponseHeader()   获取所有的响应报头</li>
-<li>getResponseHeader()   查询响应中的某个字段的值</li>
-</ul>
-<h1 id="总结-完整使用步骤"><a href="#总结-完整使用步骤" class="headerlink" title="总结 完整使用步骤"></a>总结 完整使用步骤</h1><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//第一步</span></span><br><span class="line">    <span class="keyword">var</span> request=<span class="keyword">new</span> XMLHttpRequest();   <span class="comment">//new一个XHR对象</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//第二步 </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    request.open(<span class="string">'GET'</span>,<span class="string">'get.php'</span>,<span class="literal">true</span>);  <span class="comment">//open一个方法</span></span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"><span class="comment">//第三步 </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    request.send();   <span class="comment">//发送数据</span></span><br><span class="line"></span><br><span class="line">   </span><br><span class="line"></span><br><span class="line"><span class="comment">//第四步 </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    request.onreadystatechange=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(request.readyState===<span class="number">4</span>&amp;&amp;request.status===<span class="number">200</span>)&#123;</span><br><span class="line">        <span class="comment">//做一些事情 </span></span><br><span class="line">        <span class="comment">//对响应进行监听：判断响应结果</span></span><br><span class="line">        request.responseText&#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><blockquote>
-<p><a href="jsonlint.com">jsonlint.com 一个很好的校验json格式的网站</a></p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>ajax</tag>
       </tags>
   </entry>
   <entry>
