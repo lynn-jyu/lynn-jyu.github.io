@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
 
@@ -10,6 +10,10 @@
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
 
 
 
@@ -33,36 +37,7 @@
 
 
 
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
 
 
 
@@ -71,7 +46,22 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
+<link href="/css/main.css?v=6.0.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.0" color="#222">
+
+
+
 
 
   <meta name="keywords" content="Hexo, NexT">
@@ -83,23 +73,19 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
 
 
-
-
-
-
-<meta name="description" content="人生信条是...少说废话多做事...">
+<meta name="description" content="//把aboutMe页面的content-wrap的div变成透明     var demo = document.getElementsByClassName(&apos;content-wrap&apos;);     demo[0].style.backgroundColor = &quot;transparent&quot;;                       Lynn-jyu        在校大学生">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Lynn-jyu&#39;s Blog">
-<meta property="og:url" content="https://www.lynnjy.cn/page/3/index.html">
+<meta property="og:title" content="关于我">
+<meta property="og:url" content="https://www.lynnjy.cn/about/index.html">
 <meta property="og:site_name" content="Lynn-jyu&#39;s Blog">
-<meta property="og:description" content="人生信条是...少说废话多做事...">
+<meta property="og:description" content="//把aboutMe页面的content-wrap的div变成透明     var demo = document.getElementsByClassName(&apos;content-wrap&apos;);     demo[0].style.backgroundColor = &quot;transparent&quot;;                       Lynn-jyu        在校大学生">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-04-10T14:04:12.180Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lynn-jyu&#39;s Blog">
-<meta name="twitter:description" content="人生信条是...少说废话多做事...">
+<meta name="twitter:title" content="关于我">
+<meta name="twitter:description" content="//把aboutMe页面的content-wrap的div变成透明     var demo = document.getElementsByClassName(&apos;content-wrap&apos;);     demo[0].style.backgroundColor = &quot;transparent&quot;;                       Lynn-jyu        在校大学生">
 
 
 
@@ -108,9 +94,13 @@
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
-    fancybox: true,
-    motion: true,
+    version: '6.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
       author: '博主'
@@ -127,17 +117,13 @@
 
 
 
-  <link rel="canonical" href="https://www.lynnjy.cn/page/3/">
+  <link rel="canonical" href="https://www.lynnjy.cn/about/">
 
 
 
 
 
   <title>Lynn-jyu's Blog</title>
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
   
 
 
@@ -147,12 +133,9 @@
 
 
 
+</head>
 
-
-
-
-
-
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -160,12 +143,11 @@
   
 
   <div class="container sidebar-position-left 
-   page-home 
- ">
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
+      <div class="header-inner"> <div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
@@ -207,18 +189,18 @@
         </li>
       
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
-            归档
+            关于
           </a>
         </li>
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
+          <a href="/tags/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
@@ -227,20 +209,52 @@
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
-            关于
+            归档
           </a>
         </li>
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
   
 </nav>
 
@@ -264,7 +278,11 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.lynnjy.cn/2017/05/31/php-mvc/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -296,9 +314,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-31T20:04:25+08:00">
-                2017-05-31
-              </time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-31T20:04:25+08:00">2017-05-31</time>
             
 
             
@@ -325,6 +341,9 @@
       </header>
     
 
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -333,35 +352,99 @@
       
         
           
-          MVC基本操作步骤
-浏览者  -&gt; 调用控制器 对其发出指令
-控制器(C)  -&gt; 按指令选取一个合适的模型(M) 
-模型(M)  -&gt; 按控制器(C)指令取相应数据
-控制器(C) -&gt; 按指令选取相应视图(V)
-视图(V) -&gt; 把第三步取得的数据按用户想要的样子显示
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/05/31/php-mvc/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <h1 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h1><h2 id="基本操作步骤"><a href="#基本操作步骤" class="headerlink" title="基本操作步骤"></a>基本操作步骤</h2><ol>
+<li>浏览者  -&gt; 调用控制器 对其发出指令</li>
+<li>控制器(C)  -&gt; 按指令选取一个合适的模型(M) </li>
+<li>模型(M)  -&gt; 按控制器(C)指令取相应数据</li>
+<li>控制器(C) -&gt; 按指令选取相应视图(V)</li>
+<li>视图(V) -&gt; 把第三步取得的数据按用户想要的样子显示出来</li>
+</ol>
+<h2 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> <span class="comment">//浏览者调用控制器</span></span><br><span class="line">    <span class="keyword">require_once</span>(<span class="string">'testController.class.php'</span>);</span><br><span class="line">    <span class="keyword">require_once</span>(<span class="string">'testModel.class.php'</span>);</span><br><span class="line">    <span class="keyword">require_once</span>(<span class="string">'testView.class.php'</span>);</span><br><span class="line">    $testController = <span class="keyword">new</span> testController();<span class="comment">//**第一步**</span></span><br><span class="line">    $testController-&gt;show();</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="require-和-require-once-的区别"><a href="#require-和-require-once-的区别" class="headerlink" title="require() 和 require_once()的区别"></a>require() 和 require_once()的区别</h2><p>  require()可以多次调用相同的文件而不会提示错误，require_once则只能调用相同的文件一次，如果require_once相同的文件多次就会报错，并停止解析，从这个require_once开始后面的代码将不被解析！ </p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> <span class="comment">//控制器基本结构</span></span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">testController</span></span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">show</span><span class="params">()</span></span>&#123;</span><br><span class="line">            $testModel = <span class="keyword">new</span> testModel();<span class="comment">//**第二步**</span></span><br><span class="line">            $data =$testModel-&gt;get();<span class="comment">//**第三步**</span></span><br><span class="line">            $testView = <span class="keyword">new</span> testView();<span class="comment">//**第四步**</span></span><br><span class="line">            $testView-&gt;display($data);<span class="comment">//**第五步**</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="控制器的作用"><a href="#控制器的作用" class="headerlink" title="控制器的作用"></a>控制器的作用</h4><p> 调用模型并调用视图，将模型产生的数据传递给视图，并让相关视图去显示</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> <span class="comment">//模型基本结构</span></span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">testModel</span></span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">get</span><span class="params">()</span></span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"hello world"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="模型的作用"><a href="#模型的作用" class="headerlink" title="模型的作用"></a>模型的作用</h4><p>  获取数据并处理返回数据</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> <span class="comment">//视图基本结构</span></span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">testView</span></span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">display</span><span class="params">($data)</span></span>&#123;</span><br><span class="line">            <span class="keyword">echo</span> $data;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="视图的作用"><a href="#视图的作用" class="headerlink" title="视图的作用"></a>视图的作用</h4><p>  将取得的数据进行组织、美化等，并最终向用户端输出</p>
+<p>#smarty</p>
+<blockquote>
+<p>smarty.class.php 包含了smarty的所有功能<br>smartyBC.class.php 提升了smarty上下版本兼容性<br>smarty 五配置 两方法<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//五配置</span></span><br><span class="line"></span><br><span class="line">$smarty-&gt;left_delimiter = <span class="string">"&#123;"</span>;<span class="comment">//左定界符</span></span><br><span class="line"></span><br><span class="line">$smarty-&gt;right_delimiter = <span class="string">"&#125;"</span>;<span class="comment">//右定界符</span></span><br><span class="line"><span class="comment">//括起来部分交给smarty处理</span></span><br><span class="line"></span><br><span class="line">$smarty-&gt;template_dir = <span class="string">"tpl"</span>; <span class="comment">//HTML模版</span></span><br><span class="line"></span><br><span class="line">$smarty-&gt;compile_dir =      <span class="string">"template_c"</span>;     <span class="comment">//模版编译生成的文件</span></span><br><span class="line"></span><br><span class="line">$smarty-&gt;cache_dir =  <span class="string">"cache"</span>;<span class="comment">//缓存</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//两方法</span></span><br><span class="line">$smarty-&gt;caching = <span class="keyword">true</span>;<span class="comment">//开启缓存</span></span><br><span class="line"></span><br><span class="line">$smarty-&gt;cache_lifetime = <span class="number">120</span>;<span class="comment">//缓存时间</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//这段时间不从数据库取得数据 直接从缓存获取</span></span><br><span class="line"></span><br><span class="line">$smarty-&gt;assign(<span class="string">'articleile'</span>,<span class="string">'文章标题'</span>);<span class="comment">//对smarty的模板进行赋值</span></span><br><span class="line"></span><br><span class="line">$smarty-&gt;display(<span class="string">'test.tpl'</span>);<span class="comment">//显示模板</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h2 id="smarty-的基本语法"><a href="#smarty-的基本语法" class="headerlink" title="smarty 的基本语法"></a>smarty 的基本语法</h2><h3 id="注释与变量输出"><a href="#注释与变量输出" class="headerlink" title="注释与变量输出"></a>注释与变量输出</h3><ol>
+<li>注释语句</li>
+</ol>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;*这里是注释语句*&#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>在 smarty里输出赋值进来的变量</li>
+</ol>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//主要是调用assign(string,value)方法</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//exp:</span></span><br><span class="line">$arr = <span class="keyword">array</span>(<span class="string">'title'</span>=&gt;<span class="string">'小时代的作者'</span>,<span class="string">'author'</span>=&gt;<span class="string">'小明'</span>);</span><br><span class="line"></span><br><span class="line">$smarty-&gt;assign(<span class="string">'arr'</span>,$arr);</span><br><span class="line"></span><br><span class="line"><span class="comment">//在模板tpl中</span></span><br><span class="line">&#123;$arr.title&#125;&#123;$arr.author&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//也可以这样写更接近php</span></span><br><span class="line"><span class="comment">//&#123;$arr['title']&#125;&#123;$arr['author']&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//若array是二维数组的时候</span></span><br><span class="line"><span class="comment">//&#123;$arr['xxx']['title']&#125;&#123;$arr['xxx']['author']&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="变量调节器"><a href="#变量调节器" class="headerlink" title="变量调节器"></a>变量调节器</h3><ol>
+<li><p>变量变成 首字母大写的调节器 capticalize<br>示例</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;$articleTitle|capitalize&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>字符串连接cat 多个参数用冒号连接<br>示例</p>
+</li>
+</ol>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;$articleTitle|cat:<span class="string">" yesterday."</span>&#125;</span><br><span class="line">&#123;$articletitle|cat:<span class="string">' yesterday'</span>:<span class="string">"."</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>3.日期格式化 date_format<br>示例</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;$yesterday|date_format&#125;</span><br><span class="line">&#123;$yesterday|date_format:<span class="string">" :"</span>%A,%B %e,%Y %H:%M:%S<span class="string">"&#125;</span></span><br></pre></td></tr></table></figure>
+<p>4.为未赋值或为空的变量指定的默认值default<br>示例</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;$articleTitle|<span class="keyword">default</span>:<span class="string">"no title"</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>5.转码 escape</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;$url|<span class="string">"url"</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>6.大小写转换 lower upper</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;$articleTitle|lower&#125;</span><br><span class="line">&#123;$articleTitle|upper&#125;</span><br></pre></td></tr></table></figure>
+<p>7.换行符替换成<br></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;$articleTitle|nl2br&#125;</span><br><span class="line"><span class="comment">//nl to br  *记忆</span></span><br></pre></td></tr></table></figure>
+<p>###smarty if 语句</p>
+<p>####Smarty的条件判断语句<br>1.基本句式</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#123;<span class="keyword">if</span> $name eq <span class="string">"Fred"</span>&#125;</span><br><span class="line">Welcome Sir.</span><br><span class="line"></span><br><span class="line">&#123;<span class="keyword">elseif</span> $name eq <span class="string">"Wilma"</span>&#125;</span><br><span class="line">Welcome Ma<span class="string">'am.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#123;else&#125;</span></span><br><span class="line"><span class="string">Welcome,whatever you are.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#123;/if&#125;</span></span><br></pre></td></tr></table></figure>
+<p>2.条件修饰符有很多，简单的几个eq（==） neq（！=）gt（&gt;）lt（&lt;）</p>
+<p>==3.修饰词时必须和变量或常量用空格格开==</p>
+<h3 id="smarty-循环"><a href="#smarty-循环" class="headerlink" title="smarty 循环"></a>smarty 循环</h3><ol>
+<li>section,sectionelse </li>
+<li>常用属性name loop</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">section</span> <span class="attr">name</span>=<span class="string">article</span> <span class="attr">loop</span>=<span class="string">$articlelist</span>&gt;</span></span><br><span class="line">&#123;$articlelist[article].title&#125;</span><br><span class="line">&#123;$articlelist[article].author&#125;</span><br><span class="line">&#123;$articlelist[article].content&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>其他常用属性 start step max show<br>（1）start 循环执行的初始位置。如果该值为负数，开始位置从数组的尾部算起。例如：<br>  如果数组中有7个元素，指定start为-2，那么指向当前数组的索引为5.非法值（超过了循环数组的下限）将被自动调整为最接近的合法值。</li>
+</ol>
+<p>（2）step 该值决定循环的步长。例如指定step=2将只遍历下标为0、2、4等的元素。如果step为负值，那么遍历数组的时候从后向前遍历。</p>
+<p>（3）max 设定循环最大执行次数。</p>
+<p>（4）show 决定是否显示该循环。</p>
+<h4 id="smarty-foreach"><a href="#smarty-foreach" class="headerlink" title="smarty foreach"></a>smarty foreach</h4><ul>
+<li>item 相当于php里 foreach 中的as 后面的</li>
+<li>from 被循环的数组</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#123;foreach item=k from=$ss&#125;</span><br><span class="line">    &#123;$k.title&#125;</span><br><span class="line">    &#123;$k.author&#125;</span><br><span class="line">    &#123;$k.content&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">&#123;foreachelse&#125;</span><br><span class="line">当前没有文章</span><br><span class="line">&#123;/foreach&#125;</span><br></pre></td></tr></table></figure>
+<p>也可以这样写</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#123;foreach $articlelist as $article&#125;</span><br><span class="line">    &#123;$k.title&#125;</span><br><span class="line">    &#123;$k.author&#125;</span><br><span class="line">    &#123;$k.content&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">&#123;foreachelse&#125;</span><br><span class="line">当前没有文章</span><br><span class="line">&#123;/foreach&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="smarty-模板的引用-include"><a href="#smarty-模板的引用-include" class="headerlink" title="smarty 模板的引用 include"></a>smarty 模板的引用 include</h3><ol>
+<li>和php里的include差不多</li>
+<li>具备自定义属性的功能</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//test.tpl</span><br><span class="line">&#123;include file=“header.tpl” sitename=“百度”&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//header.tpl</span><br><span class="line">&#123;$sitename&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="smarty-类和对象的赋值和使用"><a href="#smarty-类和对象的赋值和使用" class="headerlink" title="smarty 类和对象的赋值和使用"></a>smarty 类和对象的赋值和使用</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">my_object</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">meth1</span><span class="params">($param)</span></span>&#123;</span><br><span class="line">     </span><br><span class="line">        <span class="keyword">return</span> $param[<span class="number">0</span>].<span class="string">'已经'</span>.$param[<span class="number">1</span>];</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br><span class="line">     $myobj=<span class="keyword">new</span> my_object();</span><br><span class="line">     $smarty-&gt;assign(<span class="string">'myobj'</span>,$myobj);</span><br><span class="line">     $smarty-&gt;display(<span class="string">"test.html"</span>);</span><br><span class="line"> </span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//********test.html*******************</span><br><span class="line"> <span class="meta">&lt;!doctype <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">head</span>&gt;</span><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"> <span class="comment">&lt;!--以数组形式--&gt;</span></span><br><span class="line"> &#123;$myobj-&gt;meth1(array('苹果','熟了'))&#125;</span><br><span class="line"> <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="smarty-使用php内置函数-和-自定义函数"><a href="#smarty-使用php内置函数-和-自定义函数" class="headerlink" title="smarty 使用php内置函数 和 自定义函数"></a>smarty 使用php内置函数 和 自定义函数</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">==|之前以第一个参数传入，后边以第二第三参数传入<span class="tag">&lt;<span class="name">br</span>&gt;</span>==</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//格式化时间&lt;br&gt;</span><br><span class="line">&#123;&quot;Y-m-d H:i&quot;date:$time&#125;&lt;br&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//把字符串里的d字母替换成h</span><br><span class="line">    //格式：</span><br><span class="line">    &#123;&apos;d&apos;str_replace:&apos;h&apos;:$str&#125;; </span><br><span class="line">    //d要查找的字符 h要替换的字符  $str字符串</span><br></pre></td></tr></table></figure>
+
+          
         
       
     </div>
+    
+    
+    
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
-    </div>
+    
 
     <footer class="post-footer">
       
@@ -375,6 +458,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -407,61 +494,64 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
+    
     <div class="sidebar-inner">
 
       
 
       
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="/uploads/head.jpg" alt="Lynn-jyu">
-          <p class="site-author-name" itemprop="name">Lynn-jyu</p>
-           
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/head.jpg" alt="Lynn-jyu">
+            
+              <p class="site-author-name" itemprop="name">Lynn-jyu</p>
               <p class="site-description motion-element" itemprop="description">人生信条是...<br>少说废话多做事...</p>
-          
-        </div>
-        <nav class="site-state motion-element">
+          </div>
 
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives">
-                <span class="site-state-item-count">21</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
+          <nav class="site-state motion-element">
 
-          
-
-          
             
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
             
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">29</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
           
 
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
           
+
+          
+          
+
+          
+          
+
+          
+
         </div>
-
-        
-        
-
-        
-        
-
-        
-
-
       </section>
 
       
@@ -478,32 +568,28 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">
-  
-  &copy;  2017 - 
-  <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Lynn-jyu</span>
+
+  
+
+  
 </div>
 
 
-<div class="powered-by">
-  El PsyCongroo
-</div>
 
-<div class="theme-info">
-  Theme -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
-  </a>
-</div>
+
+
+
+
 
 
         
 <div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
   
     <span class="site-uv">
@@ -522,24 +608,10 @@
   
 </div>
 
-<script>
-var flag = true;
-var mockUv = 18739;
-var mockPv = 43967;
-var realUv,realPv;
-setTimeout(() => {
-	realUv = parseInt(document.getElementById('busuanzi_value_site_uv').innerHTML);
-	realPv = parseInt(document.getElementById('busuanzi_value_site_pv').innerHTML);
-	//console.log(realUv);
-	//console.log(realPv);
-	if (!isNaN(realUv) && !isNaN(realPv)) {
-		document.getElementById('busuanzi_value_site_uv').innerHTML = mockUv + realUv;
-		document.getElementById('busuanzi_value_site_pv').innerHTML = mockPv + realPv;
-		//console.log('realUv:');
-		//console.log(mockUv + realUv);
-	}
-},5000);
-</script>
+
+
+
+
 
 
 
@@ -552,6 +624,8 @@ setTimeout(() => {
         <i class="fa fa-arrow-up"></i>
         
       </div>
+    
+
     
 
   </div>
@@ -572,59 +646,60 @@ setTimeout(() => {
 
 
 
-  
-
-
-  
-
-
-
-
-
-
 
 
 
 
 
   
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-  
-  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
 
 
-  
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
 
 
 
   
   
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
 
 
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+  
 
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.0.0"></script>
 
 
 
@@ -633,7 +708,7 @@ setTimeout(() => {
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.0"></script>
 
 
 
@@ -663,107 +738,363 @@ setTimeout(() => {
 
 
 
-  
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
 
 
 
 
 
-
-  
-
-
-
-
-
-  
-
-  
-<script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
 
 
   
 
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
   
 
   
 
-  <script>
-// ==UserScript==
-// @name         ���������(Mini ScrollBar)
-// @namespace    https://greasyfork.org/zh-CN/users/104201
-// @version      0.4
-// @description  ���������㻯.(Make scroll bar mini.)
-// @author       ����
-// @include      *
-// @run-at       document-start
-// @compatible chrome
-// @grant        none
-// ==/UserScript==
-;
-(function() {
-  'use strict';
-  const scrollbarWidth = 8,
-    thumbBorderWidth = 1,
-    thumbBorderColor = "rgba(255, 255, 255, 0.4)",
-    scrollbarMouseOverColor = 'rgba(128, 128, 128, 0.2)',
-    thumbColor = 'rgba(0, 0, 0, 0.4)',
-    thumbMouseOverColor = 'rgba(0, 0, 0, 0.8)';
-  const cssText =`
-    ::-webkit-scrollbar{
-    width: ${scrollbarWidth}px !important;
-    height: ${scrollbarWidth}px !important;
-    background:#222;
-    filter: invert();
-    }
-    ::-webkit-scrollbar:hover {
-    background: #555;
-    }
-    ::-webkit-scrollbar-thumb {
-    border: ${thumbBorderWidth}px solid ${thumbBorderColor} !important;
-    background-color: #ffffff !important;
-    z-index: 2147483647;
-    -webkit-border-radius: 12px;
-    background-clip: content-box;
-    }
-    ::-webkit-scrollbar-corner {
-    background: rgba(255, 255, 255, 0.3);
-    border: 1px solid transparent
-    }
-    ::-webkit-scrollbar-thumb:hover {
-    background-color: ${thumbMouseOverColor} !important;
-    }
-    ::-webkit-scrollbar-thumb:active {
-    background-color: rgba(0, 0, 0, 0.6) !important
-    }
-  `;
-function GMaddStyle(css) {
-  let a = document.createElement('style'),doc;
-  a.textContent = '<!--\n' + css + '\n-->';
-  if (location.origin === "file://") {
-    doc = document.head || document.documentElement;
-  } else {
-    doc = document.body || document.documentElement;
-  }
-  doc.appendChild(a);
-}
-GMaddStyle(cssText);
+  
+  
 
-})();
-</script>
+  
+
+  
+
+  
 
 </body>
 </html>
