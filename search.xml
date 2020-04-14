@@ -44,6 +44,85 @@
       </tags>
   </entry>
   <entry>
+    <title>ajax学习</title>
+    <url>/2017/07/08/ajax/</url>
+    <content><![CDATA[<h1 id="Ajax全称-Asynchronous-Javascript-And-XML（异步JavaScript和XML）"><a href="#Ajax全称-Asynchronous-Javascript-And-XML（异步JavaScript和XML）" class="headerlink" title="Ajax全称 Asynchronous Javascript And XML（异步JavaScript和XML）"></a>Ajax全称 Asynchronous Javascript And XML（异步JavaScript和XML）</h1><h1 id="XMLHttpRequest对象-以下简称xhr"><a href="#XMLHttpRequest对象-以下简称xhr" class="headerlink" title="XMLHttpRequest对象(以下简称xhr)"></a>XMLHttpRequest对象(以下简称xhr)</h1><p>XMLHttpRequest对象(以下简称xhr)</p>
+<ul>
+<li>异步 通过对象XMLHttpRequest   -&gt; 后台与服务器之间异步交换数据</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> request;</span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">window</span>.XMLHttpRequest)&#123;</span><br><span class="line"></span><br><span class="line">       request=<span class="keyword">new</span> XMLHttpRequest();   <span class="comment">//IE7+,Firefox,Chrome,Opera，Safari</span></span><br><span class="line"></span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line"></span><br><span class="line">request=<span class="keyword">new</span> ActiveXObject（<span class="string">"Microsoft.XMLHTTP"</span>）;<span class="comment">//IE6,IE5</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="一个完整的http请求过程"><a href="#一个完整的http请求过程" class="headerlink" title="一个完整的http请求过程:"></a>一个完整的http请求过程:</h2><ol>
+<li>建立TCP连接</li>
+<li>Web浏览器向Web服务器发送请求命令</li>
+<li>Web浏览器发送请求头信息</li>
+<li>Web服务器应答</li>
+<li>Web服务器发送应答头信息</li>
+<li>Web服务器向浏览器发送数据</li>
+<li>Web服务器关闭TCP连接</li>
+</ol>
+<h2 id="http请求的4部分"><a href="#http请求的4部分" class="headerlink" title="http请求的4部分"></a>http请求的4部分</h2><ol>
+<li>请求方法（post、get之类）</li>
+<li>请求的url</li>
+<li>请求头（环境信息、身份安全信息等）</li>
+<li>请求体（提交的表单、数据等）</li>
+</ol>
+<h2 id="http响应的组成"><a href="#http响应的组成" class="headerlink" title="http响应的组成"></a>http响应的组成</h2><ol>
+<li>一个由数字和文字组成的状态码 用于显示请求成功或失败</li>
+<li>响应头（服务器相关信息，类型、日期、名称之类）</li>
+<li>响应体</li>
+</ol>
+<h2 id="http状态码"><a href="#http状态码" class="headerlink" title="http状态码"></a>http状态码</h2><ul>
+<li>1开头的：信息类表示手打搜web浏览器请求，正在进一步处理中</li>
+<li>2开头的：成功，表示用户请求被正确接受，理解和处理，如 200</li>
+<li>3开头的：重定向，表示请求没有成功，客户必须采取进一步的动作</li>
+<li>4开头的：客户端错误，表示客户端提交的请求有错误404</li>
+<li>5开头的：服务器错误，表示服务器不能完成对请求的处理500</li>
+</ul>
+<h1 id="xhr发送请求"><a href="#xhr发送请求" class="headerlink" title="xhr发送请求"></a>xhr发送请求</h1><h2 id="open方法"><a href="#open方法" class="headerlink" title="open方法"></a>open方法</h2><ol>
+<li>参数：</li>
+</ol>
+<ul>
+<li>method：发送请求方法，get方式还是post方式，不区分大小写，一般使用大写。</li>
+<li>url：请求地址，可以使用相对地址，也就是相对文档的地址，也可以使用绝对地址。</li>
+<li>async：请求同步/异步，一般使用异步请求，这个参数就是true，如要使用同步的话，就是false。默认的是true(异步)，所以，如果是异步请求的话，这个参数可以不写。</li>
+</ul>
+<h2 id="send方法"><a href="#send方法" class="headerlink" title="send方法"></a>send方法</h2><ol>
+<li>send方法将请求发送到服务器上</li>
+<li>参数：</li>
+</ol>
+<ul>
+<li>string:<br>①使用get请求时，实际是没有主体的，所有的参数都拼在url中，所以send参数可以不填，或者填写null。<br>②post请求时，send请求一定要有参数。</li>
+</ul>
+<h2 id="setRequestHeader方法"><a href="#setRequestHeader方法" class="headerlink" title="setRequestHeader方法"></a>setRequestHeader方法</h2><ol>
+<li>设置http的头信息，告诉web服务器要发送一个表单的话，设置Content-type为application/x-www-form-urlencoded。</li>
+<li>Content-type有2种，一般用application/x-www-form-urlencoded，一般如果不发送文件，都采用这种方式。</li>
+<li>request.setRequestHeader()要写在open()和send（）中间，否则会抛出异常。</li>
+</ol>
+<h1 id="服务器响应"><a href="#服务器响应" class="headerlink" title="服务器响应"></a>服务器响应</h1><h2 id="服务器响应成功时得到通知"><a href="#服务器响应成功时得到通知" class="headerlink" title="服务器响应成功时得到通知"></a>服务器响应成功时得到通知</h2><p>readyState属性</p>
+<ul>
+<li>0：请求还未初始化，open还没有调用</li>
+<li>1：服务器连接已建立，open已经调用了</li>
+<li>2：请求已接收，也就是接收到头信息了</li>
+<li>3：请求处理中，也就是接收到响应主体了</li>
+<li>4：请求已完成，且响应已就绪，也就是响应完成了</li>
+</ul>
+<h2 id="获取响应值："><a href="#获取响应值：" class="headerlink" title="获取响应值："></a>获取响应值：</h2><ul>
+<li>responseText  获取字符串形式的响应数据</li>
+<li>responseXML   获得XML形式的响应数据  （一般用JSON）</li>
+<li>status和statusText   以数字和文本形式返回HTTP状态码</li>
+<li>getAllResponseHeader()   获取所有的响应报头</li>
+<li>getResponseHeader()   查询响应中的某个字段的值</li>
+</ul>
+<h1 id="总结-完整使用步骤"><a href="#总结-完整使用步骤" class="headerlink" title="总结 完整使用步骤"></a>总结 完整使用步骤</h1><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//第一步</span></span><br><span class="line">    <span class="keyword">var</span> request=<span class="keyword">new</span> XMLHttpRequest();   <span class="comment">//new一个XHR对象</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//第二步 </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    request.open(<span class="string">'GET'</span>,<span class="string">'get.php'</span>,<span class="literal">true</span>);  <span class="comment">//open一个方法</span></span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"><span class="comment">//第三步 </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    request.send();   <span class="comment">//发送数据</span></span><br><span class="line"></span><br><span class="line">   </span><br><span class="line"></span><br><span class="line"><span class="comment">//第四步 </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    request.onreadystatechange=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(request.readyState===<span class="number">4</span>&amp;&amp;request.status===<span class="number">200</span>)&#123;</span><br><span class="line">        <span class="comment">//做一些事情 </span></span><br><span class="line">        <span class="comment">//对响应进行监听：判断响应结果</span></span><br><span class="line">        request.responseText&#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><blockquote>
+<p><a href="jsonlint.com">jsonlint.com 一个很好的校验json格式的网站</a></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>ajax</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>适配器模式&amp;外观模式</title>
     <url>/2019/05/19/adapter-facade_pattern/</url>
     <content><![CDATA[<p>[toc]</p>
@@ -136,82 +215,131 @@
       </tags>
   </entry>
   <entry>
-    <title>ajax学习</title>
-    <url>/2017/07/08/ajax/</url>
-    <content><![CDATA[<h1 id="Ajax全称-Asynchronous-Javascript-And-XML（异步JavaScript和XML）"><a href="#Ajax全称-Asynchronous-Javascript-And-XML（异步JavaScript和XML）" class="headerlink" title="Ajax全称 Asynchronous Javascript And XML（异步JavaScript和XML）"></a>Ajax全称 Asynchronous Javascript And XML（异步JavaScript和XML）</h1><h1 id="XMLHttpRequest对象-以下简称xhr"><a href="#XMLHttpRequest对象-以下简称xhr" class="headerlink" title="XMLHttpRequest对象(以下简称xhr)"></a>XMLHttpRequest对象(以下简称xhr)</h1><p>XMLHttpRequest对象(以下简称xhr)</p>
-<ul>
-<li>异步 通过对象XMLHttpRequest   -&gt; 后台与服务器之间异步交换数据</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> request;</span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">window</span>.XMLHttpRequest)&#123;</span><br><span class="line"></span><br><span class="line">       request=<span class="keyword">new</span> XMLHttpRequest();   <span class="comment">//IE7+,Firefox,Chrome,Opera，Safari</span></span><br><span class="line"></span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line"></span><br><span class="line">request=<span class="keyword">new</span> ActiveXObject（<span class="string">"Microsoft.XMLHTTP"</span>）;<span class="comment">//IE6,IE5</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="一个完整的http请求过程"><a href="#一个完整的http请求过程" class="headerlink" title="一个完整的http请求过程:"></a>一个完整的http请求过程:</h2><ol>
-<li>建立TCP连接</li>
-<li>Web浏览器向Web服务器发送请求命令</li>
-<li>Web浏览器发送请求头信息</li>
-<li>Web服务器应答</li>
-<li>Web服务器发送应答头信息</li>
-<li>Web服务器向浏览器发送数据</li>
-<li>Web服务器关闭TCP连接</li>
-</ol>
-<h2 id="http请求的4部分"><a href="#http请求的4部分" class="headerlink" title="http请求的4部分"></a>http请求的4部分</h2><ol>
-<li>请求方法（post、get之类）</li>
-<li>请求的url</li>
-<li>请求头（环境信息、身份安全信息等）</li>
-<li>请求体（提交的表单、数据等）</li>
-</ol>
-<h2 id="http响应的组成"><a href="#http响应的组成" class="headerlink" title="http响应的组成"></a>http响应的组成</h2><ol>
-<li>一个由数字和文字组成的状态码 用于显示请求成功或失败</li>
-<li>响应头（服务器相关信息，类型、日期、名称之类）</li>
-<li>响应体</li>
-</ol>
-<h2 id="http状态码"><a href="#http状态码" class="headerlink" title="http状态码"></a>http状态码</h2><ul>
-<li>1开头的：信息类表示手打搜web浏览器请求，正在进一步处理中</li>
-<li>2开头的：成功，表示用户请求被正确接受，理解和处理，如 200</li>
-<li>3开头的：重定向，表示请求没有成功，客户必须采取进一步的动作</li>
-<li>4开头的：客户端错误，表示客户端提交的请求有错误404</li>
-<li>5开头的：服务器错误，表示服务器不能完成对请求的处理500</li>
-</ul>
-<h1 id="xhr发送请求"><a href="#xhr发送请求" class="headerlink" title="xhr发送请求"></a>xhr发送请求</h1><h2 id="open方法"><a href="#open方法" class="headerlink" title="open方法"></a>open方法</h2><ol>
-<li>参数：</li>
-</ol>
-<ul>
-<li>method：发送请求方法，get方式还是post方式，不区分大小写，一般使用大写。</li>
-<li>url：请求地址，可以使用相对地址，也就是相对文档的地址，也可以使用绝对地址。</li>
-<li>async：请求同步/异步，一般使用异步请求，这个参数就是true，如要使用同步的话，就是false。默认的是true(异步)，所以，如果是异步请求的话，这个参数可以不写。</li>
-</ul>
-<h2 id="send方法"><a href="#send方法" class="headerlink" title="send方法"></a>send方法</h2><ol>
-<li>send方法将请求发送到服务器上</li>
-<li>参数：</li>
-</ol>
-<ul>
-<li>string:<br>①使用get请求时，实际是没有主体的，所有的参数都拼在url中，所以send参数可以不填，或者填写null。<br>②post请求时，send请求一定要有参数。</li>
-</ul>
-<h2 id="setRequestHeader方法"><a href="#setRequestHeader方法" class="headerlink" title="setRequestHeader方法"></a>setRequestHeader方法</h2><ol>
-<li>设置http的头信息，告诉web服务器要发送一个表单的话，设置Content-type为application/x-www-form-urlencoded。</li>
-<li>Content-type有2种，一般用application/x-www-form-urlencoded，一般如果不发送文件，都采用这种方式。</li>
-<li>request.setRequestHeader()要写在open()和send（）中间，否则会抛出异常。</li>
-</ol>
-<h1 id="服务器响应"><a href="#服务器响应" class="headerlink" title="服务器响应"></a>服务器响应</h1><h2 id="服务器响应成功时得到通知"><a href="#服务器响应成功时得到通知" class="headerlink" title="服务器响应成功时得到通知"></a>服务器响应成功时得到通知</h2><p>readyState属性</p>
-<ul>
-<li>0：请求还未初始化，open还没有调用</li>
-<li>1：服务器连接已建立，open已经调用了</li>
-<li>2：请求已接收，也就是接收到头信息了</li>
-<li>3：请求处理中，也就是接收到响应主体了</li>
-<li>4：请求已完成，且响应已就绪，也就是响应完成了</li>
-</ul>
-<h2 id="获取响应值："><a href="#获取响应值：" class="headerlink" title="获取响应值："></a>获取响应值：</h2><ul>
-<li>responseText  获取字符串形式的响应数据</li>
-<li>responseXML   获得XML形式的响应数据  （一般用JSON）</li>
-<li>status和statusText   以数字和文本形式返回HTTP状态码</li>
-<li>getAllResponseHeader()   获取所有的响应报头</li>
-<li>getResponseHeader()   查询响应中的某个字段的值</li>
-</ul>
-<h1 id="总结-完整使用步骤"><a href="#总结-完整使用步骤" class="headerlink" title="总结 完整使用步骤"></a>总结 完整使用步骤</h1><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//第一步</span></span><br><span class="line">    <span class="keyword">var</span> request=<span class="keyword">new</span> XMLHttpRequest();   <span class="comment">//new一个XHR对象</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//第二步 </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    request.open(<span class="string">'GET'</span>,<span class="string">'get.php'</span>,<span class="literal">true</span>);  <span class="comment">//open一个方法</span></span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"><span class="comment">//第三步 </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    request.send();   <span class="comment">//发送数据</span></span><br><span class="line"></span><br><span class="line">   </span><br><span class="line"></span><br><span class="line"><span class="comment">//第四步 </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    request.onreadystatechange=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(request.readyState===<span class="number">4</span>&amp;&amp;request.status===<span class="number">200</span>)&#123;</span><br><span class="line">        <span class="comment">//做一些事情 </span></span><br><span class="line">        <span class="comment">//对响应进行监听：判断响应结果</span></span><br><span class="line">        request.responseText&#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><blockquote>
-<p><a href="jsonlint.com">jsonlint.com 一个很好的校验json格式的网站</a></p>
+    <title>工厂模式</title>
+    <url>/2019/05/19/factory-pattern/</url>
+    <content><![CDATA[<h1 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h1><h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><p>针对实现编程</p>
+<p>当使用new实例化一个具体类时, 使用的确实是实现,不是接口. 但代码绑定了具体的实现类导致代码缺乏弹性.</p>
+<p>例:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Pizza pizza = <span class="keyword">new</span> CheesePizza();</span><br></pre></td></tr></table></figure>
+<p>前面的Pizza为抽象类型,具有弹性. 但是后面new的时候还是需要把具体的实现类规定出来.</p>
+<p>因此,在类型变多时,就会有以下的代码</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Pizza pizza;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(cheese) &#123;</span><br><span class="line">    pizza = <span class="keyword">new</span> CheesePizza();</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span>(pepper) &#123;</span><br><span class="line">    pizza = <span class="keyword">new</span> PepperPizza();</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span>(veggle) &#123;</span><br><span class="line">    pizza = <span class="keyword">new</span> vegglePizza();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>假设你是一个披萨店的老板,你的业务代码可能会这样写</p>
+<p>伪代码如下:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Pizza orderPizza(type) &#123;</span><br><span class="line">    Pizza pizza;</span><br><span class="line"></span><br><span class="line">    // 可能会改变的部分</span><br><span class="line">    // 不符合 对修改关闭原则</span><br><span class="line">    // 需要将这一块抽离出来</span><br><span class="line">    if(cheese) &#123;</span><br><span class="line">        pizza = new CheesePizza();</span><br><span class="line">    &#125; else if(pepper) &#123;</span><br><span class="line">        pizza = new PepperPizza();</span><br><span class="line">    &#125; else if(veggle) &#123;</span><br><span class="line">        pizza = new vegglePizza();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    // 不需要改变的部分</span><br><span class="line">    pizza.prepare();</span><br><span class="line">    pizza.bake();</span><br><span class="line">    pizza.cut();</span><br><span class="line">    pizza.box();</span><br><span class="line">    </span><br><span class="line">    return pizza;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这时候我们应当将实例化具体类的代码从实际的业务中抽离.或者封装起来.</p>
+<p>此时我们就需要用到”工厂模式”了.</p>
+<h2 id="简单工厂对象"><a href="#简单工厂对象" class="headerlink" title="简单工厂对象"></a>简单工厂对象</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SimplePizzaFactory</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> Pizza <span class="title">createPizza</span><span class="params">(PizzaType type)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">switch</span> (type) &#123;</span><br><span class="line">      <span class="keyword">case</span> CLAM:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ClamPizza();</span><br><span class="line">      <span class="keyword">case</span> CHEESE:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> CheesePizza();</span><br><span class="line">      <span class="keyword">case</span> VEGGLE:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> VegglePizza();</span><br><span class="line">      <span class="keyword">case</span> PEPPERONI:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> PepperoniPizza();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样 不同的业务代码都可以通过这样的工厂取出Pizza对象.总而言之,可以理解为该工厂可以有许多的客户.以后修改实现的时候只需要修改该类即可.</p>
+<p>思考:为什么不用静态工厂(工厂类的方法为静态方法)?</p>
+<h2 id="简单工厂"><a href="#简单工厂" class="headerlink" title="简单工厂"></a>简单工厂</h2><p>Pizza类</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Pizza</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">prepare</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">bake</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">cut</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">box</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>分别创建多个pizza子类<br>CheesePizza、ClamPizza等等<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CheesePizza</span> <span class="keyword">extends</span> <span class="title">Pizza</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">bake</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"Cheese bake"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">prepare</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"Cheese prepare"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">cut</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"Cheese cut"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">box</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"Cheese box"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>简单工厂类SimplePizzaFactory</p>
+<p>此处我用了一个Enum类型PizzaType来区分不同的Pizza</p>
+<p>也可以使用String来区分<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SimplePizzaFactory</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Pizza <span class="title">createPizza</span><span class="params">(PizzaType type)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">switch</span> (type) &#123;</span><br><span class="line">      <span class="keyword">case</span> CLAM:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ClamPizza();</span><br><span class="line">      <span class="keyword">case</span> CHEESE:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> CheesePizza();</span><br><span class="line">      <span class="keyword">case</span> VEGGLE:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> VegglePizza();</span><br><span class="line">      <span class="keyword">case</span> PEPPERONI:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> PepperoniPizza();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>业务代码(此处以Pizza店提供pizza订购服务为例)</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PizzaStore</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> SimplePizzaFactory factory;</span><br><span class="line">    </span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">PizzaStore</span><span class="params">(SimplePizzaFactory factory)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.factory = factory;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> Pizza <span class="title">orderPizza</span><span class="params">(PizzaType type)</span> </span>&#123;</span><br><span class="line">    Pizza pizza = factory.createPizza(type);</span><br><span class="line"></span><br><span class="line">    pizza.prepare();</span><br><span class="line">    pizza.bake();</span><br><span class="line">    pizza.cut();</span><br><span class="line">    pizza.box();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> pizza;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="扩展简单工厂-思考"><a href="#扩展简单工厂-思考" class="headerlink" title="扩展简单工厂 思考"></a>扩展简单工厂 思考</h3><p>如果想要扩大生意,开不同的加盟店,想要在不同的地区提供风味的披萨.(纽约 芝加哥等不同地区的口味)该怎么做呢?</p>
+<h2 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h2><p>原: </p>
+<p>PizzaStore  -&gt;   SimplePizzaFactory</p>
+<p>现:</p>
+<p>PizzaStore -&gt; NYPizzaFactory</p>
+<p>PizzaStore -&gt; ChicagoPizzaFactory</p>
+<p>没错 就是在各地加盟店都有各自适合的工厂</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Factory nyFactory = <span class="keyword">new</span> NYPizzaFactory();</span><br><span class="line">PizzaStore nyStore = <span class="keyword">new</span> PizzaStore(factory);</span><br><span class="line">nyStore.orderPizza(PizzaType.CHEESE);</span><br><span class="line"></span><br><span class="line">Factory chicagoFactory = <span class="keyword">new</span> ChicagoPizzaFactory();</span><br><span class="line">PizzaStore chicagoStore = <span class="keyword">new</span> PizzaStore(factory);</span><br><span class="line">chicagoStore.orderPizza(PizzaType.CHEESE);</span><br></pre></td></tr></table></figure>
+<p>但是问题来了,我们制作pizza的代码绑定在PizzaStore里,即使工厂变了但是最终的烹调方式还是由PizzaStore里决定.</p>
+<p>“一个好的加盟店,你不需要管他在披萨中放了什么东西.”</p>
+<p>因此我们可以把PizzaStore变成抽象的</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractPizzaStore</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> Pizza <span class="title">orderPizza</span><span class="params">(PizzaType type)</span> </span>&#123;</span><br><span class="line">    Pizza pizza = createPizza(type);</span><br><span class="line"></span><br><span class="line">    pizza.prepare();</span><br><span class="line">    pizza.bake();</span><br><span class="line">    pizza.cut();</span><br><span class="line">    pizza.box();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> pizza;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">abstract</span> Pizza <span class="title">createPizza</span><span class="params">(PizzaType type)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们现在要做到就是每个子类去实现不同的createPizza()方法,即工厂方法</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Pizza</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">protected</span> String name;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 面团类型</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">protected</span> String dough;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">protected</span> String sauce;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 佐料</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">protected</span> List&lt;String&gt; toppings = <span class="keyword">new</span> ArrayList();</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">prepare</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"Preparing "</span> + name);</span><br><span class="line">    System.out.println(<span class="string">"Tossing dough..."</span>);</span><br><span class="line">    System.out.println(<span class="string">"Adding source..."</span>);</span><br><span class="line">    <span class="keyword">for</span> (String str: toppings) &#123;</span><br><span class="line">      System.out.println(<span class="string">"    "</span> + str);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">bake</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">cut</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">box</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ChicagoStyleCheesePizza</span> <span class="keyword">extends</span> <span class="title">Pizza</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">ChicagoStyleCheesePizza</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    name = <span class="string">"ChicagoStyleCheesePizza"</span>;</span><br><span class="line">    dough = <span class="string">"Extra Thick Crust Dough"</span>;</span><br><span class="line">    sauce = <span class="string">"Plum Tomato Sauce"</span>;</span><br><span class="line"></span><br><span class="line">    toppings.add(<span class="string">"Shredded Mozzarella Cheese"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">bake</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"Chicago Cheese bake"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">cut</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"Chicago Cheese cut"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">box</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"Chicago Cheese box"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ChicagoPizzaStore</span> <span class="keyword">extends</span> <span class="title">AbstractPizzaStore</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> Pizza <span class="title">createPizza</span><span class="params">(PizzaType type)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">switch</span> (type) &#123;</span><br><span class="line">      <span class="keyword">case</span> PEPPERONI:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ChicagoStylePepperoniPizza();</span><br><span class="line">      <span class="keyword">case</span> VEGGLE:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ChicagoStyleVegglePizza();</span><br><span class="line">      <span class="keyword">case</span> CHEESE:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ChicagoStyleCheesePizza();</span><br><span class="line">      <span class="keyword">case</span> CLAM:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ChicagoStyleClamPizza();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这时候我们就可以在不同地区的加盟店买到不同口味的pizza了</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">AbstractPizzaStore nyPizzaStore = <span class="keyword">new</span> NYPizzaStore();</span><br><span class="line">    Pizza nyCheesePizza = nyPizzaStore.orderPizza(PizzaType.CHEESE);</span><br><span class="line"></span><br><span class="line">    AbstractPizzaStore chicagoPizzaStore = <span class="keyword">new</span> ChicagoPizzaStore();</span><br><span class="line">    Pizza chicagoCheesePizza = chicagoPizzaStore.orderPizza(PizzaType.CHEESE);</span><br></pre></td></tr></table></figure>
+<h3 id="工厂方法模式定义"><a href="#工厂方法模式定义" class="headerlink" title="工厂方法模式定义"></a>工厂方法模式定义</h3><blockquote>
+<p>工厂方法模式定义了一个创建对象的接口,但由子类决定要实例化的类是哪一个.工厂方法让类把实例化推迟到子类.</p>
 </blockquote>
+<ul>
+<li>简单工厂与工厂方法的区别</li>
+</ul>
+<p>简单工厂把全部的事情都在一个地方处理完了.</p>
+<p>工厂方法是创建了一个框架,并让子类决定如何实现.</p>
+<p>简单工厂的做法可以将对象的创建封装起来,但是简单工厂不具备工厂方法的弹性,因为简单工厂不能变更正在创建的产品.</p>
+<h3 id="思考-1"><a href="#思考-1" class="headerlink" title="思考"></a>思考</h3><p>此前我们的pizza有着相同的产品家族(面团 酱料 芝士 蔬菜等原料家族), 但根据不同的制作方式根据区域的不同而可能有差异.举个例子 在chicago, 芝士披萨采用的是普通的番茄酱料, 而纽约的加盟店, 采用的则是加工过得大蒜番茄酱料, 像这样不同的酱料也有着不同的做法.</p>
+<p>如果在原本的pizza店的基础上, 想更加灵活地处理大批的’原料家族’, 该如何做呢?</p>
+<h2 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h2><p>定义一个接口 负责创建所有的原料</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">PizzaIngredientFactory</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这里定义了很多原料的新类</span></span><br><span class="line"><span class="comment">//每一个基础原料都是一个独立的类</span></span><br><span class="line"></span><br><span class="line">  <span class="function">Dough <span class="title">createDough</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="function">Sauce <span class="title">createSauce</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="function">Cheese <span class="title">createCheese</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">  Veggies[] createViggies();</span><br><span class="line"></span><br><span class="line">  <span class="function">Pepperoni <span class="title">createPepperoni</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="function">Clams <span class="title">createClams</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接下来要做的, 就是</p>
+<ol>
+<li>为每一个区域建造一个工厂, 并实现PizzaIngredientFactory接口</li>
+<li>实现一组原料的子类供工厂使用, 如RedPappers ReggianoCheese等</li>
+<li>把新的原料工厂整合到PizzaStore</li>
+</ol>
+<p>创建纽约原料工厂<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NYPizzaIngredientFactory</span> <span class="keyword">implements</span> <span class="title">PizzaIngredientFactory</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> Dough <span class="title">createDough</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ThinCrustDough();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> Sauce <span class="title">createSauce</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> MarinaraSause();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> Cheese <span class="title">createCheese</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ReggianoCheese();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="keyword">public</span> Veggies[] createViggies() &#123;</span><br><span class="line">    Veggies[] veggies = <span class="keyword">new</span> Veggies[] &#123;<span class="keyword">new</span> Gralic(), <span class="keyword">new</span> Onion()&#125;;</span><br><span class="line">    <span class="keyword">return</span> veggies;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> Pepperoni <span class="title">createPepperoni</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> SlicedPepperoni();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> Clams <span class="title">createClams</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> FreshClams();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>类似的 也可以写一个ChicagoPizzaIngredientFactory</p>
+<p>此处略</p>
+<p>接下来是重做Pizza类<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Pizza</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">protected</span> String name;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 面团类型</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">protected</span> Dough dough;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">protected</span> Sauce sauce;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">protected</span> Veggies veggies[];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">protected</span> Cheese cheese;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">protected</span> Pepperoni pepperoni;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">protected</span> Clams clams;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 佐料</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">protected</span> List&lt;String&gt; toppings = <span class="keyword">new</span> ArrayList();</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">prepare</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">bake</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"Bake for 25 mins at 350"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">cut</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"Cutting the pizza into diagonal slices"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">box</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"Place pizza in the offical PizzaStore box"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// getters &amp; setters ...</span></span><br></pre></td></tr></table></figure></p>
+<p>此前我们有工厂方法的代码,采用NYCheesePizza和ChicagoCheesePizza类, 如今我们只需要让原料工厂来处理这些区域差异(原料差异)就可以了.所以现在只需要CheesePizza就可以了<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CheesePizza</span> <span class="keyword">extends</span> <span class="title">Pizza</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  PizzaIngredientFactory pizzaIngredientFactory;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">CheesePizza</span><span class="params">(PizzaIngredientFactory pizzaIngredientFactory)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.pizzaIngredientFactory = pizzaIngredientFactory;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">prepare</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"Preparing "</span> + name);</span><br><span class="line">    dough = pizzaIngredientFactory.createDough();</span><br><span class="line">    sauce = pizzaIngredientFactory.createSauce();</span><br><span class="line">    cheese = pizzaIngredientFactory.createCheese();</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<p>同样的,蛤蜊pizza也类似<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClamPizza</span> <span class="keyword">extends</span> <span class="title">Pizza</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  PizzaIngredientFactory pizzaIngredientFactory;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">ClamPizza</span><span class="params">(PizzaIngredientFactory pizzaIngredientFactory)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.pizzaIngredientFactory = pizzaIngredientFactory;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">prepare</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"Preparing "</span> + name);</span><br><span class="line">    dough = pizzaIngredientFactory.createDough();</span><br><span class="line">    sauce = pizzaIngredientFactory.createSauce();</span><br><span class="line">    cheese = pizzaIngredientFactory.createCheese();</span><br><span class="line">    clams = pizzaIngredientFactory.createClams();</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<p>最后, 回归到PizzaStore 以纽约加盟店为例<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NYPizzaStore</span> <span class="keyword">extends</span> <span class="title">AbstractPizzaStore</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  Pizza pizza = <span class="keyword">null</span>;</span><br><span class="line">  PizzaIngredientFactory ingredientFactory = <span class="keyword">new</span> NYPizzaIngredientFactory();</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> Pizza <span class="title">createPizza</span><span class="params">(PizzaType type)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">switch</span> (type) &#123;</span><br><span class="line">      <span class="keyword">case</span> PEPPERONI:</span><br><span class="line">        pizza = <span class="keyword">new</span> PepperoniPizza(ingredientFactory);</span><br><span class="line">        pizza.setName(<span class="string">"NY Style Pepperoni Pizza"</span>);</span><br><span class="line">      <span class="keyword">case</span> VEGGIE:</span><br><span class="line">        pizza =  <span class="keyword">new</span> VeggiePizza(ingredientFactory);</span><br><span class="line">        pizza.setName(<span class="string">"NY Style Veggie Pizza"</span>);</span><br><span class="line">      <span class="keyword">case</span> CHEESE:</span><br><span class="line">        pizza =  <span class="keyword">new</span> CheesePizza(ingredientFactory);</span><br><span class="line">        pizza.setName(<span class="string">"NY Style Cheese pizza"</span>);</span><br><span class="line">      <span class="keyword">case</span> CLAM:</span><br><span class="line">        pizza =  <span class="keyword">new</span> ClamPizza(ingredientFactory);</span><br><span class="line">        pizza.setName(<span class="string">"NY Style Clam Pizza"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> pizza;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>至此, 一个抽象工厂模式例子就完成了</p>
+<h3 id="抽象工厂模式定义"><a href="#抽象工厂模式定义" class="headerlink" title="抽象工厂模式定义"></a>抽象工厂模式定义</h3><blockquote>
+<p>抽象工厂模式提供一个接口,用于创建相关或依赖对象的家族,而不需要明确指定具体类.</p>
+</blockquote>
+<p>思考:</p>
+<p>抽象工厂的每个方法看起来都是工厂方法.到底工厂方法与抽象工厂的最根本区别在与哪里呢?</p>
+<ul>
+<li>工厂方法模式：</li>
+</ul>
+<p>一个抽象产品类，可以派生出多个具体产品类。<br>一个抽象工厂类，可以派生出多个具体工厂类。</p>
+<p>每个具体工厂类只能创建一个具体产品类的实例。</p>
+<ul>
+<li>抽象工厂模式：</li>
+</ul>
+<p>多个抽象产品类，每个抽象产品类可以派生出多个具体产品类。</p>
+<p>一个抽象工厂类，可以派生出多个具体工厂类。<br>每个具体工厂类可以创建多个具体产品类的实例。</p>
+<ul>
+<li>区别：<br>工厂方法模式只有一个抽象产品类，而抽象工厂模式有多个。</li>
+</ul>
+<p>工厂方法模式的具体工厂类只能创建一个具体产品类的实例，而抽象工厂模式可以创建多个。</p>
+<p>查资料时看到一个比较形象的比喻:</p>
+<blockquote>
+<p>抽象工厂就像工厂，而工厂方法则像是工厂的一种产品生产线</p>
+</blockquote>
+<p>除此以外, 抽象工厂在拓展一组产品时, 必须改变接口.这也是它的缺点所在,因此,在选择模式时需要根据实际需求考虑清楚是否适用.</p>
+<h1 id="依赖倒置原则"><a href="#依赖倒置原则" class="headerlink" title="依赖倒置原则"></a>依赖倒置原则</h1><blockquote>
+<p>要依赖抽象, 不要依赖具体类</p>
+</blockquote>
+<p>以工厂方法模式中用到的例子为例.</p>
+<p>在不采用工厂的情况下:</p>
+<p>PizzaStore是一种”高层组件”,Pizza的实现是一种”低层组件” PizzaStore依赖这些具体Pizza类</p>
+<p>应用工厂就可以满足这一设计原则.改进之后也就成了PizzaStore这个”高层组件”依赖Pizza这个抽象类.低层组件(各种Pizza)都依赖Pizza抽象.</p>
+<p>思考:依赖有了, 什么是”倒置”?</p>
+<p>我们一般思考时,会先从顶端开始思考,然后往下思考到具体类.依赖正置就是类间的依赖是实实在在的实现类间的依赖，也就是面向实现编程，这也是正常人的思维方式，我要开奔驰车就依赖奔驰车，我要使用笔记本电脑就直接依赖笔记本电脑.</p>
+<p>而编写程序需要的是对现实世界的事物进行抽象，抽象的结果就是有了抽象类和接口，然后我们根据系统设计的需要产生了抽象间的依赖，代替了人们传统思维中的事物间的依赖，“倒置”就是从这里产生的。</p>
+<p>因此,我们要”倒置”我们的想法,从Pizza开始.看能抽象化些什么.</p>
+<p>尽量遵循以下的几个方针:</p>
+<ul>
+<li>变量不可以持有具体类的引用(不采用new 可采用工厂)</li>
+<li>不要让类派生自具体类(派生自一个抽象)</li>
+<li>不要覆盖基类中已经实现的方法</li>
+</ul>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ol>
+<li>所有工厂都是用来封装对象的创建</li>
+<li>简单工厂虽然不是真正的设计模式,但仍不失为一个简单的方法,可以将客户程序从具体类解耦</li>
+<li>工厂方法使用继承:把对象的创建委托给子类,子类实现工厂方法创建对象</li>
+<li>抽象工厂使用对象组合:对象的创建被实现在工厂接口暴露出来的方法中</li>
+<li>所有工厂模式都通过减少应用程序和具体类之间的依赖促进松耦合</li>
+<li>工厂方法允许类将实例化延迟到子类进行</li>
+<li>抽象工厂创建相关的对象家族,而不需要依赖他们的具体类</li>
+<li>依赖倒置原则, 指导我们避免依赖具体类型,而要尽量以来抽象</li>
+<li>工厂是很有威力的技巧,帮助我们针对抽象变成,而不要针对具体类编程.</li>
+</ol>
 ]]></content>
       <tags>
-        <tag>ajax</tag>
+        <tag>设计模式</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -259,50 +387,6 @@
       <tags>
         <tag>linux</tag>
         <tag>docker</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Centos中运行jar包的几种方法</title>
-    <url>/2018/01/08/centos-java-run/</url>
-    <content><![CDATA[<h1 id="Centos中运行jar包的几种方法"><a href="#Centos中运行jar包的几种方法" class="headerlink" title="Centos中运行jar包的几种方法"></a>Centos中运行jar包的几种方法</h1><p>1.直接运行<br>2.后台运行</p>
-<p>以Centos 6.5 为例  </p>
-<p>先通过</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd /xxx/xxx</span><br></pre></td></tr></table></figure>
-<p>命令 进入jar包项目所在目录</p>
-<p>运行通过maven打包好的jar包 </p>
-<p>该项目运行在服务器的443端口</p>
-<p>demo-0.0.1-SNAPSHOT.jar</p>
-<h2 id="直接运行"><a href="#直接运行" class="headerlink" title="直接运行"></a>直接运行</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">java -jar demo-0.0.1-SNAPSHOT.jar</span><br></pre></td></tr></table></figure>
-<p>当前ssh窗口被锁定 这个期间无法对服务器执行其他命令</p>
-<p>若想终止进程 则按下Ctrl+C<br>或者关闭ssh窗口</p>
-<h2 id="后台运行"><a href="#后台运行" class="headerlink" title="后台运行"></a>后台运行</h2><p>后台运行分几种情况</p>
-<h3 id="普通后台运行"><a href="#普通后台运行" class="headerlink" title="普通后台运行"></a>普通后台运行</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">java -jar demo-0.0.1-SNAPSHOT.jar &amp;</span><br></pre></td></tr></table></figure>
-<p>&amp;代表后台运行 </p>
-<p>当前ssh窗口不被锁定</p>
-<p>关闭ssh窗口则程序终止</p>
-<h3 id="nohup方式"><a href="#nohup方式" class="headerlink" title="nohup方式"></a>nohup方式</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">nohup java -jar demo-0.0.1-SNAPSHOT.jar &amp;</span><br></pre></td></tr></table></figure>
-<p>nohup方式会不挂断运行命令</p>
-<p>当账户退出或终端关闭时,程序仍在后台运行</p>
-<p>当用 nohup 命令执行作业时，该作业的所有输出会默认被重定向到nohup.out的文件中，除非另外指定了输出文件。</p>
-<p>若想重新制定输出文件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">nohup java -jar shareniu.jar &gt;temp.txt &amp;</span><br></pre></td></tr></table></figure>
-<p>这样输出内容不打印到屏幕上，而是输出到temp.txt文件中。</p>
-<p>可通过jobs命令查看后台运行任务</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">jobs</span><br></pre></td></tr></table></figure>
-<p>此时会列出所有后台执行的作业</p>
-<p>且每个作业前面都有个编号。</p>
-<p>[1] xxxx<br>[2] xxxx</p>
-<p>若想将某个作业调回前台控制，只需要 fg + 编号即可。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">fg 1</span><br></pre></td></tr></table></figure>
-<p>若关闭了ssh窗口 下次重新连接服务器时</p>
-<p>可通过查询项目所在端口查询进程PID</p>
-<p>再用kill命令杀死进程<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">lsof -i:443</span><br><span class="line"></span><br><span class="line">kill -9  PID</span><br></pre></td></tr></table></figure></p>
-]]></content>
-      <tags>
-        <tag>java</tag>
-        <tag>centos</tag>
-        <tag>linux</tag>
-        <tag>服务器</tag>
       </tags>
   </entry>
   <entry>
@@ -1600,131 +1684,47 @@
       </tags>
   </entry>
   <entry>
-    <title>工厂模式</title>
-    <url>/2019/05/19/factory-pattern/</url>
-    <content><![CDATA[<h1 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h1><h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><p>针对实现编程</p>
-<p>当使用new实例化一个具体类时, 使用的确实是实现,不是接口. 但代码绑定了具体的实现类导致代码缺乏弹性.</p>
-<p>例:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Pizza pizza = <span class="keyword">new</span> CheesePizza();</span><br></pre></td></tr></table></figure>
-<p>前面的Pizza为抽象类型,具有弹性. 但是后面new的时候还是需要把具体的实现类规定出来.</p>
-<p>因此,在类型变多时,就会有以下的代码</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Pizza pizza;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(cheese) &#123;</span><br><span class="line">    pizza = <span class="keyword">new</span> CheesePizza();</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span>(pepper) &#123;</span><br><span class="line">    pizza = <span class="keyword">new</span> PepperPizza();</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span>(veggle) &#123;</span><br><span class="line">    pizza = <span class="keyword">new</span> vegglePizza();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>假设你是一个披萨店的老板,你的业务代码可能会这样写</p>
-<p>伪代码如下:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Pizza orderPizza(type) &#123;</span><br><span class="line">    Pizza pizza;</span><br><span class="line"></span><br><span class="line">    // 可能会改变的部分</span><br><span class="line">    // 不符合 对修改关闭原则</span><br><span class="line">    // 需要将这一块抽离出来</span><br><span class="line">    if(cheese) &#123;</span><br><span class="line">        pizza = new CheesePizza();</span><br><span class="line">    &#125; else if(pepper) &#123;</span><br><span class="line">        pizza = new PepperPizza();</span><br><span class="line">    &#125; else if(veggle) &#123;</span><br><span class="line">        pizza = new vegglePizza();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    // 不需要改变的部分</span><br><span class="line">    pizza.prepare();</span><br><span class="line">    pizza.bake();</span><br><span class="line">    pizza.cut();</span><br><span class="line">    pizza.box();</span><br><span class="line">    </span><br><span class="line">    return pizza;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>这时候我们应当将实例化具体类的代码从实际的业务中抽离.或者封装起来.</p>
-<p>此时我们就需要用到”工厂模式”了.</p>
-<h2 id="简单工厂对象"><a href="#简单工厂对象" class="headerlink" title="简单工厂对象"></a>简单工厂对象</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SimplePizzaFactory</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> Pizza <span class="title">createPizza</span><span class="params">(PizzaType type)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">switch</span> (type) &#123;</span><br><span class="line">      <span class="keyword">case</span> CLAM:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ClamPizza();</span><br><span class="line">      <span class="keyword">case</span> CHEESE:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> CheesePizza();</span><br><span class="line">      <span class="keyword">case</span> VEGGLE:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> VegglePizza();</span><br><span class="line">      <span class="keyword">case</span> PEPPERONI:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> PepperoniPizza();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这样 不同的业务代码都可以通过这样的工厂取出Pizza对象.总而言之,可以理解为该工厂可以有许多的客户.以后修改实现的时候只需要修改该类即可.</p>
-<p>思考:为什么不用静态工厂(工厂类的方法为静态方法)?</p>
-<h2 id="简单工厂"><a href="#简单工厂" class="headerlink" title="简单工厂"></a>简单工厂</h2><p>Pizza类</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Pizza</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">prepare</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">bake</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">cut</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">box</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>分别创建多个pizza子类<br>CheesePizza、ClamPizza等等<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CheesePizza</span> <span class="keyword">extends</span> <span class="title">Pizza</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">bake</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"Cheese bake"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">prepare</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"Cheese prepare"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">cut</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"Cheese cut"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">box</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"Cheese box"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>简单工厂类SimplePizzaFactory</p>
-<p>此处我用了一个Enum类型PizzaType来区分不同的Pizza</p>
-<p>也可以使用String来区分<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SimplePizzaFactory</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Pizza <span class="title">createPizza</span><span class="params">(PizzaType type)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">switch</span> (type) &#123;</span><br><span class="line">      <span class="keyword">case</span> CLAM:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ClamPizza();</span><br><span class="line">      <span class="keyword">case</span> CHEESE:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> CheesePizza();</span><br><span class="line">      <span class="keyword">case</span> VEGGLE:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> VegglePizza();</span><br><span class="line">      <span class="keyword">case</span> PEPPERONI:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> PepperoniPizza();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>业务代码(此处以Pizza店提供pizza订购服务为例)</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PizzaStore</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> SimplePizzaFactory factory;</span><br><span class="line">    </span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">PizzaStore</span><span class="params">(SimplePizzaFactory factory)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.factory = factory;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> Pizza <span class="title">orderPizza</span><span class="params">(PizzaType type)</span> </span>&#123;</span><br><span class="line">    Pizza pizza = factory.createPizza(type);</span><br><span class="line"></span><br><span class="line">    pizza.prepare();</span><br><span class="line">    pizza.bake();</span><br><span class="line">    pizza.cut();</span><br><span class="line">    pizza.box();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> pizza;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="扩展简单工厂-思考"><a href="#扩展简单工厂-思考" class="headerlink" title="扩展简单工厂 思考"></a>扩展简单工厂 思考</h3><p>如果想要扩大生意,开不同的加盟店,想要在不同的地区提供风味的披萨.(纽约 芝加哥等不同地区的口味)该怎么做呢?</p>
-<h2 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h2><p>原: </p>
-<p>PizzaStore  -&gt;   SimplePizzaFactory</p>
-<p>现:</p>
-<p>PizzaStore -&gt; NYPizzaFactory</p>
-<p>PizzaStore -&gt; ChicagoPizzaFactory</p>
-<p>没错 就是在各地加盟店都有各自适合的工厂</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Factory nyFactory = <span class="keyword">new</span> NYPizzaFactory();</span><br><span class="line">PizzaStore nyStore = <span class="keyword">new</span> PizzaStore(factory);</span><br><span class="line">nyStore.orderPizza(PizzaType.CHEESE);</span><br><span class="line"></span><br><span class="line">Factory chicagoFactory = <span class="keyword">new</span> ChicagoPizzaFactory();</span><br><span class="line">PizzaStore chicagoStore = <span class="keyword">new</span> PizzaStore(factory);</span><br><span class="line">chicagoStore.orderPizza(PizzaType.CHEESE);</span><br></pre></td></tr></table></figure>
-<p>但是问题来了,我们制作pizza的代码绑定在PizzaStore里,即使工厂变了但是最终的烹调方式还是由PizzaStore里决定.</p>
-<p>“一个好的加盟店,你不需要管他在披萨中放了什么东西.”</p>
-<p>因此我们可以把PizzaStore变成抽象的</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractPizzaStore</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> Pizza <span class="title">orderPizza</span><span class="params">(PizzaType type)</span> </span>&#123;</span><br><span class="line">    Pizza pizza = createPizza(type);</span><br><span class="line"></span><br><span class="line">    pizza.prepare();</span><br><span class="line">    pizza.bake();</span><br><span class="line">    pizza.cut();</span><br><span class="line">    pizza.box();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> pizza;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">abstract</span> Pizza <span class="title">createPizza</span><span class="params">(PizzaType type)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>我们现在要做到就是每个子类去实现不同的createPizza()方法,即工厂方法</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Pizza</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">protected</span> String name;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 面团类型</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">protected</span> String dough;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">protected</span> String sauce;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 佐料</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">protected</span> List&lt;String&gt; toppings = <span class="keyword">new</span> ArrayList();</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">prepare</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"Preparing "</span> + name);</span><br><span class="line">    System.out.println(<span class="string">"Tossing dough..."</span>);</span><br><span class="line">    System.out.println(<span class="string">"Adding source..."</span>);</span><br><span class="line">    <span class="keyword">for</span> (String str: toppings) &#123;</span><br><span class="line">      System.out.println(<span class="string">"    "</span> + str);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">bake</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">cut</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">box</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ChicagoStyleCheesePizza</span> <span class="keyword">extends</span> <span class="title">Pizza</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">ChicagoStyleCheesePizza</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    name = <span class="string">"ChicagoStyleCheesePizza"</span>;</span><br><span class="line">    dough = <span class="string">"Extra Thick Crust Dough"</span>;</span><br><span class="line">    sauce = <span class="string">"Plum Tomato Sauce"</span>;</span><br><span class="line"></span><br><span class="line">    toppings.add(<span class="string">"Shredded Mozzarella Cheese"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">bake</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"Chicago Cheese bake"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">cut</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"Chicago Cheese cut"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">box</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"Chicago Cheese box"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ChicagoPizzaStore</span> <span class="keyword">extends</span> <span class="title">AbstractPizzaStore</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> Pizza <span class="title">createPizza</span><span class="params">(PizzaType type)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">switch</span> (type) &#123;</span><br><span class="line">      <span class="keyword">case</span> PEPPERONI:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ChicagoStylePepperoniPizza();</span><br><span class="line">      <span class="keyword">case</span> VEGGLE:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ChicagoStyleVegglePizza();</span><br><span class="line">      <span class="keyword">case</span> CHEESE:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ChicagoStyleCheesePizza();</span><br><span class="line">      <span class="keyword">case</span> CLAM:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ChicagoStyleClamPizza();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这时候我们就可以在不同地区的加盟店买到不同口味的pizza了</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">AbstractPizzaStore nyPizzaStore = <span class="keyword">new</span> NYPizzaStore();</span><br><span class="line">    Pizza nyCheesePizza = nyPizzaStore.orderPizza(PizzaType.CHEESE);</span><br><span class="line"></span><br><span class="line">    AbstractPizzaStore chicagoPizzaStore = <span class="keyword">new</span> ChicagoPizzaStore();</span><br><span class="line">    Pizza chicagoCheesePizza = chicagoPizzaStore.orderPizza(PizzaType.CHEESE);</span><br></pre></td></tr></table></figure>
-<h3 id="工厂方法模式定义"><a href="#工厂方法模式定义" class="headerlink" title="工厂方法模式定义"></a>工厂方法模式定义</h3><blockquote>
-<p>工厂方法模式定义了一个创建对象的接口,但由子类决定要实例化的类是哪一个.工厂方法让类把实例化推迟到子类.</p>
-</blockquote>
-<ul>
-<li>简单工厂与工厂方法的区别</li>
-</ul>
-<p>简单工厂把全部的事情都在一个地方处理完了.</p>
-<p>工厂方法是创建了一个框架,并让子类决定如何实现.</p>
-<p>简单工厂的做法可以将对象的创建封装起来,但是简单工厂不具备工厂方法的弹性,因为简单工厂不能变更正在创建的产品.</p>
-<h3 id="思考-1"><a href="#思考-1" class="headerlink" title="思考"></a>思考</h3><p>此前我们的pizza有着相同的产品家族(面团 酱料 芝士 蔬菜等原料家族), 但根据不同的制作方式根据区域的不同而可能有差异.举个例子 在chicago, 芝士披萨采用的是普通的番茄酱料, 而纽约的加盟店, 采用的则是加工过得大蒜番茄酱料, 像这样不同的酱料也有着不同的做法.</p>
-<p>如果在原本的pizza店的基础上, 想更加灵活地处理大批的’原料家族’, 该如何做呢?</p>
-<h2 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h2><p>定义一个接口 负责创建所有的原料</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">PizzaIngredientFactory</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这里定义了很多原料的新类</span></span><br><span class="line"><span class="comment">//每一个基础原料都是一个独立的类</span></span><br><span class="line"></span><br><span class="line">  <span class="function">Dough <span class="title">createDough</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="function">Sauce <span class="title">createSauce</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="function">Cheese <span class="title">createCheese</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">  Veggies[] createViggies();</span><br><span class="line"></span><br><span class="line">  <span class="function">Pepperoni <span class="title">createPepperoni</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="function">Clams <span class="title">createClams</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>接下来要做的, 就是</p>
-<ol>
-<li>为每一个区域建造一个工厂, 并实现PizzaIngredientFactory接口</li>
-<li>实现一组原料的子类供工厂使用, 如RedPappers ReggianoCheese等</li>
-<li>把新的原料工厂整合到PizzaStore</li>
-</ol>
-<p>创建纽约原料工厂<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NYPizzaIngredientFactory</span> <span class="keyword">implements</span> <span class="title">PizzaIngredientFactory</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> Dough <span class="title">createDough</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ThinCrustDough();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> Sauce <span class="title">createSauce</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> MarinaraSause();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> Cheese <span class="title">createCheese</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ReggianoCheese();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="keyword">public</span> Veggies[] createViggies() &#123;</span><br><span class="line">    Veggies[] veggies = <span class="keyword">new</span> Veggies[] &#123;<span class="keyword">new</span> Gralic(), <span class="keyword">new</span> Onion()&#125;;</span><br><span class="line">    <span class="keyword">return</span> veggies;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> Pepperoni <span class="title">createPepperoni</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> SlicedPepperoni();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> Clams <span class="title">createClams</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> FreshClams();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>类似的 也可以写一个ChicagoPizzaIngredientFactory</p>
-<p>此处略</p>
-<p>接下来是重做Pizza类<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Pizza</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">protected</span> String name;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 面团类型</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">protected</span> Dough dough;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">protected</span> Sauce sauce;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">protected</span> Veggies veggies[];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">protected</span> Cheese cheese;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">protected</span> Pepperoni pepperoni;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">protected</span> Clams clams;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 佐料</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">protected</span> List&lt;String&gt; toppings = <span class="keyword">new</span> ArrayList();</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">prepare</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">bake</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"Bake for 25 mins at 350"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">cut</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"Cutting the pizza into diagonal slices"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">box</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"Place pizza in the offical PizzaStore box"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// getters &amp; setters ...</span></span><br></pre></td></tr></table></figure></p>
-<p>此前我们有工厂方法的代码,采用NYCheesePizza和ChicagoCheesePizza类, 如今我们只需要让原料工厂来处理这些区域差异(原料差异)就可以了.所以现在只需要CheesePizza就可以了<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CheesePizza</span> <span class="keyword">extends</span> <span class="title">Pizza</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  PizzaIngredientFactory pizzaIngredientFactory;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">CheesePizza</span><span class="params">(PizzaIngredientFactory pizzaIngredientFactory)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.pizzaIngredientFactory = pizzaIngredientFactory;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">prepare</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"Preparing "</span> + name);</span><br><span class="line">    dough = pizzaIngredientFactory.createDough();</span><br><span class="line">    sauce = pizzaIngredientFactory.createSauce();</span><br><span class="line">    cheese = pizzaIngredientFactory.createCheese();</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
-<p>同样的,蛤蜊pizza也类似<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClamPizza</span> <span class="keyword">extends</span> <span class="title">Pizza</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  PizzaIngredientFactory pizzaIngredientFactory;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">ClamPizza</span><span class="params">(PizzaIngredientFactory pizzaIngredientFactory)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.pizzaIngredientFactory = pizzaIngredientFactory;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">prepare</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"Preparing "</span> + name);</span><br><span class="line">    dough = pizzaIngredientFactory.createDough();</span><br><span class="line">    sauce = pizzaIngredientFactory.createSauce();</span><br><span class="line">    cheese = pizzaIngredientFactory.createCheese();</span><br><span class="line">    clams = pizzaIngredientFactory.createClams();</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
-<p>最后, 回归到PizzaStore 以纽约加盟店为例<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NYPizzaStore</span> <span class="keyword">extends</span> <span class="title">AbstractPizzaStore</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  Pizza pizza = <span class="keyword">null</span>;</span><br><span class="line">  PizzaIngredientFactory ingredientFactory = <span class="keyword">new</span> NYPizzaIngredientFactory();</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> Pizza <span class="title">createPizza</span><span class="params">(PizzaType type)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">switch</span> (type) &#123;</span><br><span class="line">      <span class="keyword">case</span> PEPPERONI:</span><br><span class="line">        pizza = <span class="keyword">new</span> PepperoniPizza(ingredientFactory);</span><br><span class="line">        pizza.setName(<span class="string">"NY Style Pepperoni Pizza"</span>);</span><br><span class="line">      <span class="keyword">case</span> VEGGIE:</span><br><span class="line">        pizza =  <span class="keyword">new</span> VeggiePizza(ingredientFactory);</span><br><span class="line">        pizza.setName(<span class="string">"NY Style Veggie Pizza"</span>);</span><br><span class="line">      <span class="keyword">case</span> CHEESE:</span><br><span class="line">        pizza =  <span class="keyword">new</span> CheesePizza(ingredientFactory);</span><br><span class="line">        pizza.setName(<span class="string">"NY Style Cheese pizza"</span>);</span><br><span class="line">      <span class="keyword">case</span> CLAM:</span><br><span class="line">        pizza =  <span class="keyword">new</span> ClamPizza(ingredientFactory);</span><br><span class="line">        pizza.setName(<span class="string">"NY Style Clam Pizza"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> pizza;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>至此, 一个抽象工厂模式例子就完成了</p>
-<h3 id="抽象工厂模式定义"><a href="#抽象工厂模式定义" class="headerlink" title="抽象工厂模式定义"></a>抽象工厂模式定义</h3><blockquote>
-<p>抽象工厂模式提供一个接口,用于创建相关或依赖对象的家族,而不需要明确指定具体类.</p>
-</blockquote>
-<p>思考:</p>
-<p>抽象工厂的每个方法看起来都是工厂方法.到底工厂方法与抽象工厂的最根本区别在与哪里呢?</p>
-<ul>
-<li>工厂方法模式：</li>
-</ul>
-<p>一个抽象产品类，可以派生出多个具体产品类。<br>一个抽象工厂类，可以派生出多个具体工厂类。</p>
-<p>每个具体工厂类只能创建一个具体产品类的实例。</p>
-<ul>
-<li>抽象工厂模式：</li>
-</ul>
-<p>多个抽象产品类，每个抽象产品类可以派生出多个具体产品类。</p>
-<p>一个抽象工厂类，可以派生出多个具体工厂类。<br>每个具体工厂类可以创建多个具体产品类的实例。</p>
-<ul>
-<li>区别：<br>工厂方法模式只有一个抽象产品类，而抽象工厂模式有多个。</li>
-</ul>
-<p>工厂方法模式的具体工厂类只能创建一个具体产品类的实例，而抽象工厂模式可以创建多个。</p>
-<p>查资料时看到一个比较形象的比喻:</p>
-<blockquote>
-<p>抽象工厂就像工厂，而工厂方法则像是工厂的一种产品生产线</p>
-</blockquote>
-<p>除此以外, 抽象工厂在拓展一组产品时, 必须改变接口.这也是它的缺点所在,因此,在选择模式时需要根据实际需求考虑清楚是否适用.</p>
-<h1 id="依赖倒置原则"><a href="#依赖倒置原则" class="headerlink" title="依赖倒置原则"></a>依赖倒置原则</h1><blockquote>
-<p>要依赖抽象, 不要依赖具体类</p>
-</blockquote>
-<p>以工厂方法模式中用到的例子为例.</p>
-<p>在不采用工厂的情况下:</p>
-<p>PizzaStore是一种”高层组件”,Pizza的实现是一种”低层组件” PizzaStore依赖这些具体Pizza类</p>
-<p>应用工厂就可以满足这一设计原则.改进之后也就成了PizzaStore这个”高层组件”依赖Pizza这个抽象类.低层组件(各种Pizza)都依赖Pizza抽象.</p>
-<p>思考:依赖有了, 什么是”倒置”?</p>
-<p>我们一般思考时,会先从顶端开始思考,然后往下思考到具体类.依赖正置就是类间的依赖是实实在在的实现类间的依赖，也就是面向实现编程，这也是正常人的思维方式，我要开奔驰车就依赖奔驰车，我要使用笔记本电脑就直接依赖笔记本电脑.</p>
-<p>而编写程序需要的是对现实世界的事物进行抽象，抽象的结果就是有了抽象类和接口，然后我们根据系统设计的需要产生了抽象间的依赖，代替了人们传统思维中的事物间的依赖，“倒置”就是从这里产生的。</p>
-<p>因此,我们要”倒置”我们的想法,从Pizza开始.看能抽象化些什么.</p>
-<p>尽量遵循以下的几个方针:</p>
-<ul>
-<li>变量不可以持有具体类的引用(不采用new 可采用工厂)</li>
-<li>不要让类派生自具体类(派生自一个抽象)</li>
-<li>不要覆盖基类中已经实现的方法</li>
-</ul>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ol>
-<li>所有工厂都是用来封装对象的创建</li>
-<li>简单工厂虽然不是真正的设计模式,但仍不失为一个简单的方法,可以将客户程序从具体类解耦</li>
-<li>工厂方法使用继承:把对象的创建委托给子类,子类实现工厂方法创建对象</li>
-<li>抽象工厂使用对象组合:对象的创建被实现在工厂接口暴露出来的方法中</li>
-<li>所有工厂模式都通过减少应用程序和具体类之间的依赖促进松耦合</li>
-<li>工厂方法允许类将实例化延迟到子类进行</li>
-<li>抽象工厂创建相关的对象家族,而不需要依赖他们的具体类</li>
-<li>依赖倒置原则, 指导我们避免依赖具体类型,而要尽量以来抽象</li>
-<li>工厂是很有威力的技巧,帮助我们针对抽象变成,而不要针对具体类编程.</li>
-</ol>
+    <title>Centos中运行jar包的几种方法</title>
+    <url>/2018/01/08/centos-java-run/</url>
+    <content><![CDATA[<h1 id="Centos中运行jar包的几种方法"><a href="#Centos中运行jar包的几种方法" class="headerlink" title="Centos中运行jar包的几种方法"></a>Centos中运行jar包的几种方法</h1><p>1.直接运行<br>2.后台运行</p>
+<p>以Centos 6.5 为例  </p>
+<p>先通过</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd /xxx/xxx</span><br></pre></td></tr></table></figure>
+<p>命令 进入jar包项目所在目录</p>
+<p>运行通过maven打包好的jar包 </p>
+<p>该项目运行在服务器的443端口</p>
+<p>demo-0.0.1-SNAPSHOT.jar</p>
+<h2 id="直接运行"><a href="#直接运行" class="headerlink" title="直接运行"></a>直接运行</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">java -jar demo-0.0.1-SNAPSHOT.jar</span><br></pre></td></tr></table></figure>
+<p>当前ssh窗口被锁定 这个期间无法对服务器执行其他命令</p>
+<p>若想终止进程 则按下Ctrl+C<br>或者关闭ssh窗口</p>
+<h2 id="后台运行"><a href="#后台运行" class="headerlink" title="后台运行"></a>后台运行</h2><p>后台运行分几种情况</p>
+<h3 id="普通后台运行"><a href="#普通后台运行" class="headerlink" title="普通后台运行"></a>普通后台运行</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">java -jar demo-0.0.1-SNAPSHOT.jar &amp;</span><br></pre></td></tr></table></figure>
+<p>&amp;代表后台运行 </p>
+<p>当前ssh窗口不被锁定</p>
+<p>关闭ssh窗口则程序终止</p>
+<h3 id="nohup方式"><a href="#nohup方式" class="headerlink" title="nohup方式"></a>nohup方式</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">nohup java -jar demo-0.0.1-SNAPSHOT.jar &amp;</span><br></pre></td></tr></table></figure>
+<p>nohup方式会不挂断运行命令</p>
+<p>当账户退出或终端关闭时,程序仍在后台运行</p>
+<p>当用 nohup 命令执行作业时，该作业的所有输出会默认被重定向到nohup.out的文件中，除非另外指定了输出文件。</p>
+<p>若想重新制定输出文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">nohup java -jar shareniu.jar &gt;temp.txt &amp;</span><br></pre></td></tr></table></figure>
+<p>这样输出内容不打印到屏幕上，而是输出到temp.txt文件中。</p>
+<p>可通过jobs命令查看后台运行任务</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">jobs</span><br></pre></td></tr></table></figure>
+<p>此时会列出所有后台执行的作业</p>
+<p>且每个作业前面都有个编号。</p>
+<p>[1] xxxx<br>[2] xxxx</p>
+<p>若想将某个作业调回前台控制，只需要 fg + 编号即可。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">fg 1</span><br></pre></td></tr></table></figure>
+<p>若关闭了ssh窗口 下次重新连接服务器时</p>
+<p>可通过查询项目所在端口查询进程PID</p>
+<p>再用kill命令杀死进程<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">lsof -i:443</span><br><span class="line"></span><br><span class="line">kill -9  PID</span><br></pre></td></tr></table></figure></p>
 ]]></content>
       <tags>
-        <tag>设计模式</tag>
         <tag>java</tag>
+        <tag>centos</tag>
+        <tag>linux</tag>
+        <tag>服务器</tag>
       </tags>
   </entry>
   <entry>
@@ -2596,6 +2596,55 @@
       </tags>
   </entry>
   <entry>
+    <title>EL表达式取整</title>
+    <url>/2017/11/16/jsp-jstl-el-numberformat/</url>
+    <content><![CDATA[<p>今天在写页码的时候发现后台传来的数据直接在jsp的EL表达式中直接相除会出现小数点</p>
+<p>所以找了下解决方法并且记下来</p>
+<p>jsp加标签头</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--头部加上--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%@</span> <span class="attr">taglib</span> <span class="attr">prefix</span>=<span class="string">"fmt"</span> <span class="attr">uri</span>=<span class="string">"http://java.sun.com/jsp/jstl/fmt"</span>%&gt;</span> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">fmt:formatNumber</span> <span class="attr">type</span>=<span class="string">"number"</span> <span class="attr">value</span>=<span class="string">"$&#123;8/7)&#125;"</span> <span class="attr">maxFractionDigits</span>=<span class="string">"0"</span>/&gt;</span>  </span><br><span class="line"><span class="comment">&lt;!--结果为1--&gt;</span></span><br></pre></td></tr></table></figure>
+<p>如：<br><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<p><a href="fmt:formatNumber" target="_blank" rel="noopener">fmt:formatNumber</a>参数解释：</p>
+<p>此标签会根据区域定制的方式将数字格式化成数字，货币，百分比。</p>
+<p>此标签的属性：</p>
+<ul>
+<li>value:要格式化的数字</li>
+<li>type：按照什么类型格式化</li>
+<li>pattern：自定义格式化样式</li>
+<li>currencyCode:ISO-4721货币代码，只适用于按照货币格式化的数字</li>
+<li>currencySymbol： 货币符号,如￥,只适用于按照货币格式化的数字</li>
+<li>groupingUsed： 是否包含分隔符</li>
+<li>maxIntegerDigits： 整数部分最多显示多少位</li>
+<li>mixIntegerDigits： 整数部分最少显示多少位</li>
+<li>maxFractionDigits： 小数部分最多显示多位位</li>
+<li>minFractionDigits： 小数部分最少显示多位位</li>
+<li>var:存储格式化后的结果</li>
+<li>scope: 存储的范围</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>java</tag>
+        <tag>jsp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于数据库写入Emoji表情的报错的解决方法</title>
+    <url>/2018/12/12/jdbc-emoji-bug/</url>
+    <content><![CDATA[<p>这两天写GooglePlay爬虫的时候发现入库数量与redis中的数量不一致, 翻看lockback日志发现部分插入语句报错，特此记录。</p>
+<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>在执行sql时， 控制台抛出异常<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">java.sql.SQLException: </span><br><span class="line">    Incorrect string value: &apos;\xF0\x9F\x92\x94&apos; for column &apos;name&apos; ...</span><br></pre></td></tr></table></figure></p>
+<h1 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h1><p>Emoji表情符号为4个字节的字符，而 utf8 字符集只支持1-3个字节的字符，导致无法写入数据库。</p>
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><ul>
+<li>修改MySQL数据库字符集， 把数据库字符集从utf8 修改为支持1-4 个字节字符的utf8mb4.</li>
+</ul>
+<p>若采用java的jdbc来进行入库操作, 则需要额外地升级驱动的版本到5.1.13版本或更高.</p>
+<p>以gradle为例(maven类似):</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    compile(&quot;mysql:mysql-connector-java:5.1.13&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>java</tag>
+        <tag>jdbc</tag>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JAVA BIO和NIO</title>
     <url>/2018/12/26/java-bio-nio/</url>
     <content><![CDATA[<h1 id="同步、异步、阻塞、非阻塞"><a href="#同步、异步、阻塞、非阻塞" class="headerlink" title="同步、异步、阻塞、非阻塞"></a>同步、异步、阻塞、非阻塞</h1><h2 id="同步"><a href="#同步" class="headerlink" title="同步"></a>同步</h2><p>小明上传一个500m的视频，等待这个视频上传成功，返回结果。这个等待成功的通知就是同步。</p>
@@ -2662,55 +2711,6 @@
         <tag>通信</tag>
         <tag>netty</tag>
         <tag>IO</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>关于数据库写入Emoji表情的报错的解决方法</title>
-    <url>/2018/12/12/jdbc-emoji-bug/</url>
-    <content><![CDATA[<p>这两天写GooglePlay爬虫的时候发现入库数量与redis中的数量不一致, 翻看lockback日志发现部分插入语句报错，特此记录。</p>
-<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>在执行sql时， 控制台抛出异常<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">java.sql.SQLException: </span><br><span class="line">    Incorrect string value: &apos;\xF0\x9F\x92\x94&apos; for column &apos;name&apos; ...</span><br></pre></td></tr></table></figure></p>
-<h1 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h1><p>Emoji表情符号为4个字节的字符，而 utf8 字符集只支持1-3个字节的字符，导致无法写入数据库。</p>
-<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><ul>
-<li>修改MySQL数据库字符集， 把数据库字符集从utf8 修改为支持1-4 个字节字符的utf8mb4.</li>
-</ul>
-<p>若采用java的jdbc来进行入库操作, 则需要额外地升级驱动的版本到5.1.13版本或更高.</p>
-<p>以gradle为例(maven类似):</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    compile(&quot;mysql:mysql-connector-java:5.1.13&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>java</tag>
-        <tag>jdbc</tag>
-        <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>EL表达式取整</title>
-    <url>/2017/11/16/jsp-jstl-el-numberformat/</url>
-    <content><![CDATA[<p>今天在写页码的时候发现后台传来的数据直接在jsp的EL表达式中直接相除会出现小数点</p>
-<p>所以找了下解决方法并且记下来</p>
-<p>jsp加标签头</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--头部加上--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%@</span> <span class="attr">taglib</span> <span class="attr">prefix</span>=<span class="string">"fmt"</span> <span class="attr">uri</span>=<span class="string">"http://java.sun.com/jsp/jstl/fmt"</span>%&gt;</span> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">fmt:formatNumber</span> <span class="attr">type</span>=<span class="string">"number"</span> <span class="attr">value</span>=<span class="string">"$&#123;8/7)&#125;"</span> <span class="attr">maxFractionDigits</span>=<span class="string">"0"</span>/&gt;</span>  </span><br><span class="line"><span class="comment">&lt;!--结果为1--&gt;</span></span><br></pre></td></tr></table></figure>
-<p>如：<br><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
-<p><a href="fmt:formatNumber" target="_blank" rel="noopener">fmt:formatNumber</a>参数解释：</p>
-<p>此标签会根据区域定制的方式将数字格式化成数字，货币，百分比。</p>
-<p>此标签的属性：</p>
-<ul>
-<li>value:要格式化的数字</li>
-<li>type：按照什么类型格式化</li>
-<li>pattern：自定义格式化样式</li>
-<li>currencyCode:ISO-4721货币代码，只适用于按照货币格式化的数字</li>
-<li>currencySymbol： 货币符号,如￥,只适用于按照货币格式化的数字</li>
-<li>groupingUsed： 是否包含分隔符</li>
-<li>maxIntegerDigits： 整数部分最多显示多少位</li>
-<li>mixIntegerDigits： 整数部分最少显示多少位</li>
-<li>maxFractionDigits： 小数部分最多显示多位位</li>
-<li>minFractionDigits： 小数部分最少显示多位位</li>
-<li>var:存储格式化后的结果</li>
-<li>scope: 存储的范围</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>java</tag>
-        <tag>jsp</tag>
       </tags>
   </entry>
   <entry>
@@ -2820,6 +2820,89 @@
 ]]></content>
       <tags>
         <tag>MVC</tag>
+        <tag>PHP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>模板方法模式</title>
+    <url>/2019/08/18/template-method-pattern/</url>
+    <content><![CDATA[<p>[toc] </p>
+<h1 id="模板方法模式"><a href="#模板方法模式" class="headerlink" title="模板方法模式"></a>模板方法模式</h1><h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><p>冲茶与冲咖啡的步骤?</p>
+<p>冲茶:</p>
+<ol>
+<li>把水煮沸</li>
+<li>用沸水浸泡茶叶</li>
+<li>把茶倒进杯子</li>
+<li>加柠檬</li>
+</ol>
+<p>冲咖啡:</p>
+<ol>
+<li>把水煮沸</li>
+<li>用沸水冲泡咖啡</li>
+<li>把咖啡倒进杯子</li>
+<li>加糖和牛奶</li>
+</ol>
+<p>这样一对比, 是不是发现冲茶和冲咖啡步骤基本一致, 只是在某些步骤实现的细节上有区别?</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>从上面的思考来看我们可以做一层抽象</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">CaffeineBeverage</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title">prepareRecipe</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        boilWater();</span><br><span class="line">        brew();</span><br><span class="line">        pourInCup();</span><br><span class="line">        addCondiments();    </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">brew</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">addCondiments</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">boilWater</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Boiling water"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">pourInCup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Pouring into cup"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">[<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Tea</span> <span class="keyword">extends</span> <span class="title">CaffeineBeverage</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">brew</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Steeping in the tea"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addCondiments</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Adding Lemon"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Coffee</span> <span class="keyword">extends</span> <span class="title">CaffeineBeverage</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">brew</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Dripping Coffee through filter"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addCondiments</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Adding Suger and Milk"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><blockquote>
+<p>模板方法模式在一个方法中定义一个算法的骨架, 而将一些步骤延迟到子类中.模板方法使得子类可以在不改变算法结构的情况下, 重新定义算法中的某些步骤.</p>
+</blockquote>
+<p>uml类图:<br>xxxxx</p>
+<p>看两个例子:<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractClass</span></span>&#123;</span><br><span class="line">    <span class="comment">// 声明为final是为了不让子类改变这个算法</span></span><br><span class="line">    <span class="function"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title">templateMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        primitiveOperation1();</span><br><span class="line">        primitiveOperation2();</span><br><span class="line">        concreteOperation();</span><br><span class="line">        hook();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">primitiveOperation1</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">primitiveOperation2</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">concreteOperation</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 这个抽象类有一个具体的操作.关于这类方法 稍后会详述.</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>第二个例子:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractClass</span></span>&#123;</span><br><span class="line">    <span class="comment">// 声明为final是为了不让子类改变这个算法</span></span><br><span class="line">    <span class="function"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title">templateMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        primitiveOperation1();</span><br><span class="line">        primitiveOperation2();</span><br><span class="line">        concreteOperation();</span><br><span class="line">        hook();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">primitiveOperation1</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">primitiveOperation2</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title">concreteOperation</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 具体的实现</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">      * hook(钩子) 子类可视情况决定要不要覆盖他们.</span></span><br><span class="line"><span class="comment">      */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">hook</span><span class="params">()</span> </span>&#123;&#125; <span class="comment">// 这是一个具体的方法但他什么都不干</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="实际应用"><a href="#实际应用" class="headerlink" title="实际应用"></a>实际应用</h2><h3 id="用模板方法排序"><a href="#用模板方法排序" class="headerlink" title="用模板方法排序"></a>用模板方法排序</h3><p> 从 JDK 来认识模板方法模式</p>
+<p>Java数组类中 有两个方法 共同提供排序的功能</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  * 一个helper方法 </span></span><br><span class="line"><span class="comment">  * 1. 创建数组a的拷贝</span></span><br><span class="line"><span class="comment">  * 2. 将该拷贝当做目标数组传给mergeSort()方法 同时传入源数组a, 数组最低下标和最高下标,排序下标0(从头开始排) 几个参数</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(Object[] a)</span> </span>&#123;</span><br><span class="line">    Object aux[] = (Object[])a.clone();</span><br><span class="line">    mergeSort(aux, a, <span class="number">0</span>, a.length, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  * mergetSort()可以看成模板方法, 包含排序算法, 此算法依赖于compareTo()方法的实现来完成算法</span></span><br><span class="line"><span class="comment">  * </span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">mergeSort</span><span class="params">(Object src[], Object dest[], <span class="keyword">int</span> low, <span class="keyword">int</span> high, <span class="keyword">int</span> off)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = low; i &lt; high; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = i; j &gt; low &amp;&amp; ((Comparable)dest[j-<span class="number">1</span>]).compareTo((Comparable)dest[j]) &gt; <span class="number">0</span>; j--) &#123;</span><br><span class="line">            swap(dest, j, j-<span class="number">1</span>); <span class="comment">// 这是一个具体方法 已经在数组类中定义了</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里的sort()设计者希望可以用于所有类型的数组, 而我们必须实现compareTo(), 否则无法比较再进行排序</p>
+<p>在这里 设计者利用了Comparable 接口, 你必须实现这个接口并提供这个接口所声明的方法</p>
+<p>这里我们以 鸭子排序为例子 </p>
+<p>我们既然会排序鸭子 当然就会有Duck[] 数组, 也就是说 我们要现有Duck类<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Duck</span> <span class="keyword">implements</span> <span class="title">Comparable</span> </span>&#123;</span><br><span class="line">    String name;</span><br><span class="line">    <span class="keyword">int</span> weight;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Duck</span><span class="params">(String name, <span class="keyword">int</span> weight)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.weight = weight;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">        Duck anotherDuck = (Duck) obj;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.weight &lt; anotherDuck.weight) &#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">this</span>.weight == anotherDuck.weight) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name + <span class="string">" weighs "</span> + weight; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DuckSortTestDrive</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>&#123;</span><br><span class="line">        Ducks[] ducks = &#123;</span><br><span class="line">          <span class="keyword">new</span> Duck(<span class="string">"a"</span>, <span class="number">8</span>);  </span><br><span class="line">          <span class="keyword">new</span> Duck(<span class="string">"b"</span>, <span class="number">18</span>);  </span><br><span class="line">          <span class="keyword">new</span> Duck(<span class="string">"c"</span>, <span class="number">10</span>);  </span><br><span class="line">          <span class="keyword">new</span> Duck(<span class="string">"d"</span>, <span class="number">6</span>);  </span><br><span class="line">        &#125;;</span><br><span class="line">        display(ducks);</span><br><span class="line"></span><br><span class="line">        Arrays.sort(ducks);</span><br><span class="line"></span><br><span class="line">        display(ducks);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">(Duck[] ducks)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (Duck duck : ducks) &#123;</span><br><span class="line">            System.out.println(duck);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="思考-1"><a href="#思考-1" class="headerlink" title="思考"></a>思考</h4><ol>
+<li>排序的实现更像是策略模式, 而不是模板方法模式?</li>
+</ol>
+<p>策略模式我们使用所组合的的类实现了整个算法.而这里的排序算法并不完整, 它需要一个类填补compareTo()的实现.因此认为这更像模板方法</p>
+<ol start="2">
+<li>其他的模板方法例子?<br>JDK中 InputStream类的read()方法是由子类实现的, 而这个方法又会被read(byte b[], int off, int len)模板方法使用</li>
+</ol>
+<h1 id="好莱坞原则"><a href="#好莱坞原则" class="headerlink" title="好莱坞原则"></a>好莱坞原则</h1><blockquote>
+<p>别调用我们, 我们会调用你。</p>
+</blockquote>
+<p>高层组件可以控制何时以及如何让低层组件参与计算</p>
+<p>低层组件只可参与计算， 但不可直接调用高层组件</p>
+<p>参考上面的冲茶例子，我们可以发现 高层组件(CaffeineBeverage),可以控制冲泡法的算法, 只有在需要子类实现某个方法时,才调用子类(低层组件, Tea or Coffee)<br>而Client只依赖CaffeineBeverage 而不会去依赖具体的Tea 或者 Coffee</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>还没空写…</p>
+]]></content>
+      <tags>
+        <tag>设计模式</tag>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PHP加密URL地址</title>
+    <url>/2017/09/15/url-encode/</url>
+    <content><![CDATA[<h1 id="转-分享如何使用PHP将URL地址参数进行加密传输提高网站安全性"><a href="#转-分享如何使用PHP将URL地址参数进行加密传输提高网站安全性" class="headerlink" title="[转]分享如何使用PHP将URL地址参数进行加密传输提高网站安全性"></a>[转]分享如何使用PHP将URL地址参数进行加密传输提高网站安全性</h1><p> 大家在使用PHP进行GET或POST提交数据时，<br> 经常会在URL带着参数进行传递，<br> 比如<a href="http://www.mdaima.com/get.php?id=1&amp;page=5，" target="_blank" rel="noopener">www.mdaima.com/get.php?id=1&amp;page=5，</a><br> 这里就将id编号和page页码进行了参数传递，<br> 如果这样直接明文传输，<br> 会将参数直接暴露给用户，<br> 要是是比较重要的数据这样传输我觉得还是不太安全。<br> 那如果将参数变成下面这样，<br> 是不是会好点呢？</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">www.mdaima.com/get.php?VGsAYQ96VzkEaF08DTxTLQIyDmsBIQtnVj0Fe1ciAD0EN1M0X2MHMQYxDDcAOwI%2FXToBPVM5ADxfag%3D%3D</span><br></pre></td></tr></table></figure>
+<p>我们再加强一下，<br>将get.php重命名改为get_mb.php，<br>然后利用静态规则，<br>把get.html映射到get_mb.php，<br>这样即使用户试着访问get.php也无法找到真实的PHP文件了，<br>因为真实的PHP文件不是get.php而是get_mb.php，<br>以下是.htaccess规则设置</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">RewriteRule ^get.html$ get_mb.php?&amp;%&#123;QUERY_STRING&#125;   #.htaccess伪静态规则的设置（加入到.htaccess里就行）</span><br></pre></td></tr></table></figure>
+<p>利用加密再配合伪静态设置，<br>最终效果就是下面这样了，<br>即隐藏了真实php文件get_mb.php又将参数都加密传输了。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">www.mdaima.com/get.html?VGsAYQ96VzkEaF08DTxTLQIyDmsBIQtnVj0Fe1ciAD0EN1M0X2MHMQYxDDcAOwI%2FXToBPVM5ADxfag%3D%3D</span><br></pre></td></tr></table></figure>
+<p>相比之下已经好一些了吧，<br>至少看上去会好很多，<br>那如何进行加密和解密呢？<br>请看下面函数（不用细看，直接拿过去用就行了，重点看如果调用）</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">//---------------以下为加密函数（复制过去就行了）-----------------</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">keyED</span><span class="params">($txt,$encrypt_key)</span></span>&#123;       </span><br><span class="line">    $encrypt_key =    md5($encrypt_key);</span><br><span class="line">    $ctr=<span class="number">0</span>;       </span><br><span class="line">    $tmp = <span class="string">""</span>;       </span><br><span class="line">    <span class="keyword">for</span>($i=<span class="number">0</span>;$i&lt;strlen($txt);$i++)       </span><br><span class="line">    &#123;           </span><br><span class="line">        <span class="keyword">if</span> ($ctr==strlen($encrypt_key))</span><br><span class="line">        $ctr=<span class="number">0</span>;           </span><br><span class="line">        $tmp.= substr($txt,$i,<span class="number">1</span>) ^ substr($encrypt_key,$ctr,<span class="number">1</span>);</span><br><span class="line">        $ctr++;       </span><br><span class="line">    &#125;       </span><br><span class="line">    <span class="keyword">return</span> $tmp;   </span><br><span class="line">&#125;    </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">encrypt</span><span class="params">($txt,$key)</span>   </span>&#123;</span><br><span class="line">    $encrypt_key = md5(mt_rand(<span class="number">0</span>,<span class="number">100</span>));</span><br><span class="line">    $ctr=<span class="number">0</span>;       </span><br><span class="line">    $tmp = <span class="string">""</span>;      </span><br><span class="line">     <span class="keyword">for</span> ($i=<span class="number">0</span>;$i&lt;strlen($txt);$i++)       </span><br><span class="line">     &#123;</span><br><span class="line">        <span class="keyword">if</span> ($ctr==strlen($encrypt_key))</span><br><span class="line">            $ctr=<span class="number">0</span>;           </span><br><span class="line">        $tmp.=substr($encrypt_key,$ctr,<span class="number">1</span>) </span><br><span class="line">            . (substr($txt,$i,<span class="number">1</span>) </span><br><span class="line">            ^ substr($encrypt_key,$ctr,<span class="number">1</span>));</span><br><span class="line">        $ctr++;       </span><br><span class="line">     &#125;       </span><br><span class="line">     <span class="keyword">return</span> keyED($tmp,$key);</span><br><span class="line">&#125; </span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">decrypt</span><span class="params">($txt,$key)</span></span>&#123;       </span><br><span class="line">    $txt = keyED($txt,$key);       </span><br><span class="line">    $tmp = <span class="string">""</span>;       </span><br><span class="line">    <span class="keyword">for</span>($i=<span class="number">0</span>;$i&lt;strlen($txt);$i++)       </span><br><span class="line">    &#123;           </span><br><span class="line">        $md5 = substr($txt,$i,<span class="number">1</span>);</span><br><span class="line">        $i++;           </span><br><span class="line">        $tmp.= (substr($txt,$i,<span class="number">1</span>) ^ $md5);       </span><br><span class="line">    &#125;       </span><br><span class="line">    <span class="keyword">return</span> $tmp;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">encrypt_url</span><span class="params">($url,$key)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> rawurlencode(base64_encode(encrypt($url,$key)));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">decrypt_url</span><span class="params">($url,$key)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> decrypt(base64_decode(rawurldecode($url)),$key);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">geturl</span><span class="params">($str,$key)</span></span>&#123;</span><br><span class="line">    $str = decrypt_url($str,$key);</span><br><span class="line">    $url_array = explode(<span class="string">'&amp;'</span>,$str);</span><br><span class="line">    <span class="keyword">if</span> (is_array($url_array))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">foreach</span> ($url_array <span class="keyword">as</span> $var)</span><br><span class="line">        &#123;</span><br><span class="line">            $var_array = explode(<span class="string">"="</span>,$var);</span><br><span class="line">            $vars[$var_array[<span class="number">0</span>]]=$var_array[<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> $vars;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">$key_url_md_5 = <span class="string">'mdaima.com-123-scc'</span>; <span class="comment">//可以更换为其它的加密标记，可以自由发挥</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">//---------------以上为加密函数-结束（复制过去就行了）-----------------</span></span><br></pre></td></tr></table></figure>
+<p>以上这个是关键的加密与解密函数，<br>下面看一下如何调用，<br>我们举例说一下将表单action中参数id和page进行加密并加入时间戳一起，<br>这样每次的链接地址都是动态的，<br>而且可以在接收页面设置页面限制超时的有效期了。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">id</span>=<span class="string">"form1"</span> <span class="attr">name</span>=<span class="string">"form1"</span> <span class="attr">method</span>=<span class="string">"post"</span> </span></span><br><span class="line"><span class="tag"><span class="attr">action</span>=<span class="string">"?&lt;?=encrypt_url("</span><span class="attr">id</span>=<span class="string">1&amp;page</span>=<span class="string">5</span>"<span class="attr">.</span>"&amp;<span class="attr">time</span>=<span class="string">".time(),$key_url_md_5)?&gt;"</span></span></span><br><span class="line"><span class="tag"> <span class="attr">enctype</span>=<span class="string">"multipart/form-data"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>上面就是如何加密参数。再看一下如何解密接收到的参数：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">$url_info = geturl($_SERVER[QUERY_STRING],$key_url_md_5);<span class="comment">//接收所有参数</span></span><br><span class="line">$page=$url_info[<span class="string">'page'</span>];<span class="comment">//解密对应参数</span></span><br><span class="line">$id=$url_info[<span class="string">'id'</span>];</span><br><span class="line">$time=$url_info[<span class="string">'time'</span>];<span class="comment">//这个是时间戳，大家可以利用这个参数判断一下</span></span><br><span class="line"><span class="comment">//链接生成的时间，就可以判断是否超时了（此项如果不需要也可以忽略）</span></span><br></pre></td></tr></table></figure>
+<p>这样我们就得到了解密的$page和$id参数了，大家试一下吧，有问题也可以联系我！</p>
+<blockquote>
+<p>转载请注明：<a href="http://www.mdaima.com/jingyan/36.html" target="_blank" rel="noopener">分享如何使用PHP将URL地址参数进行加密传输提高网站安全性 | 码代码-李雷博客</a></p>
+</blockquote>
+]]></content>
+      <tags>
         <tag>PHP</tag>
       </tags>
   </entry>
@@ -3152,89 +3235,6 @@
       <tags>
         <tag>java</tag>
         <tag>swagger</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>模板方法模式</title>
-    <url>/2019/08/18/template-method-pattern/</url>
-    <content><![CDATA[<p>[toc] </p>
-<h1 id="模板方法模式"><a href="#模板方法模式" class="headerlink" title="模板方法模式"></a>模板方法模式</h1><h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><p>冲茶与冲咖啡的步骤?</p>
-<p>冲茶:</p>
-<ol>
-<li>把水煮沸</li>
-<li>用沸水浸泡茶叶</li>
-<li>把茶倒进杯子</li>
-<li>加柠檬</li>
-</ol>
-<p>冲咖啡:</p>
-<ol>
-<li>把水煮沸</li>
-<li>用沸水冲泡咖啡</li>
-<li>把咖啡倒进杯子</li>
-<li>加糖和牛奶</li>
-</ol>
-<p>这样一对比, 是不是发现冲茶和冲咖啡步骤基本一致, 只是在某些步骤实现的细节上有区别?</p>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>从上面的思考来看我们可以做一层抽象</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">CaffeineBeverage</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title">prepareRecipe</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        boilWater();</span><br><span class="line">        brew();</span><br><span class="line">        pourInCup();</span><br><span class="line">        addCondiments();    </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">brew</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">addCondiments</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">boilWater</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Boiling water"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">pourInCup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Pouring into cup"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">[<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Tea</span> <span class="keyword">extends</span> <span class="title">CaffeineBeverage</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">brew</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Steeping in the tea"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addCondiments</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Adding Lemon"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Coffee</span> <span class="keyword">extends</span> <span class="title">CaffeineBeverage</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">brew</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Dripping Coffee through filter"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addCondiments</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Adding Suger and Milk"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><blockquote>
-<p>模板方法模式在一个方法中定义一个算法的骨架, 而将一些步骤延迟到子类中.模板方法使得子类可以在不改变算法结构的情况下, 重新定义算法中的某些步骤.</p>
-</blockquote>
-<p>uml类图:<br>xxxxx</p>
-<p>看两个例子:<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractClass</span></span>&#123;</span><br><span class="line">    <span class="comment">// 声明为final是为了不让子类改变这个算法</span></span><br><span class="line">    <span class="function"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title">templateMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        primitiveOperation1();</span><br><span class="line">        primitiveOperation2();</span><br><span class="line">        concreteOperation();</span><br><span class="line">        hook();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">primitiveOperation1</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">primitiveOperation2</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">concreteOperation</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 这个抽象类有一个具体的操作.关于这类方法 稍后会详述.</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>第二个例子:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractClass</span></span>&#123;</span><br><span class="line">    <span class="comment">// 声明为final是为了不让子类改变这个算法</span></span><br><span class="line">    <span class="function"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title">templateMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        primitiveOperation1();</span><br><span class="line">        primitiveOperation2();</span><br><span class="line">        concreteOperation();</span><br><span class="line">        hook();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">primitiveOperation1</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">primitiveOperation2</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title">concreteOperation</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 具体的实现</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">      * hook(钩子) 子类可视情况决定要不要覆盖他们.</span></span><br><span class="line"><span class="comment">      */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">hook</span><span class="params">()</span> </span>&#123;&#125; <span class="comment">// 这是一个具体的方法但他什么都不干</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="实际应用"><a href="#实际应用" class="headerlink" title="实际应用"></a>实际应用</h2><h3 id="用模板方法排序"><a href="#用模板方法排序" class="headerlink" title="用模板方法排序"></a>用模板方法排序</h3><p> 从 JDK 来认识模板方法模式</p>
-<p>Java数组类中 有两个方法 共同提供排序的功能</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  * 一个helper方法 </span></span><br><span class="line"><span class="comment">  * 1. 创建数组a的拷贝</span></span><br><span class="line"><span class="comment">  * 2. 将该拷贝当做目标数组传给mergeSort()方法 同时传入源数组a, 数组最低下标和最高下标,排序下标0(从头开始排) 几个参数</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(Object[] a)</span> </span>&#123;</span><br><span class="line">    Object aux[] = (Object[])a.clone();</span><br><span class="line">    mergeSort(aux, a, <span class="number">0</span>, a.length, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  * mergetSort()可以看成模板方法, 包含排序算法, 此算法依赖于compareTo()方法的实现来完成算法</span></span><br><span class="line"><span class="comment">  * </span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">mergeSort</span><span class="params">(Object src[], Object dest[], <span class="keyword">int</span> low, <span class="keyword">int</span> high, <span class="keyword">int</span> off)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = low; i &lt; high; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = i; j &gt; low &amp;&amp; ((Comparable)dest[j-<span class="number">1</span>]).compareTo((Comparable)dest[j]) &gt; <span class="number">0</span>; j--) &#123;</span><br><span class="line">            swap(dest, j, j-<span class="number">1</span>); <span class="comment">// 这是一个具体方法 已经在数组类中定义了</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这里的sort()设计者希望可以用于所有类型的数组, 而我们必须实现compareTo(), 否则无法比较再进行排序</p>
-<p>在这里 设计者利用了Comparable 接口, 你必须实现这个接口并提供这个接口所声明的方法</p>
-<p>这里我们以 鸭子排序为例子 </p>
-<p>我们既然会排序鸭子 当然就会有Duck[] 数组, 也就是说 我们要现有Duck类<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Duck</span> <span class="keyword">implements</span> <span class="title">Comparable</span> </span>&#123;</span><br><span class="line">    String name;</span><br><span class="line">    <span class="keyword">int</span> weight;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Duck</span><span class="params">(String name, <span class="keyword">int</span> weight)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.weight = weight;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">        Duck anotherDuck = (Duck) obj;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.weight &lt; anotherDuck.weight) &#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">this</span>.weight == anotherDuck.weight) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name + <span class="string">" weighs "</span> + weight; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DuckSortTestDrive</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>&#123;</span><br><span class="line">        Ducks[] ducks = &#123;</span><br><span class="line">          <span class="keyword">new</span> Duck(<span class="string">"a"</span>, <span class="number">8</span>);  </span><br><span class="line">          <span class="keyword">new</span> Duck(<span class="string">"b"</span>, <span class="number">18</span>);  </span><br><span class="line">          <span class="keyword">new</span> Duck(<span class="string">"c"</span>, <span class="number">10</span>);  </span><br><span class="line">          <span class="keyword">new</span> Duck(<span class="string">"d"</span>, <span class="number">6</span>);  </span><br><span class="line">        &#125;;</span><br><span class="line">        display(ducks);</span><br><span class="line"></span><br><span class="line">        Arrays.sort(ducks);</span><br><span class="line"></span><br><span class="line">        display(ducks);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">(Duck[] ducks)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (Duck duck : ducks) &#123;</span><br><span class="line">            System.out.println(duck);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="思考-1"><a href="#思考-1" class="headerlink" title="思考"></a>思考</h4><ol>
-<li>排序的实现更像是策略模式, 而不是模板方法模式?</li>
-</ol>
-<p>策略模式我们使用所组合的的类实现了整个算法.而这里的排序算法并不完整, 它需要一个类填补compareTo()的实现.因此认为这更像模板方法</p>
-<ol start="2">
-<li>其他的模板方法例子?<br>JDK中 InputStream类的read()方法是由子类实现的, 而这个方法又会被read(byte b[], int off, int len)模板方法使用</li>
-</ol>
-<h1 id="好莱坞原则"><a href="#好莱坞原则" class="headerlink" title="好莱坞原则"></a>好莱坞原则</h1><blockquote>
-<p>别调用我们, 我们会调用你。</p>
-</blockquote>
-<p>高层组件可以控制何时以及如何让低层组件参与计算</p>
-<p>低层组件只可参与计算， 但不可直接调用高层组件</p>
-<p>参考上面的冲茶例子，我们可以发现 高层组件(CaffeineBeverage),可以控制冲泡法的算法, 只有在需要子类实现某个方法时,才调用子类(低层组件, Tea or Coffee)<br>而Client只依赖CaffeineBeverage 而不会去依赖具体的Tea 或者 Coffee</p>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>还没空写…</p>
-]]></content>
-      <tags>
-        <tag>设计模式</tag>
-        <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>PHP加密URL地址</title>
-    <url>/2017/09/15/url-encode/</url>
-    <content><![CDATA[<h1 id="转-分享如何使用PHP将URL地址参数进行加密传输提高网站安全性"><a href="#转-分享如何使用PHP将URL地址参数进行加密传输提高网站安全性" class="headerlink" title="[转]分享如何使用PHP将URL地址参数进行加密传输提高网站安全性"></a>[转]分享如何使用PHP将URL地址参数进行加密传输提高网站安全性</h1><p> 大家在使用PHP进行GET或POST提交数据时，<br> 经常会在URL带着参数进行传递，<br> 比如<a href="http://www.mdaima.com/get.php?id=1&amp;page=5，" target="_blank" rel="noopener">www.mdaima.com/get.php?id=1&amp;page=5，</a><br> 这里就将id编号和page页码进行了参数传递，<br> 如果这样直接明文传输，<br> 会将参数直接暴露给用户，<br> 要是是比较重要的数据这样传输我觉得还是不太安全。<br> 那如果将参数变成下面这样，<br> 是不是会好点呢？</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">www.mdaima.com/get.php?VGsAYQ96VzkEaF08DTxTLQIyDmsBIQtnVj0Fe1ciAD0EN1M0X2MHMQYxDDcAOwI%2FXToBPVM5ADxfag%3D%3D</span><br></pre></td></tr></table></figure>
-<p>我们再加强一下，<br>将get.php重命名改为get_mb.php，<br>然后利用静态规则，<br>把get.html映射到get_mb.php，<br>这样即使用户试着访问get.php也无法找到真实的PHP文件了，<br>因为真实的PHP文件不是get.php而是get_mb.php，<br>以下是.htaccess规则设置</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">RewriteRule ^get.html$ get_mb.php?&amp;%&#123;QUERY_STRING&#125;   #.htaccess伪静态规则的设置（加入到.htaccess里就行）</span><br></pre></td></tr></table></figure>
-<p>利用加密再配合伪静态设置，<br>最终效果就是下面这样了，<br>即隐藏了真实php文件get_mb.php又将参数都加密传输了。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">www.mdaima.com/get.html?VGsAYQ96VzkEaF08DTxTLQIyDmsBIQtnVj0Fe1ciAD0EN1M0X2MHMQYxDDcAOwI%2FXToBPVM5ADxfag%3D%3D</span><br></pre></td></tr></table></figure>
-<p>相比之下已经好一些了吧，<br>至少看上去会好很多，<br>那如何进行加密和解密呢？<br>请看下面函数（不用细看，直接拿过去用就行了，重点看如果调用）</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">//---------------以下为加密函数（复制过去就行了）-----------------</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">keyED</span><span class="params">($txt,$encrypt_key)</span></span>&#123;       </span><br><span class="line">    $encrypt_key =    md5($encrypt_key);</span><br><span class="line">    $ctr=<span class="number">0</span>;       </span><br><span class="line">    $tmp = <span class="string">""</span>;       </span><br><span class="line">    <span class="keyword">for</span>($i=<span class="number">0</span>;$i&lt;strlen($txt);$i++)       </span><br><span class="line">    &#123;           </span><br><span class="line">        <span class="keyword">if</span> ($ctr==strlen($encrypt_key))</span><br><span class="line">        $ctr=<span class="number">0</span>;           </span><br><span class="line">        $tmp.= substr($txt,$i,<span class="number">1</span>) ^ substr($encrypt_key,$ctr,<span class="number">1</span>);</span><br><span class="line">        $ctr++;       </span><br><span class="line">    &#125;       </span><br><span class="line">    <span class="keyword">return</span> $tmp;   </span><br><span class="line">&#125;    </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">encrypt</span><span class="params">($txt,$key)</span>   </span>&#123;</span><br><span class="line">    $encrypt_key = md5(mt_rand(<span class="number">0</span>,<span class="number">100</span>));</span><br><span class="line">    $ctr=<span class="number">0</span>;       </span><br><span class="line">    $tmp = <span class="string">""</span>;      </span><br><span class="line">     <span class="keyword">for</span> ($i=<span class="number">0</span>;$i&lt;strlen($txt);$i++)       </span><br><span class="line">     &#123;</span><br><span class="line">        <span class="keyword">if</span> ($ctr==strlen($encrypt_key))</span><br><span class="line">            $ctr=<span class="number">0</span>;           </span><br><span class="line">        $tmp.=substr($encrypt_key,$ctr,<span class="number">1</span>) </span><br><span class="line">            . (substr($txt,$i,<span class="number">1</span>) </span><br><span class="line">            ^ substr($encrypt_key,$ctr,<span class="number">1</span>));</span><br><span class="line">        $ctr++;       </span><br><span class="line">     &#125;       </span><br><span class="line">     <span class="keyword">return</span> keyED($tmp,$key);</span><br><span class="line">&#125; </span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">decrypt</span><span class="params">($txt,$key)</span></span>&#123;       </span><br><span class="line">    $txt = keyED($txt,$key);       </span><br><span class="line">    $tmp = <span class="string">""</span>;       </span><br><span class="line">    <span class="keyword">for</span>($i=<span class="number">0</span>;$i&lt;strlen($txt);$i++)       </span><br><span class="line">    &#123;           </span><br><span class="line">        $md5 = substr($txt,$i,<span class="number">1</span>);</span><br><span class="line">        $i++;           </span><br><span class="line">        $tmp.= (substr($txt,$i,<span class="number">1</span>) ^ $md5);       </span><br><span class="line">    &#125;       </span><br><span class="line">    <span class="keyword">return</span> $tmp;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">encrypt_url</span><span class="params">($url,$key)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> rawurlencode(base64_encode(encrypt($url,$key)));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">decrypt_url</span><span class="params">($url,$key)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> decrypt(base64_decode(rawurldecode($url)),$key);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">geturl</span><span class="params">($str,$key)</span></span>&#123;</span><br><span class="line">    $str = decrypt_url($str,$key);</span><br><span class="line">    $url_array = explode(<span class="string">'&amp;'</span>,$str);</span><br><span class="line">    <span class="keyword">if</span> (is_array($url_array))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">foreach</span> ($url_array <span class="keyword">as</span> $var)</span><br><span class="line">        &#123;</span><br><span class="line">            $var_array = explode(<span class="string">"="</span>,$var);</span><br><span class="line">            $vars[$var_array[<span class="number">0</span>]]=$var_array[<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> $vars;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">$key_url_md_5 = <span class="string">'mdaima.com-123-scc'</span>; <span class="comment">//可以更换为其它的加密标记，可以自由发挥</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">//---------------以上为加密函数-结束（复制过去就行了）-----------------</span></span><br></pre></td></tr></table></figure>
-<p>以上这个是关键的加密与解密函数，<br>下面看一下如何调用，<br>我们举例说一下将表单action中参数id和page进行加密并加入时间戳一起，<br>这样每次的链接地址都是动态的，<br>而且可以在接收页面设置页面限制超时的有效期了。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">id</span>=<span class="string">"form1"</span> <span class="attr">name</span>=<span class="string">"form1"</span> <span class="attr">method</span>=<span class="string">"post"</span> </span></span><br><span class="line"><span class="tag"><span class="attr">action</span>=<span class="string">"?&lt;?=encrypt_url("</span><span class="attr">id</span>=<span class="string">1&amp;page</span>=<span class="string">5</span>"<span class="attr">.</span>"&amp;<span class="attr">time</span>=<span class="string">".time(),$key_url_md_5)?&gt;"</span></span></span><br><span class="line"><span class="tag"> <span class="attr">enctype</span>=<span class="string">"multipart/form-data"</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>上面就是如何加密参数。再看一下如何解密接收到的参数：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">$url_info = geturl($_SERVER[QUERY_STRING],$key_url_md_5);<span class="comment">//接收所有参数</span></span><br><span class="line">$page=$url_info[<span class="string">'page'</span>];<span class="comment">//解密对应参数</span></span><br><span class="line">$id=$url_info[<span class="string">'id'</span>];</span><br><span class="line">$time=$url_info[<span class="string">'time'</span>];<span class="comment">//这个是时间戳，大家可以利用这个参数判断一下</span></span><br><span class="line"><span class="comment">//链接生成的时间，就可以判断是否超时了（此项如果不需要也可以忽略）</span></span><br></pre></td></tr></table></figure>
-<p>这样我们就得到了解密的$page和$id参数了，大家试一下吧，有问题也可以联系我！</p>
-<blockquote>
-<p>转载请注明：<a href="http://www.mdaima.com/jingyan/36.html" target="_blank" rel="noopener">分享如何使用PHP将URL地址参数进行加密传输提高网站安全性 | 码代码-李雷博客</a></p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>PHP</tag>
       </tags>
   </entry>
   <entry>
