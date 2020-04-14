@@ -44,85 +44,6 @@
       </tags>
   </entry>
   <entry>
-    <title>ajax学习</title>
-    <url>/2017/07/08/ajax/</url>
-    <content><![CDATA[<h1 id="Ajax全称-Asynchronous-Javascript-And-XML（异步JavaScript和XML）"><a href="#Ajax全称-Asynchronous-Javascript-And-XML（异步JavaScript和XML）" class="headerlink" title="Ajax全称 Asynchronous Javascript And XML（异步JavaScript和XML）"></a>Ajax全称 Asynchronous Javascript And XML（异步JavaScript和XML）</h1><h1 id="XMLHttpRequest对象-以下简称xhr"><a href="#XMLHttpRequest对象-以下简称xhr" class="headerlink" title="XMLHttpRequest对象(以下简称xhr)"></a>XMLHttpRequest对象(以下简称xhr)</h1><p>XMLHttpRequest对象(以下简称xhr)</p>
-<ul>
-<li>异步 通过对象XMLHttpRequest   -&gt; 后台与服务器之间异步交换数据</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> request;</span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">window</span>.XMLHttpRequest)&#123;</span><br><span class="line"></span><br><span class="line">       request=<span class="keyword">new</span> XMLHttpRequest();   <span class="comment">//IE7+,Firefox,Chrome,Opera，Safari</span></span><br><span class="line"></span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line"></span><br><span class="line">request=<span class="keyword">new</span> ActiveXObject（<span class="string">"Microsoft.XMLHTTP"</span>）;<span class="comment">//IE6,IE5</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="一个完整的http请求过程"><a href="#一个完整的http请求过程" class="headerlink" title="一个完整的http请求过程:"></a>一个完整的http请求过程:</h2><ol>
-<li>建立TCP连接</li>
-<li>Web浏览器向Web服务器发送请求命令</li>
-<li>Web浏览器发送请求头信息</li>
-<li>Web服务器应答</li>
-<li>Web服务器发送应答头信息</li>
-<li>Web服务器向浏览器发送数据</li>
-<li>Web服务器关闭TCP连接</li>
-</ol>
-<h2 id="http请求的4部分"><a href="#http请求的4部分" class="headerlink" title="http请求的4部分"></a>http请求的4部分</h2><ol>
-<li>请求方法（post、get之类）</li>
-<li>请求的url</li>
-<li>请求头（环境信息、身份安全信息等）</li>
-<li>请求体（提交的表单、数据等）</li>
-</ol>
-<h2 id="http响应的组成"><a href="#http响应的组成" class="headerlink" title="http响应的组成"></a>http响应的组成</h2><ol>
-<li>一个由数字和文字组成的状态码 用于显示请求成功或失败</li>
-<li>响应头（服务器相关信息，类型、日期、名称之类）</li>
-<li>响应体</li>
-</ol>
-<h2 id="http状态码"><a href="#http状态码" class="headerlink" title="http状态码"></a>http状态码</h2><ul>
-<li>1开头的：信息类表示手打搜web浏览器请求，正在进一步处理中</li>
-<li>2开头的：成功，表示用户请求被正确接受，理解和处理，如 200</li>
-<li>3开头的：重定向，表示请求没有成功，客户必须采取进一步的动作</li>
-<li>4开头的：客户端错误，表示客户端提交的请求有错误404</li>
-<li>5开头的：服务器错误，表示服务器不能完成对请求的处理500</li>
-</ul>
-<h1 id="xhr发送请求"><a href="#xhr发送请求" class="headerlink" title="xhr发送请求"></a>xhr发送请求</h1><h2 id="open方法"><a href="#open方法" class="headerlink" title="open方法"></a>open方法</h2><ol>
-<li>参数：</li>
-</ol>
-<ul>
-<li>method：发送请求方法，get方式还是post方式，不区分大小写，一般使用大写。</li>
-<li>url：请求地址，可以使用相对地址，也就是相对文档的地址，也可以使用绝对地址。</li>
-<li>async：请求同步/异步，一般使用异步请求，这个参数就是true，如要使用同步的话，就是false。默认的是true(异步)，所以，如果是异步请求的话，这个参数可以不写。</li>
-</ul>
-<h2 id="send方法"><a href="#send方法" class="headerlink" title="send方法"></a>send方法</h2><ol>
-<li>send方法将请求发送到服务器上</li>
-<li>参数：</li>
-</ol>
-<ul>
-<li>string:<br>①使用get请求时，实际是没有主体的，所有的参数都拼在url中，所以send参数可以不填，或者填写null。<br>②post请求时，send请求一定要有参数。</li>
-</ul>
-<h2 id="setRequestHeader方法"><a href="#setRequestHeader方法" class="headerlink" title="setRequestHeader方法"></a>setRequestHeader方法</h2><ol>
-<li>设置http的头信息，告诉web服务器要发送一个表单的话，设置Content-type为application/x-www-form-urlencoded。</li>
-<li>Content-type有2种，一般用application/x-www-form-urlencoded，一般如果不发送文件，都采用这种方式。</li>
-<li>request.setRequestHeader()要写在open()和send（）中间，否则会抛出异常。</li>
-</ol>
-<h1 id="服务器响应"><a href="#服务器响应" class="headerlink" title="服务器响应"></a>服务器响应</h1><h2 id="服务器响应成功时得到通知"><a href="#服务器响应成功时得到通知" class="headerlink" title="服务器响应成功时得到通知"></a>服务器响应成功时得到通知</h2><p>readyState属性</p>
-<ul>
-<li>0：请求还未初始化，open还没有调用</li>
-<li>1：服务器连接已建立，open已经调用了</li>
-<li>2：请求已接收，也就是接收到头信息了</li>
-<li>3：请求处理中，也就是接收到响应主体了</li>
-<li>4：请求已完成，且响应已就绪，也就是响应完成了</li>
-</ul>
-<h2 id="获取响应值："><a href="#获取响应值：" class="headerlink" title="获取响应值："></a>获取响应值：</h2><ul>
-<li>responseText  获取字符串形式的响应数据</li>
-<li>responseXML   获得XML形式的响应数据  （一般用JSON）</li>
-<li>status和statusText   以数字和文本形式返回HTTP状态码</li>
-<li>getAllResponseHeader()   获取所有的响应报头</li>
-<li>getResponseHeader()   查询响应中的某个字段的值</li>
-</ul>
-<h1 id="总结-完整使用步骤"><a href="#总结-完整使用步骤" class="headerlink" title="总结 完整使用步骤"></a>总结 完整使用步骤</h1><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//第一步</span></span><br><span class="line">    <span class="keyword">var</span> request=<span class="keyword">new</span> XMLHttpRequest();   <span class="comment">//new一个XHR对象</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//第二步 </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    request.open(<span class="string">'GET'</span>,<span class="string">'get.php'</span>,<span class="literal">true</span>);  <span class="comment">//open一个方法</span></span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"><span class="comment">//第三步 </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    request.send();   <span class="comment">//发送数据</span></span><br><span class="line"></span><br><span class="line">   </span><br><span class="line"></span><br><span class="line"><span class="comment">//第四步 </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    request.onreadystatechange=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(request.readyState===<span class="number">4</span>&amp;&amp;request.status===<span class="number">200</span>)&#123;</span><br><span class="line">        <span class="comment">//做一些事情 </span></span><br><span class="line">        <span class="comment">//对响应进行监听：判断响应结果</span></span><br><span class="line">        request.responseText&#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><blockquote>
-<p><a href="jsonlint.com">jsonlint.com 一个很好的校验json格式的网站</a></p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>ajax</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>适配器模式&amp;外观模式</title>
     <url>/2019/05/19/adapter-facade_pattern/</url>
     <content><![CDATA[<p>[toc]</p>
@@ -215,6 +136,85 @@
       </tags>
   </entry>
   <entry>
+    <title>ajax学习</title>
+    <url>/2017/07/08/ajax/</url>
+    <content><![CDATA[<h1 id="Ajax全称-Asynchronous-Javascript-And-XML（异步JavaScript和XML）"><a href="#Ajax全称-Asynchronous-Javascript-And-XML（异步JavaScript和XML）" class="headerlink" title="Ajax全称 Asynchronous Javascript And XML（异步JavaScript和XML）"></a>Ajax全称 Asynchronous Javascript And XML（异步JavaScript和XML）</h1><h1 id="XMLHttpRequest对象-以下简称xhr"><a href="#XMLHttpRequest对象-以下简称xhr" class="headerlink" title="XMLHttpRequest对象(以下简称xhr)"></a>XMLHttpRequest对象(以下简称xhr)</h1><p>XMLHttpRequest对象(以下简称xhr)</p>
+<ul>
+<li>异步 通过对象XMLHttpRequest   -&gt; 后台与服务器之间异步交换数据</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> request;</span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">window</span>.XMLHttpRequest)&#123;</span><br><span class="line"></span><br><span class="line">       request=<span class="keyword">new</span> XMLHttpRequest();   <span class="comment">//IE7+,Firefox,Chrome,Opera，Safari</span></span><br><span class="line"></span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line"></span><br><span class="line">request=<span class="keyword">new</span> ActiveXObject（<span class="string">"Microsoft.XMLHTTP"</span>）;<span class="comment">//IE6,IE5</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="一个完整的http请求过程"><a href="#一个完整的http请求过程" class="headerlink" title="一个完整的http请求过程:"></a>一个完整的http请求过程:</h2><ol>
+<li>建立TCP连接</li>
+<li>Web浏览器向Web服务器发送请求命令</li>
+<li>Web浏览器发送请求头信息</li>
+<li>Web服务器应答</li>
+<li>Web服务器发送应答头信息</li>
+<li>Web服务器向浏览器发送数据</li>
+<li>Web服务器关闭TCP连接</li>
+</ol>
+<h2 id="http请求的4部分"><a href="#http请求的4部分" class="headerlink" title="http请求的4部分"></a>http请求的4部分</h2><ol>
+<li>请求方法（post、get之类）</li>
+<li>请求的url</li>
+<li>请求头（环境信息、身份安全信息等）</li>
+<li>请求体（提交的表单、数据等）</li>
+</ol>
+<h2 id="http响应的组成"><a href="#http响应的组成" class="headerlink" title="http响应的组成"></a>http响应的组成</h2><ol>
+<li>一个由数字和文字组成的状态码 用于显示请求成功或失败</li>
+<li>响应头（服务器相关信息，类型、日期、名称之类）</li>
+<li>响应体</li>
+</ol>
+<h2 id="http状态码"><a href="#http状态码" class="headerlink" title="http状态码"></a>http状态码</h2><ul>
+<li>1开头的：信息类表示手打搜web浏览器请求，正在进一步处理中</li>
+<li>2开头的：成功，表示用户请求被正确接受，理解和处理，如 200</li>
+<li>3开头的：重定向，表示请求没有成功，客户必须采取进一步的动作</li>
+<li>4开头的：客户端错误，表示客户端提交的请求有错误404</li>
+<li>5开头的：服务器错误，表示服务器不能完成对请求的处理500</li>
+</ul>
+<h1 id="xhr发送请求"><a href="#xhr发送请求" class="headerlink" title="xhr发送请求"></a>xhr发送请求</h1><h2 id="open方法"><a href="#open方法" class="headerlink" title="open方法"></a>open方法</h2><ol>
+<li>参数：</li>
+</ol>
+<ul>
+<li>method：发送请求方法，get方式还是post方式，不区分大小写，一般使用大写。</li>
+<li>url：请求地址，可以使用相对地址，也就是相对文档的地址，也可以使用绝对地址。</li>
+<li>async：请求同步/异步，一般使用异步请求，这个参数就是true，如要使用同步的话，就是false。默认的是true(异步)，所以，如果是异步请求的话，这个参数可以不写。</li>
+</ul>
+<h2 id="send方法"><a href="#send方法" class="headerlink" title="send方法"></a>send方法</h2><ol>
+<li>send方法将请求发送到服务器上</li>
+<li>参数：</li>
+</ol>
+<ul>
+<li>string:<br>①使用get请求时，实际是没有主体的，所有的参数都拼在url中，所以send参数可以不填，或者填写null。<br>②post请求时，send请求一定要有参数。</li>
+</ul>
+<h2 id="setRequestHeader方法"><a href="#setRequestHeader方法" class="headerlink" title="setRequestHeader方法"></a>setRequestHeader方法</h2><ol>
+<li>设置http的头信息，告诉web服务器要发送一个表单的话，设置Content-type为application/x-www-form-urlencoded。</li>
+<li>Content-type有2种，一般用application/x-www-form-urlencoded，一般如果不发送文件，都采用这种方式。</li>
+<li>request.setRequestHeader()要写在open()和send（）中间，否则会抛出异常。</li>
+</ol>
+<h1 id="服务器响应"><a href="#服务器响应" class="headerlink" title="服务器响应"></a>服务器响应</h1><h2 id="服务器响应成功时得到通知"><a href="#服务器响应成功时得到通知" class="headerlink" title="服务器响应成功时得到通知"></a>服务器响应成功时得到通知</h2><p>readyState属性</p>
+<ul>
+<li>0：请求还未初始化，open还没有调用</li>
+<li>1：服务器连接已建立，open已经调用了</li>
+<li>2：请求已接收，也就是接收到头信息了</li>
+<li>3：请求处理中，也就是接收到响应主体了</li>
+<li>4：请求已完成，且响应已就绪，也就是响应完成了</li>
+</ul>
+<h2 id="获取响应值："><a href="#获取响应值：" class="headerlink" title="获取响应值："></a>获取响应值：</h2><ul>
+<li>responseText  获取字符串形式的响应数据</li>
+<li>responseXML   获得XML形式的响应数据  （一般用JSON）</li>
+<li>status和statusText   以数字和文本形式返回HTTP状态码</li>
+<li>getAllResponseHeader()   获取所有的响应报头</li>
+<li>getResponseHeader()   查询响应中的某个字段的值</li>
+</ul>
+<h1 id="总结-完整使用步骤"><a href="#总结-完整使用步骤" class="headerlink" title="总结 完整使用步骤"></a>总结 完整使用步骤</h1><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//第一步</span></span><br><span class="line">    <span class="keyword">var</span> request=<span class="keyword">new</span> XMLHttpRequest();   <span class="comment">//new一个XHR对象</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//第二步 </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    request.open(<span class="string">'GET'</span>,<span class="string">'get.php'</span>,<span class="literal">true</span>);  <span class="comment">//open一个方法</span></span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"><span class="comment">//第三步 </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    request.send();   <span class="comment">//发送数据</span></span><br><span class="line"></span><br><span class="line">   </span><br><span class="line"></span><br><span class="line"><span class="comment">//第四步 </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    request.onreadystatechange=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(request.readyState===<span class="number">4</span>&amp;&amp;request.status===<span class="number">200</span>)&#123;</span><br><span class="line">        <span class="comment">//做一些事情 </span></span><br><span class="line">        <span class="comment">//对响应进行监听：判断响应结果</span></span><br><span class="line">        request.responseText&#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><blockquote>
+<p><a href="jsonlint.com">jsonlint.com 一个很好的校验json格式的网站</a></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>ajax</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CentOS服务器部署参考笔记</title>
     <url>/2017/07/24/centos%20server/</url>
     <content><![CDATA[<h1 id="服务器部署"><a href="#服务器部署" class="headerlink" title="服务器部署"></a>服务器部署</h1><blockquote>
@@ -231,6 +231,75 @@
 </blockquote>
 ]]></content>
       <tags>
+        <tag>centos</tag>
+        <tag>linux</tag>
+        <tag>服务器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在后台运行 docker 容器会自动退出解决方案</title>
+    <url>/2018/11/02/docker-background-run/</url>
+    <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>由于 docker 启动容器后，一旦命令完成就会自动退出容器</p>
+<p>比如我想在后台运行nginx之类的某个服务，执行下面这句：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker run --name xxx -d xxx</span><br></pre></td></tr></table></figure>
+<p>然后再执行</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure>
+<p>发现并没有刚启动的服务</p>
+<p>于是执行</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker ps -a</span><br></pre></td></tr></table></figure>
+<p>查看所有 docker 容器</p>
+<p>发现刚启动的服务xxx 已经Exit</p>
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>查了下资料</p>
+<p>发现</p>
+<blockquote>
+<p>docker run指定的命令如果不是那些一直挂起的命令（比如运行top，不断echo），就是会自动退出的。-d命令是设置detach为true，根据官方的文档，意思是让这个命令在后台运行，但并不是一直运行，Docker容器后台运行,就必须有一个前台进程。主线程结束，容器会退出。</p>
+</blockquote>
+<p>启动服务时</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker run --name alpine -d alpine tail -f /dev/null</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>linux</tag>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Centos中运行jar包的几种方法</title>
+    <url>/2018/01/08/centos-java-run/</url>
+    <content><![CDATA[<h1 id="Centos中运行jar包的几种方法"><a href="#Centos中运行jar包的几种方法" class="headerlink" title="Centos中运行jar包的几种方法"></a>Centos中运行jar包的几种方法</h1><p>1.直接运行<br>2.后台运行</p>
+<p>以Centos 6.5 为例  </p>
+<p>先通过</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd /xxx/xxx</span><br></pre></td></tr></table></figure>
+<p>命令 进入jar包项目所在目录</p>
+<p>运行通过maven打包好的jar包 </p>
+<p>该项目运行在服务器的443端口</p>
+<p>demo-0.0.1-SNAPSHOT.jar</p>
+<h2 id="直接运行"><a href="#直接运行" class="headerlink" title="直接运行"></a>直接运行</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">java -jar demo-0.0.1-SNAPSHOT.jar</span><br></pre></td></tr></table></figure>
+<p>当前ssh窗口被锁定 这个期间无法对服务器执行其他命令</p>
+<p>若想终止进程 则按下Ctrl+C<br>或者关闭ssh窗口</p>
+<h2 id="后台运行"><a href="#后台运行" class="headerlink" title="后台运行"></a>后台运行</h2><p>后台运行分几种情况</p>
+<h3 id="普通后台运行"><a href="#普通后台运行" class="headerlink" title="普通后台运行"></a>普通后台运行</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">java -jar demo-0.0.1-SNAPSHOT.jar &amp;</span><br></pre></td></tr></table></figure>
+<p>&amp;代表后台运行 </p>
+<p>当前ssh窗口不被锁定</p>
+<p>关闭ssh窗口则程序终止</p>
+<h3 id="nohup方式"><a href="#nohup方式" class="headerlink" title="nohup方式"></a>nohup方式</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">nohup java -jar demo-0.0.1-SNAPSHOT.jar &amp;</span><br></pre></td></tr></table></figure>
+<p>nohup方式会不挂断运行命令</p>
+<p>当账户退出或终端关闭时,程序仍在后台运行</p>
+<p>当用 nohup 命令执行作业时，该作业的所有输出会默认被重定向到nohup.out的文件中，除非另外指定了输出文件。</p>
+<p>若想重新制定输出文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">nohup java -jar shareniu.jar &gt;temp.txt &amp;</span><br></pre></td></tr></table></figure>
+<p>这样输出内容不打印到屏幕上，而是输出到temp.txt文件中。</p>
+<p>可通过jobs命令查看后台运行任务</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">jobs</span><br></pre></td></tr></table></figure>
+<p>此时会列出所有后台执行的作业</p>
+<p>且每个作业前面都有个编号。</p>
+<p>[1] xxxx<br>[2] xxxx</p>
+<p>若想将某个作业调回前台控制，只需要 fg + 编号即可。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">fg 1</span><br></pre></td></tr></table></figure>
+<p>若关闭了ssh窗口 下次重新连接服务器时</p>
+<p>可通过查询项目所在端口查询进程PID</p>
+<p>再用kill命令杀死进程<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">lsof -i:443</span><br><span class="line"></span><br><span class="line">kill -9  PID</span><br></pre></td></tr></table></figure></p>
+]]></content>
+      <tags>
+        <tag>java</tag>
         <tag>centos</tag>
         <tag>linux</tag>
         <tag>服务器</tag>
@@ -1528,75 +1597,6 @@
 ]]></content>
       <tags>
         <tag>VAST</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Centos中运行jar包的几种方法</title>
-    <url>/2018/01/08/centos-java-run/</url>
-    <content><![CDATA[<h1 id="Centos中运行jar包的几种方法"><a href="#Centos中运行jar包的几种方法" class="headerlink" title="Centos中运行jar包的几种方法"></a>Centos中运行jar包的几种方法</h1><p>1.直接运行<br>2.后台运行</p>
-<p>以Centos 6.5 为例  </p>
-<p>先通过</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd /xxx/xxx</span><br></pre></td></tr></table></figure>
-<p>命令 进入jar包项目所在目录</p>
-<p>运行通过maven打包好的jar包 </p>
-<p>该项目运行在服务器的443端口</p>
-<p>demo-0.0.1-SNAPSHOT.jar</p>
-<h2 id="直接运行"><a href="#直接运行" class="headerlink" title="直接运行"></a>直接运行</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">java -jar demo-0.0.1-SNAPSHOT.jar</span><br></pre></td></tr></table></figure>
-<p>当前ssh窗口被锁定 这个期间无法对服务器执行其他命令</p>
-<p>若想终止进程 则按下Ctrl+C<br>或者关闭ssh窗口</p>
-<h2 id="后台运行"><a href="#后台运行" class="headerlink" title="后台运行"></a>后台运行</h2><p>后台运行分几种情况</p>
-<h3 id="普通后台运行"><a href="#普通后台运行" class="headerlink" title="普通后台运行"></a>普通后台运行</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">java -jar demo-0.0.1-SNAPSHOT.jar &amp;</span><br></pre></td></tr></table></figure>
-<p>&amp;代表后台运行 </p>
-<p>当前ssh窗口不被锁定</p>
-<p>关闭ssh窗口则程序终止</p>
-<h3 id="nohup方式"><a href="#nohup方式" class="headerlink" title="nohup方式"></a>nohup方式</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">nohup java -jar demo-0.0.1-SNAPSHOT.jar &amp;</span><br></pre></td></tr></table></figure>
-<p>nohup方式会不挂断运行命令</p>
-<p>当账户退出或终端关闭时,程序仍在后台运行</p>
-<p>当用 nohup 命令执行作业时，该作业的所有输出会默认被重定向到nohup.out的文件中，除非另外指定了输出文件。</p>
-<p>若想重新制定输出文件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">nohup java -jar shareniu.jar &gt;temp.txt &amp;</span><br></pre></td></tr></table></figure>
-<p>这样输出内容不打印到屏幕上，而是输出到temp.txt文件中。</p>
-<p>可通过jobs命令查看后台运行任务</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">jobs</span><br></pre></td></tr></table></figure>
-<p>此时会列出所有后台执行的作业</p>
-<p>且每个作业前面都有个编号。</p>
-<p>[1] xxxx<br>[2] xxxx</p>
-<p>若想将某个作业调回前台控制，只需要 fg + 编号即可。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">fg 1</span><br></pre></td></tr></table></figure>
-<p>若关闭了ssh窗口 下次重新连接服务器时</p>
-<p>可通过查询项目所在端口查询进程PID</p>
-<p>再用kill命令杀死进程<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">lsof -i:443</span><br><span class="line"></span><br><span class="line">kill -9  PID</span><br></pre></td></tr></table></figure></p>
-]]></content>
-      <tags>
-        <tag>java</tag>
-        <tag>centos</tag>
-        <tag>linux</tag>
-        <tag>服务器</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在后台运行 docker 容器会自动退出解决方案</title>
-    <url>/2018/11/02/docker-background-run/</url>
-    <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>由于 docker 启动容器后，一旦命令完成就会自动退出容器</p>
-<p>比如我想在后台运行nginx之类的某个服务，执行下面这句：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker run --name xxx -d xxx</span><br></pre></td></tr></table></figure>
-<p>然后再执行</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure>
-<p>发现并没有刚启动的服务</p>
-<p>于是执行</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker ps -a</span><br></pre></td></tr></table></figure>
-<p>查看所有 docker 容器</p>
-<p>发现刚启动的服务xxx 已经Exit</p>
-<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>查了下资料</p>
-<p>发现</p>
-<blockquote>
-<p>docker run指定的命令如果不是那些一直挂起的命令（比如运行top，不断echo），就是会自动退出的。-d命令是设置detach为true，根据官方的文档，意思是让这个命令在后台运行，但并不是一直运行，Docker容器后台运行,就必须有一个前台进程。主线程结束，容器会退出。</p>
-</blockquote>
-<p>启动服务时</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker run --name alpine -d alpine tail -f /dev/null</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>linux</tag>
-        <tag>docker</tag>
       </tags>
   </entry>
   <entry>
