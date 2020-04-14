@@ -215,6 +215,28 @@
       </tags>
   </entry>
   <entry>
+    <title>CentOS服务器部署参考笔记</title>
+    <url>/2017/07/24/centos%20server/</url>
+    <content><![CDATA[<h1 id="服务器部署"><a href="#服务器部署" class="headerlink" title="服务器部署"></a>服务器部署</h1><blockquote>
+<p><a href="http://www.cnblogs.com/shanheyongmu/p/6110580.html" target="_blank" rel="noopener">http://www.cnblogs.com/shanheyongmu/p/6110580.html</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://www.cnblogs.com/xdp-gacl/p/4097608.html" target="_blank" rel="noopener">http://www.cnblogs.com/xdp-gacl/p/4097608.html</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://www.cnblogs.com/allenblogs/archive/2010/08/12/1798247.html" target="_blank" rel="noopener">http://www.cnblogs.com/allenblogs/archive/2010/08/12/1798247.html</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://www.cnblogs.com/Lam7/p/5454163.html" target="_blank" rel="noopener">http://www.cnblogs.com/Lam7/p/5454163.html</a></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>centos</tag>
+        <tag>linux</tag>
+        <tag>服务器</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>VAST 3.0文档梳理</title>
     <url>/2018/07/27/VAST/</url>
     <content><![CDATA[<h1 id="VAST-3-0-概述"><a href="#VAST-3-0-概述" class="headerlink" title="VAST 3.0  概述"></a>VAST 3.0  概述</h1><h2 id="几个专业术语"><a href="#几个专业术语" class="headerlink" title="几个专业术语"></a>几个专业术语</h2><ul>
@@ -1506,28 +1528,6 @@
 ]]></content>
       <tags>
         <tag>VAST</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CentOS服务器部署参考笔记</title>
-    <url>/2017/07/24/centos%20server/</url>
-    <content><![CDATA[<h1 id="服务器部署"><a href="#服务器部署" class="headerlink" title="服务器部署"></a>服务器部署</h1><blockquote>
-<p><a href="http://www.cnblogs.com/shanheyongmu/p/6110580.html" target="_blank" rel="noopener">http://www.cnblogs.com/shanheyongmu/p/6110580.html</a></p>
-</blockquote>
-<blockquote>
-<p><a href="http://www.cnblogs.com/xdp-gacl/p/4097608.html" target="_blank" rel="noopener">http://www.cnblogs.com/xdp-gacl/p/4097608.html</a></p>
-</blockquote>
-<blockquote>
-<p><a href="http://www.cnblogs.com/allenblogs/archive/2010/08/12/1798247.html" target="_blank" rel="noopener">http://www.cnblogs.com/allenblogs/archive/2010/08/12/1798247.html</a></p>
-</blockquote>
-<blockquote>
-<p><a href="http://www.cnblogs.com/Lam7/p/5454163.html" target="_blank" rel="noopener">http://www.cnblogs.com/Lam7/p/5454163.html</a></p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>centos</tag>
-        <tag>linux</tag>
-        <tag>服务器</tag>
       </tags>
   </entry>
   <entry>
