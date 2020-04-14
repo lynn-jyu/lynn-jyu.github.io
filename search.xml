@@ -215,72 +215,6 @@
       </tags>
   </entry>
   <entry>
-    <title>CentOS服务器部署参考笔记</title>
-    <url>/2017/07/24/centos%20server/</url>
-    <content><![CDATA[<h1 id="服务器部署"><a href="#服务器部署" class="headerlink" title="服务器部署"></a>服务器部署</h1><blockquote>
-<p><a href="http://www.cnblogs.com/shanheyongmu/p/6110580.html" target="_blank" rel="noopener">http://www.cnblogs.com/shanheyongmu/p/6110580.html</a></p>
-</blockquote>
-<blockquote>
-<p><a href="http://www.cnblogs.com/xdp-gacl/p/4097608.html" target="_blank" rel="noopener">http://www.cnblogs.com/xdp-gacl/p/4097608.html</a></p>
-</blockquote>
-<blockquote>
-<p><a href="http://www.cnblogs.com/allenblogs/archive/2010/08/12/1798247.html" target="_blank" rel="noopener">http://www.cnblogs.com/allenblogs/archive/2010/08/12/1798247.html</a></p>
-</blockquote>
-<blockquote>
-<p><a href="http://www.cnblogs.com/Lam7/p/5454163.html" target="_blank" rel="noopener">http://www.cnblogs.com/Lam7/p/5454163.html</a></p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>centos</tag>
-        <tag>linux</tag>
-        <tag>服务器</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Centos中运行jar包的几种方法</title>
-    <url>/2018/01/08/centos-java-run/</url>
-    <content><![CDATA[<h1 id="Centos中运行jar包的几种方法"><a href="#Centos中运行jar包的几种方法" class="headerlink" title="Centos中运行jar包的几种方法"></a>Centos中运行jar包的几种方法</h1><p>1.直接运行<br>2.后台运行</p>
-<p>以Centos 6.5 为例  </p>
-<p>先通过</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd /xxx/xxx</span><br></pre></td></tr></table></figure>
-<p>命令 进入jar包项目所在目录</p>
-<p>运行通过maven打包好的jar包 </p>
-<p>该项目运行在服务器的443端口</p>
-<p>demo-0.0.1-SNAPSHOT.jar</p>
-<h2 id="直接运行"><a href="#直接运行" class="headerlink" title="直接运行"></a>直接运行</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">java -jar demo-0.0.1-SNAPSHOT.jar</span><br></pre></td></tr></table></figure>
-<p>当前ssh窗口被锁定 这个期间无法对服务器执行其他命令</p>
-<p>若想终止进程 则按下Ctrl+C<br>或者关闭ssh窗口</p>
-<h2 id="后台运行"><a href="#后台运行" class="headerlink" title="后台运行"></a>后台运行</h2><p>后台运行分几种情况</p>
-<h3 id="普通后台运行"><a href="#普通后台运行" class="headerlink" title="普通后台运行"></a>普通后台运行</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">java -jar demo-0.0.1-SNAPSHOT.jar &amp;</span><br></pre></td></tr></table></figure>
-<p>&amp;代表后台运行 </p>
-<p>当前ssh窗口不被锁定</p>
-<p>关闭ssh窗口则程序终止</p>
-<h3 id="nohup方式"><a href="#nohup方式" class="headerlink" title="nohup方式"></a>nohup方式</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">nohup java -jar demo-0.0.1-SNAPSHOT.jar &amp;</span><br></pre></td></tr></table></figure>
-<p>nohup方式会不挂断运行命令</p>
-<p>当账户退出或终端关闭时,程序仍在后台运行</p>
-<p>当用 nohup 命令执行作业时，该作业的所有输出会默认被重定向到nohup.out的文件中，除非另外指定了输出文件。</p>
-<p>若想重新制定输出文件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">nohup java -jar shareniu.jar &gt;temp.txt &amp;</span><br></pre></td></tr></table></figure>
-<p>这样输出内容不打印到屏幕上，而是输出到temp.txt文件中。</p>
-<p>可通过jobs命令查看后台运行任务</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">jobs</span><br></pre></td></tr></table></figure>
-<p>此时会列出所有后台执行的作业</p>
-<p>且每个作业前面都有个编号。</p>
-<p>[1] xxxx<br>[2] xxxx</p>
-<p>若想将某个作业调回前台控制，只需要 fg + 编号即可。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">fg 1</span><br></pre></td></tr></table></figure>
-<p>若关闭了ssh窗口 下次重新连接服务器时</p>
-<p>可通过查询项目所在端口查询进程PID</p>
-<p>再用kill命令杀死进程<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">lsof -i:443</span><br><span class="line"></span><br><span class="line">kill -9  PID</span><br></pre></td></tr></table></figure></p>
-]]></content>
-      <tags>
-        <tag>java</tag>
-        <tag>centos</tag>
-        <tag>linux</tag>
-        <tag>服务器</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>VAST 3.0文档梳理</title>
     <url>/2018/07/27/VAST/</url>
     <content><![CDATA[<h1 id="VAST-3-0-概述"><a href="#VAST-3-0-概述" class="headerlink" title="VAST 3.0  概述"></a>VAST 3.0  概述</h1><h2 id="几个专业术语"><a href="#几个专业术语" class="headerlink" title="几个专业术语"></a>几个专业术语</h2><ul>
@@ -1575,6 +1509,72 @@
       </tags>
   </entry>
   <entry>
+    <title>CentOS服务器部署参考笔记</title>
+    <url>/2017/07/24/centos%20server/</url>
+    <content><![CDATA[<h1 id="服务器部署"><a href="#服务器部署" class="headerlink" title="服务器部署"></a>服务器部署</h1><blockquote>
+<p><a href="http://www.cnblogs.com/shanheyongmu/p/6110580.html" target="_blank" rel="noopener">http://www.cnblogs.com/shanheyongmu/p/6110580.html</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://www.cnblogs.com/xdp-gacl/p/4097608.html" target="_blank" rel="noopener">http://www.cnblogs.com/xdp-gacl/p/4097608.html</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://www.cnblogs.com/allenblogs/archive/2010/08/12/1798247.html" target="_blank" rel="noopener">http://www.cnblogs.com/allenblogs/archive/2010/08/12/1798247.html</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://www.cnblogs.com/Lam7/p/5454163.html" target="_blank" rel="noopener">http://www.cnblogs.com/Lam7/p/5454163.html</a></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>centos</tag>
+        <tag>linux</tag>
+        <tag>服务器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Centos中运行jar包的几种方法</title>
+    <url>/2018/01/08/centos-java-run/</url>
+    <content><![CDATA[<h1 id="Centos中运行jar包的几种方法"><a href="#Centos中运行jar包的几种方法" class="headerlink" title="Centos中运行jar包的几种方法"></a>Centos中运行jar包的几种方法</h1><p>1.直接运行<br>2.后台运行</p>
+<p>以Centos 6.5 为例  </p>
+<p>先通过</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd /xxx/xxx</span><br></pre></td></tr></table></figure>
+<p>命令 进入jar包项目所在目录</p>
+<p>运行通过maven打包好的jar包 </p>
+<p>该项目运行在服务器的443端口</p>
+<p>demo-0.0.1-SNAPSHOT.jar</p>
+<h2 id="直接运行"><a href="#直接运行" class="headerlink" title="直接运行"></a>直接运行</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">java -jar demo-0.0.1-SNAPSHOT.jar</span><br></pre></td></tr></table></figure>
+<p>当前ssh窗口被锁定 这个期间无法对服务器执行其他命令</p>
+<p>若想终止进程 则按下Ctrl+C<br>或者关闭ssh窗口</p>
+<h2 id="后台运行"><a href="#后台运行" class="headerlink" title="后台运行"></a>后台运行</h2><p>后台运行分几种情况</p>
+<h3 id="普通后台运行"><a href="#普通后台运行" class="headerlink" title="普通后台运行"></a>普通后台运行</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">java -jar demo-0.0.1-SNAPSHOT.jar &amp;</span><br></pre></td></tr></table></figure>
+<p>&amp;代表后台运行 </p>
+<p>当前ssh窗口不被锁定</p>
+<p>关闭ssh窗口则程序终止</p>
+<h3 id="nohup方式"><a href="#nohup方式" class="headerlink" title="nohup方式"></a>nohup方式</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">nohup java -jar demo-0.0.1-SNAPSHOT.jar &amp;</span><br></pre></td></tr></table></figure>
+<p>nohup方式会不挂断运行命令</p>
+<p>当账户退出或终端关闭时,程序仍在后台运行</p>
+<p>当用 nohup 命令执行作业时，该作业的所有输出会默认被重定向到nohup.out的文件中，除非另外指定了输出文件。</p>
+<p>若想重新制定输出文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">nohup java -jar shareniu.jar &gt;temp.txt &amp;</span><br></pre></td></tr></table></figure>
+<p>这样输出内容不打印到屏幕上，而是输出到temp.txt文件中。</p>
+<p>可通过jobs命令查看后台运行任务</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">jobs</span><br></pre></td></tr></table></figure>
+<p>此时会列出所有后台执行的作业</p>
+<p>且每个作业前面都有个编号。</p>
+<p>[1] xxxx<br>[2] xxxx</p>
+<p>若想将某个作业调回前台控制，只需要 fg + 编号即可。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">fg 1</span><br></pre></td></tr></table></figure>
+<p>若关闭了ssh窗口 下次重新连接服务器时</p>
+<p>可通过查询项目所在端口查询进程PID</p>
+<p>再用kill命令杀死进程<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">lsof -i:443</span><br><span class="line"></span><br><span class="line">kill -9  PID</span><br></pre></td></tr></table></figure></p>
+]]></content>
+      <tags>
+        <tag>java</tag>
+        <tag>centos</tag>
+        <tag>linux</tag>
+        <tag>服务器</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>在后台运行 docker 容器会自动退出解决方案</title>
     <url>/2018/11/02/docker-background-run/</url>
     <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>由于 docker 启动容器后，一旦命令完成就会自动退出容器</p>
@@ -2665,6 +2665,24 @@
       </tags>
   </entry>
   <entry>
+    <title>关于数据库写入Emoji表情的报错的解决方法</title>
+    <url>/2018/12/12/jdbc-emoji-bug/</url>
+    <content><![CDATA[<p>这两天写GooglePlay爬虫的时候发现入库数量与redis中的数量不一致, 翻看lockback日志发现部分插入语句报错，特此记录。</p>
+<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>在执行sql时， 控制台抛出异常<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">java.sql.SQLException: </span><br><span class="line">    Incorrect string value: &apos;\xF0\x9F\x92\x94&apos; for column &apos;name&apos; ...</span><br></pre></td></tr></table></figure></p>
+<h1 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h1><p>Emoji表情符号为4个字节的字符，而 utf8 字符集只支持1-3个字节的字符，导致无法写入数据库。</p>
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><ul>
+<li>修改MySQL数据库字符集， 把数据库字符集从utf8 修改为支持1-4 个字节字符的utf8mb4.</li>
+</ul>
+<p>若采用java的jdbc来进行入库操作, 则需要额外地升级驱动的版本到5.1.13版本或更高.</p>
+<p>以gradle为例(maven类似):</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    compile(&quot;mysql:mysql-connector-java:5.1.13&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>java</tag>
+        <tag>jdbc</tag>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>EL表达式取整</title>
     <url>/2017/11/16/jsp-jstl-el-numberformat/</url>
     <content><![CDATA[<p>今天在写页码的时候发现后台传来的数据直接在jsp的EL表达式中直接相除会出现小数点</p>
@@ -2693,24 +2711,6 @@
       <tags>
         <tag>java</tag>
         <tag>jsp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>关于数据库写入Emoji表情的报错的解决方法</title>
-    <url>/2018/12/12/jdbc-emoji-bug/</url>
-    <content><![CDATA[<p>这两天写GooglePlay爬虫的时候发现入库数量与redis中的数量不一致, 翻看lockback日志发现部分插入语句报错，特此记录。</p>
-<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>在执行sql时， 控制台抛出异常<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">java.sql.SQLException: </span><br><span class="line">    Incorrect string value: &apos;\xF0\x9F\x92\x94&apos; for column &apos;name&apos; ...</span><br></pre></td></tr></table></figure></p>
-<h1 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h1><p>Emoji表情符号为4个字节的字符，而 utf8 字符集只支持1-3个字节的字符，导致无法写入数据库。</p>
-<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><ul>
-<li>修改MySQL数据库字符集， 把数据库字符集从utf8 修改为支持1-4 个字节字符的utf8mb4.</li>
-</ul>
-<p>若采用java的jdbc来进行入库操作, 则需要额外地升级驱动的版本到5.1.13版本或更高.</p>
-<p>以gradle为例(maven类似):</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    compile(&quot;mysql:mysql-connector-java:5.1.13&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>java</tag>
-        <tag>jdbc</tag>
-        <tag>mysql</tag>
       </tags>
   </entry>
   <entry>
