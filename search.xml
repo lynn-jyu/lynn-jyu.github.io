@@ -44,85 +44,6 @@
       </tags>
   </entry>
   <entry>
-    <title>ajax学习</title>
-    <url>/2017/07/08/ajax/</url>
-    <content><![CDATA[<h1 id="Ajax全称-Asynchronous-Javascript-And-XML（异步JavaScript和XML）"><a href="#Ajax全称-Asynchronous-Javascript-And-XML（异步JavaScript和XML）" class="headerlink" title="Ajax全称 Asynchronous Javascript And XML（异步JavaScript和XML）"></a>Ajax全称 Asynchronous Javascript And XML（异步JavaScript和XML）</h1><h1 id="XMLHttpRequest对象-以下简称xhr"><a href="#XMLHttpRequest对象-以下简称xhr" class="headerlink" title="XMLHttpRequest对象(以下简称xhr)"></a>XMLHttpRequest对象(以下简称xhr)</h1><p>XMLHttpRequest对象(以下简称xhr)</p>
-<ul>
-<li>异步 通过对象XMLHttpRequest   -&gt; 后台与服务器之间异步交换数据</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> request;</span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">window</span>.XMLHttpRequest)&#123;</span><br><span class="line"></span><br><span class="line">       request=<span class="keyword">new</span> XMLHttpRequest();   <span class="comment">//IE7+,Firefox,Chrome,Opera，Safari</span></span><br><span class="line"></span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line"></span><br><span class="line">request=<span class="keyword">new</span> ActiveXObject（<span class="string">"Microsoft.XMLHTTP"</span>）;<span class="comment">//IE6,IE5</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="一个完整的http请求过程"><a href="#一个完整的http请求过程" class="headerlink" title="一个完整的http请求过程:"></a>一个完整的http请求过程:</h2><ol>
-<li>建立TCP连接</li>
-<li>Web浏览器向Web服务器发送请求命令</li>
-<li>Web浏览器发送请求头信息</li>
-<li>Web服务器应答</li>
-<li>Web服务器发送应答头信息</li>
-<li>Web服务器向浏览器发送数据</li>
-<li>Web服务器关闭TCP连接</li>
-</ol>
-<h2 id="http请求的4部分"><a href="#http请求的4部分" class="headerlink" title="http请求的4部分"></a>http请求的4部分</h2><ol>
-<li>请求方法（post、get之类）</li>
-<li>请求的url</li>
-<li>请求头（环境信息、身份安全信息等）</li>
-<li>请求体（提交的表单、数据等）</li>
-</ol>
-<h2 id="http响应的组成"><a href="#http响应的组成" class="headerlink" title="http响应的组成"></a>http响应的组成</h2><ol>
-<li>一个由数字和文字组成的状态码 用于显示请求成功或失败</li>
-<li>响应头（服务器相关信息，类型、日期、名称之类）</li>
-<li>响应体</li>
-</ol>
-<h2 id="http状态码"><a href="#http状态码" class="headerlink" title="http状态码"></a>http状态码</h2><ul>
-<li>1开头的：信息类表示手打搜web浏览器请求，正在进一步处理中</li>
-<li>2开头的：成功，表示用户请求被正确接受，理解和处理，如 200</li>
-<li>3开头的：重定向，表示请求没有成功，客户必须采取进一步的动作</li>
-<li>4开头的：客户端错误，表示客户端提交的请求有错误404</li>
-<li>5开头的：服务器错误，表示服务器不能完成对请求的处理500</li>
-</ul>
-<h1 id="xhr发送请求"><a href="#xhr发送请求" class="headerlink" title="xhr发送请求"></a>xhr发送请求</h1><h2 id="open方法"><a href="#open方法" class="headerlink" title="open方法"></a>open方法</h2><ol>
-<li>参数：</li>
-</ol>
-<ul>
-<li>method：发送请求方法，get方式还是post方式，不区分大小写，一般使用大写。</li>
-<li>url：请求地址，可以使用相对地址，也就是相对文档的地址，也可以使用绝对地址。</li>
-<li>async：请求同步/异步，一般使用异步请求，这个参数就是true，如要使用同步的话，就是false。默认的是true(异步)，所以，如果是异步请求的话，这个参数可以不写。</li>
-</ul>
-<h2 id="send方法"><a href="#send方法" class="headerlink" title="send方法"></a>send方法</h2><ol>
-<li>send方法将请求发送到服务器上</li>
-<li>参数：</li>
-</ol>
-<ul>
-<li>string:<br>①使用get请求时，实际是没有主体的，所有的参数都拼在url中，所以send参数可以不填，或者填写null。<br>②post请求时，send请求一定要有参数。</li>
-</ul>
-<h2 id="setRequestHeader方法"><a href="#setRequestHeader方法" class="headerlink" title="setRequestHeader方法"></a>setRequestHeader方法</h2><ol>
-<li>设置http的头信息，告诉web服务器要发送一个表单的话，设置Content-type为application/x-www-form-urlencoded。</li>
-<li>Content-type有2种，一般用application/x-www-form-urlencoded，一般如果不发送文件，都采用这种方式。</li>
-<li>request.setRequestHeader()要写在open()和send（）中间，否则会抛出异常。</li>
-</ol>
-<h1 id="服务器响应"><a href="#服务器响应" class="headerlink" title="服务器响应"></a>服务器响应</h1><h2 id="服务器响应成功时得到通知"><a href="#服务器响应成功时得到通知" class="headerlink" title="服务器响应成功时得到通知"></a>服务器响应成功时得到通知</h2><p>readyState属性</p>
-<ul>
-<li>0：请求还未初始化，open还没有调用</li>
-<li>1：服务器连接已建立，open已经调用了</li>
-<li>2：请求已接收，也就是接收到头信息了</li>
-<li>3：请求处理中，也就是接收到响应主体了</li>
-<li>4：请求已完成，且响应已就绪，也就是响应完成了</li>
-</ul>
-<h2 id="获取响应值："><a href="#获取响应值：" class="headerlink" title="获取响应值："></a>获取响应值：</h2><ul>
-<li>responseText  获取字符串形式的响应数据</li>
-<li>responseXML   获得XML形式的响应数据  （一般用JSON）</li>
-<li>status和statusText   以数字和文本形式返回HTTP状态码</li>
-<li>getAllResponseHeader()   获取所有的响应报头</li>
-<li>getResponseHeader()   查询响应中的某个字段的值</li>
-</ul>
-<h1 id="总结-完整使用步骤"><a href="#总结-完整使用步骤" class="headerlink" title="总结 完整使用步骤"></a>总结 完整使用步骤</h1><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//第一步</span></span><br><span class="line">    <span class="keyword">var</span> request=<span class="keyword">new</span> XMLHttpRequest();   <span class="comment">//new一个XHR对象</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//第二步 </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    request.open(<span class="string">'GET'</span>,<span class="string">'get.php'</span>,<span class="literal">true</span>);  <span class="comment">//open一个方法</span></span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"><span class="comment">//第三步 </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    request.send();   <span class="comment">//发送数据</span></span><br><span class="line"></span><br><span class="line">   </span><br><span class="line"></span><br><span class="line"><span class="comment">//第四步 </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    request.onreadystatechange=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(request.readyState===<span class="number">4</span>&amp;&amp;request.status===<span class="number">200</span>)&#123;</span><br><span class="line">        <span class="comment">//做一些事情 </span></span><br><span class="line">        <span class="comment">//对响应进行监听：判断响应结果</span></span><br><span class="line">        request.responseText&#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><blockquote>
-<p><a href="jsonlint.com">jsonlint.com 一个很好的校验json格式的网站</a></p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>ajax</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>适配器模式&amp;外观模式</title>
     <url>/2019/05/19/adapter-facade_pattern/</url>
     <content><![CDATA[<p>[toc]</p>
@@ -215,28 +136,82 @@
       </tags>
   </entry>
   <entry>
-    <title>在后台运行 docker 容器会自动退出解决方案</title>
-    <url>/2018/11/02/docker-background-run/</url>
-    <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>由于 docker 启动容器后，一旦命令完成就会自动退出容器</p>
-<p>比如我想在后台运行nginx之类的某个服务，执行下面这句：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker run --name xxx -d xxx</span><br></pre></td></tr></table></figure>
-<p>然后再执行</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure>
-<p>发现并没有刚启动的服务</p>
-<p>于是执行</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker ps -a</span><br></pre></td></tr></table></figure>
-<p>查看所有 docker 容器</p>
-<p>发现刚启动的服务xxx 已经Exit</p>
-<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>查了下资料</p>
-<p>发现</p>
-<blockquote>
-<p>docker run指定的命令如果不是那些一直挂起的命令（比如运行top，不断echo），就是会自动退出的。-d命令是设置detach为true，根据官方的文档，意思是让这个命令在后台运行，但并不是一直运行，Docker容器后台运行,就必须有一个前台进程。主线程结束，容器会退出。</p>
+    <title>ajax学习</title>
+    <url>/2017/07/08/ajax/</url>
+    <content><![CDATA[<h1 id="Ajax全称-Asynchronous-Javascript-And-XML（异步JavaScript和XML）"><a href="#Ajax全称-Asynchronous-Javascript-And-XML（异步JavaScript和XML）" class="headerlink" title="Ajax全称 Asynchronous Javascript And XML（异步JavaScript和XML）"></a>Ajax全称 Asynchronous Javascript And XML（异步JavaScript和XML）</h1><h1 id="XMLHttpRequest对象-以下简称xhr"><a href="#XMLHttpRequest对象-以下简称xhr" class="headerlink" title="XMLHttpRequest对象(以下简称xhr)"></a>XMLHttpRequest对象(以下简称xhr)</h1><p>XMLHttpRequest对象(以下简称xhr)</p>
+<ul>
+<li>异步 通过对象XMLHttpRequest   -&gt; 后台与服务器之间异步交换数据</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> request;</span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">window</span>.XMLHttpRequest)&#123;</span><br><span class="line"></span><br><span class="line">       request=<span class="keyword">new</span> XMLHttpRequest();   <span class="comment">//IE7+,Firefox,Chrome,Opera，Safari</span></span><br><span class="line"></span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line"></span><br><span class="line">request=<span class="keyword">new</span> ActiveXObject（<span class="string">"Microsoft.XMLHTTP"</span>）;<span class="comment">//IE6,IE5</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="一个完整的http请求过程"><a href="#一个完整的http请求过程" class="headerlink" title="一个完整的http请求过程:"></a>一个完整的http请求过程:</h2><ol>
+<li>建立TCP连接</li>
+<li>Web浏览器向Web服务器发送请求命令</li>
+<li>Web浏览器发送请求头信息</li>
+<li>Web服务器应答</li>
+<li>Web服务器发送应答头信息</li>
+<li>Web服务器向浏览器发送数据</li>
+<li>Web服务器关闭TCP连接</li>
+</ol>
+<h2 id="http请求的4部分"><a href="#http请求的4部分" class="headerlink" title="http请求的4部分"></a>http请求的4部分</h2><ol>
+<li>请求方法（post、get之类）</li>
+<li>请求的url</li>
+<li>请求头（环境信息、身份安全信息等）</li>
+<li>请求体（提交的表单、数据等）</li>
+</ol>
+<h2 id="http响应的组成"><a href="#http响应的组成" class="headerlink" title="http响应的组成"></a>http响应的组成</h2><ol>
+<li>一个由数字和文字组成的状态码 用于显示请求成功或失败</li>
+<li>响应头（服务器相关信息，类型、日期、名称之类）</li>
+<li>响应体</li>
+</ol>
+<h2 id="http状态码"><a href="#http状态码" class="headerlink" title="http状态码"></a>http状态码</h2><ul>
+<li>1开头的：信息类表示手打搜web浏览器请求，正在进一步处理中</li>
+<li>2开头的：成功，表示用户请求被正确接受，理解和处理，如 200</li>
+<li>3开头的：重定向，表示请求没有成功，客户必须采取进一步的动作</li>
+<li>4开头的：客户端错误，表示客户端提交的请求有错误404</li>
+<li>5开头的：服务器错误，表示服务器不能完成对请求的处理500</li>
+</ul>
+<h1 id="xhr发送请求"><a href="#xhr发送请求" class="headerlink" title="xhr发送请求"></a>xhr发送请求</h1><h2 id="open方法"><a href="#open方法" class="headerlink" title="open方法"></a>open方法</h2><ol>
+<li>参数：</li>
+</ol>
+<ul>
+<li>method：发送请求方法，get方式还是post方式，不区分大小写，一般使用大写。</li>
+<li>url：请求地址，可以使用相对地址，也就是相对文档的地址，也可以使用绝对地址。</li>
+<li>async：请求同步/异步，一般使用异步请求，这个参数就是true，如要使用同步的话，就是false。默认的是true(异步)，所以，如果是异步请求的话，这个参数可以不写。</li>
+</ul>
+<h2 id="send方法"><a href="#send方法" class="headerlink" title="send方法"></a>send方法</h2><ol>
+<li>send方法将请求发送到服务器上</li>
+<li>参数：</li>
+</ol>
+<ul>
+<li>string:<br>①使用get请求时，实际是没有主体的，所有的参数都拼在url中，所以send参数可以不填，或者填写null。<br>②post请求时，send请求一定要有参数。</li>
+</ul>
+<h2 id="setRequestHeader方法"><a href="#setRequestHeader方法" class="headerlink" title="setRequestHeader方法"></a>setRequestHeader方法</h2><ol>
+<li>设置http的头信息，告诉web服务器要发送一个表单的话，设置Content-type为application/x-www-form-urlencoded。</li>
+<li>Content-type有2种，一般用application/x-www-form-urlencoded，一般如果不发送文件，都采用这种方式。</li>
+<li>request.setRequestHeader()要写在open()和send（）中间，否则会抛出异常。</li>
+</ol>
+<h1 id="服务器响应"><a href="#服务器响应" class="headerlink" title="服务器响应"></a>服务器响应</h1><h2 id="服务器响应成功时得到通知"><a href="#服务器响应成功时得到通知" class="headerlink" title="服务器响应成功时得到通知"></a>服务器响应成功时得到通知</h2><p>readyState属性</p>
+<ul>
+<li>0：请求还未初始化，open还没有调用</li>
+<li>1：服务器连接已建立，open已经调用了</li>
+<li>2：请求已接收，也就是接收到头信息了</li>
+<li>3：请求处理中，也就是接收到响应主体了</li>
+<li>4：请求已完成，且响应已就绪，也就是响应完成了</li>
+</ul>
+<h2 id="获取响应值："><a href="#获取响应值：" class="headerlink" title="获取响应值："></a>获取响应值：</h2><ul>
+<li>responseText  获取字符串形式的响应数据</li>
+<li>responseXML   获得XML形式的响应数据  （一般用JSON）</li>
+<li>status和statusText   以数字和文本形式返回HTTP状态码</li>
+<li>getAllResponseHeader()   获取所有的响应报头</li>
+<li>getResponseHeader()   查询响应中的某个字段的值</li>
+</ul>
+<h1 id="总结-完整使用步骤"><a href="#总结-完整使用步骤" class="headerlink" title="总结 完整使用步骤"></a>总结 完整使用步骤</h1><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//第一步</span></span><br><span class="line">    <span class="keyword">var</span> request=<span class="keyword">new</span> XMLHttpRequest();   <span class="comment">//new一个XHR对象</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//第二步 </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    request.open(<span class="string">'GET'</span>,<span class="string">'get.php'</span>,<span class="literal">true</span>);  <span class="comment">//open一个方法</span></span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"><span class="comment">//第三步 </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    request.send();   <span class="comment">//发送数据</span></span><br><span class="line"></span><br><span class="line">   </span><br><span class="line"></span><br><span class="line"><span class="comment">//第四步 </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    request.onreadystatechange=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(request.readyState===<span class="number">4</span>&amp;&amp;request.status===<span class="number">200</span>)&#123;</span><br><span class="line">        <span class="comment">//做一些事情 </span></span><br><span class="line">        <span class="comment">//对响应进行监听：判断响应结果</span></span><br><span class="line">        request.responseText&#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><blockquote>
+<p><a href="jsonlint.com">jsonlint.com 一个很好的校验json格式的网站</a></p>
 </blockquote>
-<p>启动服务时</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker run --name alpine -d alpine tail -f /dev/null</span><br></pre></td></tr></table></figure>]]></content>
+]]></content>
       <tags>
-        <tag>docker</tag>
-        <tag>linux</tag>
+        <tag>ajax</tag>
       </tags>
   </entry>
   <entry>
@@ -1534,6 +1509,28 @@
       </tags>
   </entry>
   <entry>
+    <title>CentOS服务器部署参考笔记</title>
+    <url>/2017/07/24/centos%20server/</url>
+    <content><![CDATA[<h1 id="服务器部署"><a href="#服务器部署" class="headerlink" title="服务器部署"></a>服务器部署</h1><blockquote>
+<p><a href="http://www.cnblogs.com/shanheyongmu/p/6110580.html" target="_blank" rel="noopener">http://www.cnblogs.com/shanheyongmu/p/6110580.html</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://www.cnblogs.com/xdp-gacl/p/4097608.html" target="_blank" rel="noopener">http://www.cnblogs.com/xdp-gacl/p/4097608.html</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://www.cnblogs.com/allenblogs/archive/2010/08/12/1798247.html" target="_blank" rel="noopener">http://www.cnblogs.com/allenblogs/archive/2010/08/12/1798247.html</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://www.cnblogs.com/Lam7/p/5454163.html" target="_blank" rel="noopener">http://www.cnblogs.com/Lam7/p/5454163.html</a></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>centos</tag>
+        <tag>linux</tag>
+        <tag>服务器</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Centos中运行jar包的几种方法</title>
     <url>/2018/01/08/centos-java-run/</url>
     <content><![CDATA[<h1 id="Centos中运行jar包的几种方法"><a href="#Centos中运行jar包的几种方法" class="headerlink" title="Centos中运行jar包的几种方法"></a>Centos中运行jar包的几种方法</h1><p>1.直接运行<br>2.后台运行</p>
@@ -1572,31 +1569,34 @@
 ]]></content>
       <tags>
         <tag>java</tag>
-        <tag>linux</tag>
         <tag>centos</tag>
+        <tag>linux</tag>
         <tag>服务器</tag>
       </tags>
   </entry>
   <entry>
-    <title>CentOS服务器部署参考笔记</title>
-    <url>/2017/07/24/centos%20server/</url>
-    <content><![CDATA[<h1 id="服务器部署"><a href="#服务器部署" class="headerlink" title="服务器部署"></a>服务器部署</h1><blockquote>
-<p><a href="http://www.cnblogs.com/shanheyongmu/p/6110580.html" target="_blank" rel="noopener">http://www.cnblogs.com/shanheyongmu/p/6110580.html</a></p>
-</blockquote>
+    <title>在后台运行 docker 容器会自动退出解决方案</title>
+    <url>/2018/11/02/docker-background-run/</url>
+    <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>由于 docker 启动容器后，一旦命令完成就会自动退出容器</p>
+<p>比如我想在后台运行nginx之类的某个服务，执行下面这句：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker run --name xxx -d xxx</span><br></pre></td></tr></table></figure>
+<p>然后再执行</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure>
+<p>发现并没有刚启动的服务</p>
+<p>于是执行</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker ps -a</span><br></pre></td></tr></table></figure>
+<p>查看所有 docker 容器</p>
+<p>发现刚启动的服务xxx 已经Exit</p>
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>查了下资料</p>
+<p>发现</p>
 <blockquote>
-<p><a href="http://www.cnblogs.com/xdp-gacl/p/4097608.html" target="_blank" rel="noopener">http://www.cnblogs.com/xdp-gacl/p/4097608.html</a></p>
+<p>docker run指定的命令如果不是那些一直挂起的命令（比如运行top，不断echo），就是会自动退出的。-d命令是设置detach为true，根据官方的文档，意思是让这个命令在后台运行，但并不是一直运行，Docker容器后台运行,就必须有一个前台进程。主线程结束，容器会退出。</p>
 </blockquote>
-<blockquote>
-<p><a href="http://www.cnblogs.com/allenblogs/archive/2010/08/12/1798247.html" target="_blank" rel="noopener">http://www.cnblogs.com/allenblogs/archive/2010/08/12/1798247.html</a></p>
-</blockquote>
-<blockquote>
-<p><a href="http://www.cnblogs.com/Lam7/p/5454163.html" target="_blank" rel="noopener">http://www.cnblogs.com/Lam7/p/5454163.html</a></p>
-</blockquote>
-]]></content>
+<p>启动服务时</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker run --name alpine -d alpine tail -f /dev/null</span><br></pre></td></tr></table></figure>]]></content>
       <tags>
         <tag>linux</tag>
-        <tag>centos</tag>
-        <tag>服务器</tag>
+        <tag>docker</tag>
       </tags>
   </entry>
   <entry>
@@ -1739,6 +1739,33 @@
       </tags>
   </entry>
   <entry>
+    <title>Spring Bean生命周期</title>
+    <url>/2018/06/23/interview-about-SpringBean-s-lifecycle/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Spring Bean 的生命周期在整个 Spring 中占有很重要的位置，掌握这些可以加深对 Spring 的理解。</p>
+<p><img src="/2018/06/23/interview-about-SpringBean-s-lifecycle/1.jpg" alt="image"></p>
+<p>Spring上下文Bean的生命周期步骤如下</p>
+<p>1、实例化一个Bean－－也就是我们常说的new；</p>
+<p>2、按照Spring上下文对实例化的Bean进行配置－－也就是IOC注入；</p>
+<p>3、如果这个Bean已经实现了BeanNameAware接口，会调用它实现的setBeanName(String)方法，此处传递的就是Spring配置文件中Bean的id值</p>
+<p>4、如果这个Bean已经实现了BeanFactoryAware接口，会调用它实现的setBeanFactory(setBeanFactory(BeanFactory)传递的是Spring工厂自身（可以用这个方式来获取其它Bean，只需在Spring配置文件中配置一个普通的Bean就可以）；</p>
+<p>5、如果这个Bean已经实现了ApplicationContextAware接口，会调用setApplicationContext(ApplicationContext)方法，传入Spring上下文（同样这个方式也可以实现步骤4的内容，但比4更好，因为ApplicationContext是BeanFactory的子接口，有更多的实现方法）；</p>
+<p>6、如果这个Bean关联了BeanPostProcessor接口，将会调用postProcessBeforeInitialization(Object obj, String s)方法，BeanPostProcessor经常被用作是Bean内容的更改，并且由于这个是在Bean初始化结束时调用那个的方法，也可以被应用于内存或缓存技术；</p>
+<p>7、如果Bean实现了InitializingBean接口，Spring将调用他们的after-PropertiesSet()方法。类似地，如果Bean在Spring配置文件中配置了init-method属性会自动调用其配置的初始化方法。</p>
+<p>Bean定义文件中定义init-method<br>  在Bean定义文件中使用“init-method”属性设定方法名称，如下：<br><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"demoBean"</span> <span class="attr">class</span>=<span class="string">"com.yangsq.bean.DemoBean"</span> <span class="attr">init-method</span>=<span class="string">"initMethod"</span>&gt;</span></span><br><span class="line">  </span><br><span class="line">  .......</span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>这时会执行 <strong>initMethod()</strong> 方法，注意，这个方法是不带参数的。</p>
+<p>8、如果这个Bean关联了BeanPostProcessor接口，将会调用postProcessAfterInitialization(Object obj, String s)方法、；</p>
+<p>注：以上工作完成以后就可以应用这个Bean了，那这个Bean是一个Singleton的，所以一般情况下我们调用同一个id的Bean会是在内容地址相同的实例，当然在Spring配置文件中也可以配置非Singleton，这里我们不做赘述。</p>
+<p>9、当Bean不再需要时，会经过清理阶段，如果Bean实现了DisposableBean这个接口，会调用那个其实现的destroy()方法；</p>
+<p>10、最后，如果这个Bean的Spring配置中配置了destroy-method属性，会自动调用其配置的销毁方法。</p>
+<p>以上10步骤可以作为面试或者笔试的模板，另外我们这里描述的是应用Spring上下文Bean的生命周期，如果应用Spring的工厂也就是BeanFactory的话去掉第5步就Ok了。</p>
+]]></content>
+      <tags>
+        <tag>spring</tag>
+        <tag>ssm</tag>
+        <tag>面经</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>java后端开发实习面经</title>
     <url>/2018/07/21/interview-experience/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>快要大四了，所以趁着暑假赶集找了个java后端开发的实习，面试官非常注重基础，所以把这次面经记录下来以便之后可以补充下缺失的知识。</p>
@@ -1781,33 +1808,6 @@
         <tag>java</tag>
         <tag>面经</tag>
         <tag>数据结构与算法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Spring Bean生命周期</title>
-    <url>/2018/06/23/interview-about-SpringBean-s-lifecycle/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Spring Bean 的生命周期在整个 Spring 中占有很重要的位置，掌握这些可以加深对 Spring 的理解。</p>
-<p><img src="/2018/06/23/interview-about-SpringBean-s-lifecycle/1.jpg" alt="image"></p>
-<p>Spring上下文Bean的生命周期步骤如下</p>
-<p>1、实例化一个Bean－－也就是我们常说的new；</p>
-<p>2、按照Spring上下文对实例化的Bean进行配置－－也就是IOC注入；</p>
-<p>3、如果这个Bean已经实现了BeanNameAware接口，会调用它实现的setBeanName(String)方法，此处传递的就是Spring配置文件中Bean的id值</p>
-<p>4、如果这个Bean已经实现了BeanFactoryAware接口，会调用它实现的setBeanFactory(setBeanFactory(BeanFactory)传递的是Spring工厂自身（可以用这个方式来获取其它Bean，只需在Spring配置文件中配置一个普通的Bean就可以）；</p>
-<p>5、如果这个Bean已经实现了ApplicationContextAware接口，会调用setApplicationContext(ApplicationContext)方法，传入Spring上下文（同样这个方式也可以实现步骤4的内容，但比4更好，因为ApplicationContext是BeanFactory的子接口，有更多的实现方法）；</p>
-<p>6、如果这个Bean关联了BeanPostProcessor接口，将会调用postProcessBeforeInitialization(Object obj, String s)方法，BeanPostProcessor经常被用作是Bean内容的更改，并且由于这个是在Bean初始化结束时调用那个的方法，也可以被应用于内存或缓存技术；</p>
-<p>7、如果Bean实现了InitializingBean接口，Spring将调用他们的after-PropertiesSet()方法。类似地，如果Bean在Spring配置文件中配置了init-method属性会自动调用其配置的初始化方法。</p>
-<p>Bean定义文件中定义init-method<br>  在Bean定义文件中使用“init-method”属性设定方法名称，如下：<br><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"demoBean"</span> <span class="attr">class</span>=<span class="string">"com.yangsq.bean.DemoBean"</span> <span class="attr">init-method</span>=<span class="string">"initMethod"</span>&gt;</span></span><br><span class="line">  </span><br><span class="line">  .......</span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>这时会执行 <strong>initMethod()</strong> 方法，注意，这个方法是不带参数的。</p>
-<p>8、如果这个Bean关联了BeanPostProcessor接口，将会调用postProcessAfterInitialization(Object obj, String s)方法、；</p>
-<p>注：以上工作完成以后就可以应用这个Bean了，那这个Bean是一个Singleton的，所以一般情况下我们调用同一个id的Bean会是在内容地址相同的实例，当然在Spring配置文件中也可以配置非Singleton，这里我们不做赘述。</p>
-<p>9、当Bean不再需要时，会经过清理阶段，如果Bean实现了DisposableBean这个接口，会调用那个其实现的destroy()方法；</p>
-<p>10、最后，如果这个Bean的Spring配置中配置了destroy-method属性，会自动调用其配置的销毁方法。</p>
-<p>以上10步骤可以作为面试或者笔试的模板，另外我们这里描述的是应用Spring上下文Bean的生命周期，如果应用Spring的工厂也就是BeanFactory的话去掉第5步就Ok了。</p>
-]]></content>
-      <tags>
-        <tag>面经</tag>
-        <tag>spring</tag>
-        <tag>ssm</tag>
       </tags>
   </entry>
   <entry>
@@ -2587,30 +2587,12 @@
         <tag>java</tag>
         <tag>linux</tag>
         <tag>服务器</tag>
-        <tag>面经</tag>
         <tag>spring</tag>
         <tag>ssm</tag>
+        <tag>面经</tag>
         <tag>springMVC</tag>
         <tag>Mybatis</tag>
         <tag>MVC</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>关于数据库写入Emoji表情的报错的解决方法</title>
-    <url>/2018/12/12/jdbc-emoji-bug/</url>
-    <content><![CDATA[<p>这两天写GooglePlay爬虫的时候发现入库数量与redis中的数量不一致, 翻看lockback日志发现部分插入语句报错，特此记录。</p>
-<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>在执行sql时， 控制台抛出异常<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">java.sql.SQLException: </span><br><span class="line">    Incorrect string value: &apos;\xF0\x9F\x92\x94&apos; for column &apos;name&apos; ...</span><br></pre></td></tr></table></figure></p>
-<h1 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h1><p>Emoji表情符号为4个字节的字符，而 utf8 字符集只支持1-3个字节的字符，导致无法写入数据库。</p>
-<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><ul>
-<li>修改MySQL数据库字符集， 把数据库字符集从utf8 修改为支持1-4 个字节字符的utf8mb4.</li>
-</ul>
-<p>若采用java的jdbc来进行入库操作, 则需要额外地升级驱动的版本到5.1.13版本或更高.</p>
-<p>以gradle为例(maven类似):</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    compile(&quot;mysql:mysql-connector-java:5.1.13&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>java</tag>
-        <tag>jdbc</tag>
-        <tag>mysql</tag>
       </tags>
   </entry>
   <entry>
@@ -2711,6 +2693,24 @@
       <tags>
         <tag>java</tag>
         <tag>jsp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于数据库写入Emoji表情的报错的解决方法</title>
+    <url>/2018/12/12/jdbc-emoji-bug/</url>
+    <content><![CDATA[<p>这两天写GooglePlay爬虫的时候发现入库数量与redis中的数量不一致, 翻看lockback日志发现部分插入语句报错，特此记录。</p>
+<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>在执行sql时， 控制台抛出异常<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">java.sql.SQLException: </span><br><span class="line">    Incorrect string value: &apos;\xF0\x9F\x92\x94&apos; for column &apos;name&apos; ...</span><br></pre></td></tr></table></figure></p>
+<h1 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h1><p>Emoji表情符号为4个字节的字符，而 utf8 字符集只支持1-3个字节的字符，导致无法写入数据库。</p>
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><ul>
+<li>修改MySQL数据库字符集， 把数据库字符集从utf8 修改为支持1-4 个字节字符的utf8mb4.</li>
+</ul>
+<p>若采用java的jdbc来进行入库操作, 则需要额外地升级驱动的版本到5.1.13版本或更高.</p>
+<p>以gradle为例(maven类似):</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    compile(&quot;mysql:mysql-connector-java:5.1.13&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>java</tag>
+        <tag>jdbc</tag>
+        <tag>mysql</tag>
       </tags>
   </entry>
   <entry>
@@ -3155,30 +3155,6 @@
       </tags>
   </entry>
   <entry>
-    <title>PHP加密URL地址</title>
-    <url>/2017/09/15/url-encode/</url>
-    <content><![CDATA[<h1 id="转-分享如何使用PHP将URL地址参数进行加密传输提高网站安全性"><a href="#转-分享如何使用PHP将URL地址参数进行加密传输提高网站安全性" class="headerlink" title="[转]分享如何使用PHP将URL地址参数进行加密传输提高网站安全性"></a>[转]分享如何使用PHP将URL地址参数进行加密传输提高网站安全性</h1><p> 大家在使用PHP进行GET或POST提交数据时，<br> 经常会在URL带着参数进行传递，<br> 比如<a href="http://www.mdaima.com/get.php?id=1&amp;page=5，" target="_blank" rel="noopener">www.mdaima.com/get.php?id=1&amp;page=5，</a><br> 这里就将id编号和page页码进行了参数传递，<br> 如果这样直接明文传输，<br> 会将参数直接暴露给用户，<br> 要是是比较重要的数据这样传输我觉得还是不太安全。<br> 那如果将参数变成下面这样，<br> 是不是会好点呢？</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">www.mdaima.com/get.php?VGsAYQ96VzkEaF08DTxTLQIyDmsBIQtnVj0Fe1ciAD0EN1M0X2MHMQYxDDcAOwI%2FXToBPVM5ADxfag%3D%3D</span><br></pre></td></tr></table></figure>
-<p>我们再加强一下，<br>将get.php重命名改为get_mb.php，<br>然后利用静态规则，<br>把get.html映射到get_mb.php，<br>这样即使用户试着访问get.php也无法找到真实的PHP文件了，<br>因为真实的PHP文件不是get.php而是get_mb.php，<br>以下是.htaccess规则设置</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">RewriteRule ^get.html$ get_mb.php?&amp;%&#123;QUERY_STRING&#125;   #.htaccess伪静态规则的设置（加入到.htaccess里就行）</span><br></pre></td></tr></table></figure>
-<p>利用加密再配合伪静态设置，<br>最终效果就是下面这样了，<br>即隐藏了真实php文件get_mb.php又将参数都加密传输了。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">www.mdaima.com/get.html?VGsAYQ96VzkEaF08DTxTLQIyDmsBIQtnVj0Fe1ciAD0EN1M0X2MHMQYxDDcAOwI%2FXToBPVM5ADxfag%3D%3D</span><br></pre></td></tr></table></figure>
-<p>相比之下已经好一些了吧，<br>至少看上去会好很多，<br>那如何进行加密和解密呢？<br>请看下面函数（不用细看，直接拿过去用就行了，重点看如果调用）</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">//---------------以下为加密函数（复制过去就行了）-----------------</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">keyED</span><span class="params">($txt,$encrypt_key)</span></span>&#123;       </span><br><span class="line">    $encrypt_key =    md5($encrypt_key);</span><br><span class="line">    $ctr=<span class="number">0</span>;       </span><br><span class="line">    $tmp = <span class="string">""</span>;       </span><br><span class="line">    <span class="keyword">for</span>($i=<span class="number">0</span>;$i&lt;strlen($txt);$i++)       </span><br><span class="line">    &#123;           </span><br><span class="line">        <span class="keyword">if</span> ($ctr==strlen($encrypt_key))</span><br><span class="line">        $ctr=<span class="number">0</span>;           </span><br><span class="line">        $tmp.= substr($txt,$i,<span class="number">1</span>) ^ substr($encrypt_key,$ctr,<span class="number">1</span>);</span><br><span class="line">        $ctr++;       </span><br><span class="line">    &#125;       </span><br><span class="line">    <span class="keyword">return</span> $tmp;   </span><br><span class="line">&#125;    </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">encrypt</span><span class="params">($txt,$key)</span>   </span>&#123;</span><br><span class="line">    $encrypt_key = md5(mt_rand(<span class="number">0</span>,<span class="number">100</span>));</span><br><span class="line">    $ctr=<span class="number">0</span>;       </span><br><span class="line">    $tmp = <span class="string">""</span>;      </span><br><span class="line">     <span class="keyword">for</span> ($i=<span class="number">0</span>;$i&lt;strlen($txt);$i++)       </span><br><span class="line">     &#123;</span><br><span class="line">        <span class="keyword">if</span> ($ctr==strlen($encrypt_key))</span><br><span class="line">            $ctr=<span class="number">0</span>;           </span><br><span class="line">        $tmp.=substr($encrypt_key,$ctr,<span class="number">1</span>) </span><br><span class="line">            . (substr($txt,$i,<span class="number">1</span>) </span><br><span class="line">            ^ substr($encrypt_key,$ctr,<span class="number">1</span>));</span><br><span class="line">        $ctr++;       </span><br><span class="line">     &#125;       </span><br><span class="line">     <span class="keyword">return</span> keyED($tmp,$key);</span><br><span class="line">&#125; </span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">decrypt</span><span class="params">($txt,$key)</span></span>&#123;       </span><br><span class="line">    $txt = keyED($txt,$key);       </span><br><span class="line">    $tmp = <span class="string">""</span>;       </span><br><span class="line">    <span class="keyword">for</span>($i=<span class="number">0</span>;$i&lt;strlen($txt);$i++)       </span><br><span class="line">    &#123;           </span><br><span class="line">        $md5 = substr($txt,$i,<span class="number">1</span>);</span><br><span class="line">        $i++;           </span><br><span class="line">        $tmp.= (substr($txt,$i,<span class="number">1</span>) ^ $md5);       </span><br><span class="line">    &#125;       </span><br><span class="line">    <span class="keyword">return</span> $tmp;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">encrypt_url</span><span class="params">($url,$key)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> rawurlencode(base64_encode(encrypt($url,$key)));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">decrypt_url</span><span class="params">($url,$key)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> decrypt(base64_decode(rawurldecode($url)),$key);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">geturl</span><span class="params">($str,$key)</span></span>&#123;</span><br><span class="line">    $str = decrypt_url($str,$key);</span><br><span class="line">    $url_array = explode(<span class="string">'&amp;'</span>,$str);</span><br><span class="line">    <span class="keyword">if</span> (is_array($url_array))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">foreach</span> ($url_array <span class="keyword">as</span> $var)</span><br><span class="line">        &#123;</span><br><span class="line">            $var_array = explode(<span class="string">"="</span>,$var);</span><br><span class="line">            $vars[$var_array[<span class="number">0</span>]]=$var_array[<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> $vars;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">$key_url_md_5 = <span class="string">'mdaima.com-123-scc'</span>; <span class="comment">//可以更换为其它的加密标记，可以自由发挥</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">//---------------以上为加密函数-结束（复制过去就行了）-----------------</span></span><br></pre></td></tr></table></figure>
-<p>以上这个是关键的加密与解密函数，<br>下面看一下如何调用，<br>我们举例说一下将表单action中参数id和page进行加密并加入时间戳一起，<br>这样每次的链接地址都是动态的，<br>而且可以在接收页面设置页面限制超时的有效期了。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">id</span>=<span class="string">"form1"</span> <span class="attr">name</span>=<span class="string">"form1"</span> <span class="attr">method</span>=<span class="string">"post"</span> </span></span><br><span class="line"><span class="tag"><span class="attr">action</span>=<span class="string">"?&lt;?=encrypt_url("</span><span class="attr">id</span>=<span class="string">1&amp;page</span>=<span class="string">5</span>"<span class="attr">.</span>"&amp;<span class="attr">time</span>=<span class="string">".time(),$key_url_md_5)?&gt;"</span></span></span><br><span class="line"><span class="tag"> <span class="attr">enctype</span>=<span class="string">"multipart/form-data"</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>上面就是如何加密参数。再看一下如何解密接收到的参数：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">$url_info = geturl($_SERVER[QUERY_STRING],$key_url_md_5);<span class="comment">//接收所有参数</span></span><br><span class="line">$page=$url_info[<span class="string">'page'</span>];<span class="comment">//解密对应参数</span></span><br><span class="line">$id=$url_info[<span class="string">'id'</span>];</span><br><span class="line">$time=$url_info[<span class="string">'time'</span>];<span class="comment">//这个是时间戳，大家可以利用这个参数判断一下</span></span><br><span class="line"><span class="comment">//链接生成的时间，就可以判断是否超时了（此项如果不需要也可以忽略）</span></span><br></pre></td></tr></table></figure>
-<p>这样我们就得到了解密的$page和$id参数了，大家试一下吧，有问题也可以联系我！</p>
-<blockquote>
-<p>转载请注明：<a href="http://www.mdaima.com/jingyan/36.html" target="_blank" rel="noopener">分享如何使用PHP将URL地址参数进行加密传输提高网站安全性 | 码代码-李雷博客</a></p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>PHP</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>模板方法模式</title>
     <url>/2019/08/18/template-method-pattern/</url>
     <content><![CDATA[<h1 id="模板方法模式"><a href="#模板方法模式" class="headerlink" title="模板方法模式"></a>模板方法模式</h1><h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><p>冲茶与冲咖啡的步骤?</p>
@@ -3234,6 +3210,30 @@
       <tags>
         <tag>设计模式</tag>
         <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PHP加密URL地址</title>
+    <url>/2017/09/15/url-encode/</url>
+    <content><![CDATA[<h1 id="转-分享如何使用PHP将URL地址参数进行加密传输提高网站安全性"><a href="#转-分享如何使用PHP将URL地址参数进行加密传输提高网站安全性" class="headerlink" title="[转]分享如何使用PHP将URL地址参数进行加密传输提高网站安全性"></a>[转]分享如何使用PHP将URL地址参数进行加密传输提高网站安全性</h1><p> 大家在使用PHP进行GET或POST提交数据时，<br> 经常会在URL带着参数进行传递，<br> 比如<a href="http://www.mdaima.com/get.php?id=1&amp;page=5，" target="_blank" rel="noopener">www.mdaima.com/get.php?id=1&amp;page=5，</a><br> 这里就将id编号和page页码进行了参数传递，<br> 如果这样直接明文传输，<br> 会将参数直接暴露给用户，<br> 要是是比较重要的数据这样传输我觉得还是不太安全。<br> 那如果将参数变成下面这样，<br> 是不是会好点呢？</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">www.mdaima.com/get.php?VGsAYQ96VzkEaF08DTxTLQIyDmsBIQtnVj0Fe1ciAD0EN1M0X2MHMQYxDDcAOwI%2FXToBPVM5ADxfag%3D%3D</span><br></pre></td></tr></table></figure>
+<p>我们再加强一下，<br>将get.php重命名改为get_mb.php，<br>然后利用静态规则，<br>把get.html映射到get_mb.php，<br>这样即使用户试着访问get.php也无法找到真实的PHP文件了，<br>因为真实的PHP文件不是get.php而是get_mb.php，<br>以下是.htaccess规则设置</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">RewriteRule ^get.html$ get_mb.php?&amp;%&#123;QUERY_STRING&#125;   #.htaccess伪静态规则的设置（加入到.htaccess里就行）</span><br></pre></td></tr></table></figure>
+<p>利用加密再配合伪静态设置，<br>最终效果就是下面这样了，<br>即隐藏了真实php文件get_mb.php又将参数都加密传输了。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">www.mdaima.com/get.html?VGsAYQ96VzkEaF08DTxTLQIyDmsBIQtnVj0Fe1ciAD0EN1M0X2MHMQYxDDcAOwI%2FXToBPVM5ADxfag%3D%3D</span><br></pre></td></tr></table></figure>
+<p>相比之下已经好一些了吧，<br>至少看上去会好很多，<br>那如何进行加密和解密呢？<br>请看下面函数（不用细看，直接拿过去用就行了，重点看如果调用）</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">//---------------以下为加密函数（复制过去就行了）-----------------</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">keyED</span><span class="params">($txt,$encrypt_key)</span></span>&#123;       </span><br><span class="line">    $encrypt_key =    md5($encrypt_key);</span><br><span class="line">    $ctr=<span class="number">0</span>;       </span><br><span class="line">    $tmp = <span class="string">""</span>;       </span><br><span class="line">    <span class="keyword">for</span>($i=<span class="number">0</span>;$i&lt;strlen($txt);$i++)       </span><br><span class="line">    &#123;           </span><br><span class="line">        <span class="keyword">if</span> ($ctr==strlen($encrypt_key))</span><br><span class="line">        $ctr=<span class="number">0</span>;           </span><br><span class="line">        $tmp.= substr($txt,$i,<span class="number">1</span>) ^ substr($encrypt_key,$ctr,<span class="number">1</span>);</span><br><span class="line">        $ctr++;       </span><br><span class="line">    &#125;       </span><br><span class="line">    <span class="keyword">return</span> $tmp;   </span><br><span class="line">&#125;    </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">encrypt</span><span class="params">($txt,$key)</span>   </span>&#123;</span><br><span class="line">    $encrypt_key = md5(mt_rand(<span class="number">0</span>,<span class="number">100</span>));</span><br><span class="line">    $ctr=<span class="number">0</span>;       </span><br><span class="line">    $tmp = <span class="string">""</span>;      </span><br><span class="line">     <span class="keyword">for</span> ($i=<span class="number">0</span>;$i&lt;strlen($txt);$i++)       </span><br><span class="line">     &#123;</span><br><span class="line">        <span class="keyword">if</span> ($ctr==strlen($encrypt_key))</span><br><span class="line">            $ctr=<span class="number">0</span>;           </span><br><span class="line">        $tmp.=substr($encrypt_key,$ctr,<span class="number">1</span>) </span><br><span class="line">            . (substr($txt,$i,<span class="number">1</span>) </span><br><span class="line">            ^ substr($encrypt_key,$ctr,<span class="number">1</span>));</span><br><span class="line">        $ctr++;       </span><br><span class="line">     &#125;       </span><br><span class="line">     <span class="keyword">return</span> keyED($tmp,$key);</span><br><span class="line">&#125; </span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">decrypt</span><span class="params">($txt,$key)</span></span>&#123;       </span><br><span class="line">    $txt = keyED($txt,$key);       </span><br><span class="line">    $tmp = <span class="string">""</span>;       </span><br><span class="line">    <span class="keyword">for</span>($i=<span class="number">0</span>;$i&lt;strlen($txt);$i++)       </span><br><span class="line">    &#123;           </span><br><span class="line">        $md5 = substr($txt,$i,<span class="number">1</span>);</span><br><span class="line">        $i++;           </span><br><span class="line">        $tmp.= (substr($txt,$i,<span class="number">1</span>) ^ $md5);       </span><br><span class="line">    &#125;       </span><br><span class="line">    <span class="keyword">return</span> $tmp;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">encrypt_url</span><span class="params">($url,$key)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> rawurlencode(base64_encode(encrypt($url,$key)));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">decrypt_url</span><span class="params">($url,$key)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> decrypt(base64_decode(rawurldecode($url)),$key);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">geturl</span><span class="params">($str,$key)</span></span>&#123;</span><br><span class="line">    $str = decrypt_url($str,$key);</span><br><span class="line">    $url_array = explode(<span class="string">'&amp;'</span>,$str);</span><br><span class="line">    <span class="keyword">if</span> (is_array($url_array))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">foreach</span> ($url_array <span class="keyword">as</span> $var)</span><br><span class="line">        &#123;</span><br><span class="line">            $var_array = explode(<span class="string">"="</span>,$var);</span><br><span class="line">            $vars[$var_array[<span class="number">0</span>]]=$var_array[<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> $vars;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">$key_url_md_5 = <span class="string">'mdaima.com-123-scc'</span>; <span class="comment">//可以更换为其它的加密标记，可以自由发挥</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">//---------------以上为加密函数-结束（复制过去就行了）-----------------</span></span><br></pre></td></tr></table></figure>
+<p>以上这个是关键的加密与解密函数，<br>下面看一下如何调用，<br>我们举例说一下将表单action中参数id和page进行加密并加入时间戳一起，<br>这样每次的链接地址都是动态的，<br>而且可以在接收页面设置页面限制超时的有效期了。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">id</span>=<span class="string">"form1"</span> <span class="attr">name</span>=<span class="string">"form1"</span> <span class="attr">method</span>=<span class="string">"post"</span> </span></span><br><span class="line"><span class="tag"><span class="attr">action</span>=<span class="string">"?&lt;?=encrypt_url("</span><span class="attr">id</span>=<span class="string">1&amp;page</span>=<span class="string">5</span>"<span class="attr">.</span>"&amp;<span class="attr">time</span>=<span class="string">".time(),$key_url_md_5)?&gt;"</span></span></span><br><span class="line"><span class="tag"> <span class="attr">enctype</span>=<span class="string">"multipart/form-data"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>上面就是如何加密参数。再看一下如何解密接收到的参数：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">$url_info = geturl($_SERVER[QUERY_STRING],$key_url_md_5);<span class="comment">//接收所有参数</span></span><br><span class="line">$page=$url_info[<span class="string">'page'</span>];<span class="comment">//解密对应参数</span></span><br><span class="line">$id=$url_info[<span class="string">'id'</span>];</span><br><span class="line">$time=$url_info[<span class="string">'time'</span>];<span class="comment">//这个是时间戳，大家可以利用这个参数判断一下</span></span><br><span class="line"><span class="comment">//链接生成的时间，就可以判断是否超时了（此项如果不需要也可以忽略）</span></span><br></pre></td></tr></table></figure>
+<p>这样我们就得到了解密的$page和$id参数了，大家试一下吧，有问题也可以联系我！</p>
+<blockquote>
+<p>转载请注明：<a href="http://www.mdaima.com/jingyan/36.html" target="_blank" rel="noopener">分享如何使用PHP将URL地址参数进行加密传输提高网站安全性 | 码代码-李雷博客</a></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>PHP</tag>
       </tags>
   </entry>
   <entry>
