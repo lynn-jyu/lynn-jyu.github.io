@@ -44,6 +44,202 @@
       </tags>
   </entry>
   <entry>
+    <title>ajax学习</title>
+    <url>/2017/07/08/ajax/</url>
+    <content><![CDATA[<h1 id="Ajax全称-Asynchronous-Javascript-And-XML（异步JavaScript和XML）"><a href="#Ajax全称-Asynchronous-Javascript-And-XML（异步JavaScript和XML）" class="headerlink" title="Ajax全称 Asynchronous Javascript And XML（异步JavaScript和XML）"></a>Ajax全称 Asynchronous Javascript And XML（异步JavaScript和XML）</h1><h1 id="XMLHttpRequest对象-以下简称xhr"><a href="#XMLHttpRequest对象-以下简称xhr" class="headerlink" title="XMLHttpRequest对象(以下简称xhr)"></a>XMLHttpRequest对象(以下简称xhr)</h1><p>XMLHttpRequest对象(以下简称xhr)</p>
+<ul>
+<li>异步 通过对象XMLHttpRequest   -&gt; 后台与服务器之间异步交换数据</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> request;</span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">window</span>.XMLHttpRequest)&#123;</span><br><span class="line"></span><br><span class="line">       request=<span class="keyword">new</span> XMLHttpRequest();   <span class="comment">//IE7+,Firefox,Chrome,Opera，Safari</span></span><br><span class="line"></span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line"></span><br><span class="line">request=<span class="keyword">new</span> ActiveXObject（<span class="string">"Microsoft.XMLHTTP"</span>）;<span class="comment">//IE6,IE5</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="一个完整的http请求过程"><a href="#一个完整的http请求过程" class="headerlink" title="一个完整的http请求过程:"></a>一个完整的http请求过程:</h2><ol>
+<li>建立TCP连接</li>
+<li>Web浏览器向Web服务器发送请求命令</li>
+<li>Web浏览器发送请求头信息</li>
+<li>Web服务器应答</li>
+<li>Web服务器发送应答头信息</li>
+<li>Web服务器向浏览器发送数据</li>
+<li>Web服务器关闭TCP连接</li>
+</ol>
+<h2 id="http请求的4部分"><a href="#http请求的4部分" class="headerlink" title="http请求的4部分"></a>http请求的4部分</h2><ol>
+<li>请求方法（post、get之类）</li>
+<li>请求的url</li>
+<li>请求头（环境信息、身份安全信息等）</li>
+<li>请求体（提交的表单、数据等）</li>
+</ol>
+<h2 id="http响应的组成"><a href="#http响应的组成" class="headerlink" title="http响应的组成"></a>http响应的组成</h2><ol>
+<li>一个由数字和文字组成的状态码 用于显示请求成功或失败</li>
+<li>响应头（服务器相关信息，类型、日期、名称之类）</li>
+<li>响应体</li>
+</ol>
+<h2 id="http状态码"><a href="#http状态码" class="headerlink" title="http状态码"></a>http状态码</h2><ul>
+<li>1开头的：信息类表示手打搜web浏览器请求，正在进一步处理中</li>
+<li>2开头的：成功，表示用户请求被正确接受，理解和处理，如 200</li>
+<li>3开头的：重定向，表示请求没有成功，客户必须采取进一步的动作</li>
+<li>4开头的：客户端错误，表示客户端提交的请求有错误404</li>
+<li>5开头的：服务器错误，表示服务器不能完成对请求的处理500</li>
+</ul>
+<h1 id="xhr发送请求"><a href="#xhr发送请求" class="headerlink" title="xhr发送请求"></a>xhr发送请求</h1><h2 id="open方法"><a href="#open方法" class="headerlink" title="open方法"></a>open方法</h2><ol>
+<li>参数：</li>
+</ol>
+<ul>
+<li>method：发送请求方法，get方式还是post方式，不区分大小写，一般使用大写。</li>
+<li>url：请求地址，可以使用相对地址，也就是相对文档的地址，也可以使用绝对地址。</li>
+<li>async：请求同步/异步，一般使用异步请求，这个参数就是true，如要使用同步的话，就是false。默认的是true(异步)，所以，如果是异步请求的话，这个参数可以不写。</li>
+</ul>
+<h2 id="send方法"><a href="#send方法" class="headerlink" title="send方法"></a>send方法</h2><ol>
+<li>send方法将请求发送到服务器上</li>
+<li>参数：</li>
+</ol>
+<ul>
+<li>string:<br>①使用get请求时，实际是没有主体的，所有的参数都拼在url中，所以send参数可以不填，或者填写null。<br>②post请求时，send请求一定要有参数。</li>
+</ul>
+<h2 id="setRequestHeader方法"><a href="#setRequestHeader方法" class="headerlink" title="setRequestHeader方法"></a>setRequestHeader方法</h2><ol>
+<li>设置http的头信息，告诉web服务器要发送一个表单的话，设置Content-type为application/x-www-form-urlencoded。</li>
+<li>Content-type有2种，一般用application/x-www-form-urlencoded，一般如果不发送文件，都采用这种方式。</li>
+<li>request.setRequestHeader()要写在open()和send（）中间，否则会抛出异常。</li>
+</ol>
+<h1 id="服务器响应"><a href="#服务器响应" class="headerlink" title="服务器响应"></a>服务器响应</h1><h2 id="服务器响应成功时得到通知"><a href="#服务器响应成功时得到通知" class="headerlink" title="服务器响应成功时得到通知"></a>服务器响应成功时得到通知</h2><p>readyState属性</p>
+<ul>
+<li>0：请求还未初始化，open还没有调用</li>
+<li>1：服务器连接已建立，open已经调用了</li>
+<li>2：请求已接收，也就是接收到头信息了</li>
+<li>3：请求处理中，也就是接收到响应主体了</li>
+<li>4：请求已完成，且响应已就绪，也就是响应完成了</li>
+</ul>
+<h2 id="获取响应值："><a href="#获取响应值：" class="headerlink" title="获取响应值："></a>获取响应值：</h2><ul>
+<li>responseText  获取字符串形式的响应数据</li>
+<li>responseXML   获得XML形式的响应数据  （一般用JSON）</li>
+<li>status和statusText   以数字和文本形式返回HTTP状态码</li>
+<li>getAllResponseHeader()   获取所有的响应报头</li>
+<li>getResponseHeader()   查询响应中的某个字段的值</li>
+</ul>
+<h1 id="总结-完整使用步骤"><a href="#总结-完整使用步骤" class="headerlink" title="总结 完整使用步骤"></a>总结 完整使用步骤</h1><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//第一步</span></span><br><span class="line">    <span class="keyword">var</span> request=<span class="keyword">new</span> XMLHttpRequest();   <span class="comment">//new一个XHR对象</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//第二步 </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    request.open(<span class="string">'GET'</span>,<span class="string">'get.php'</span>,<span class="literal">true</span>);  <span class="comment">//open一个方法</span></span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"><span class="comment">//第三步 </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    request.send();   <span class="comment">//发送数据</span></span><br><span class="line"></span><br><span class="line">   </span><br><span class="line"></span><br><span class="line"><span class="comment">//第四步 </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    request.onreadystatechange=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(request.readyState===<span class="number">4</span>&amp;&amp;request.status===<span class="number">200</span>)&#123;</span><br><span class="line">        <span class="comment">//做一些事情 </span></span><br><span class="line">        <span class="comment">//对响应进行监听：判断响应结果</span></span><br><span class="line">        request.responseText&#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><blockquote>
+<p><a href="jsonlint.com">jsonlint.com 一个很好的校验json格式的网站</a></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>ajax</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>适配器模式&amp;外观模式</title>
+    <url>/2019/05/19/adapter-facade_pattern/</url>
+    <content><![CDATA[<p>[toc]</p>
+<h1 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h1><h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><p>什么是适配器?</p>
+<p>可以理解成插头转换器</p>
+<p>现实中的插头转换器可以把你的插头转换成另一种规格的插头,比如你的标准交流电插口在欧式插座中不能使用,但是只需要加一个转换器,就可以完美匹配.</p>
+<p>OO适配器也是一样的作用:将一个接口转换成另一个接口.</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="简单实现"><a href="#简单实现" class="headerlink" title="简单实现"></a>简单实现</h3><p>拿一开始的策略模式时使用的Duck例子</p>
+<p>Duck接口:<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Duck</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">quack</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>绿头鸭实例:<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MallardDuck</span> <span class="keyword">implements</span> <span class="title">Duck</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">quack</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Quack"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"I'm flying"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Turkey接口:<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Turkey</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">gobble</span><span class="params">()</span></span>;<span class="comment">// 与Duck的quack叫声不同</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>WildTurkey实例:<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WildTurkey</span> <span class="keyword">implements</span> <span class="title">Turkey</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">gobble</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Gobble gobble"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"I'm flying a short distance"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>现在我们想用火鸡对象来冒充鸭子, 简单来说就是当做鸭子来用,这时候 因为各自的接口不同,我们不能直接使用.</p>
+<p>这时候写一个适配器</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TurkeyAdapter</span> <span class="keyword">implements</span> <span class="title">Duck</span> </span>&#123;</span><br><span class="line">    Turkey turkey;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TurkeyAdapter</span><span class="params">(Turkey turkey)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.turkey = turkey;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">quack</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        turkey.gobble();</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">            turkey.fly();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这时候我们就可以使用<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Duck TurkeyAdapter = <span class="keyword">new</span> TurkeyAdapter(<span class="keyword">new</span> WildTurkey());</span><br></pre></td></tr></table></figure></p>
+<p>写一个TestCase:<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> class <span class="title">DuckTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    MallardDuck duck = <span class="keyword">new</span> MallardDuck();</span><br><span class="line">    </span><br><span class="line">    WildTurkey turkey = <span class="keyword">new</span> WildTurkey();</span><br><span class="line">    Duck turkeyAdapter = <span class="keyword">new</span> TurkeyAdapter(turkey);</span><br><span class="line">    </span><br><span class="line">    System.out.println(<span class="string">"The turkey says..."</span>)</span><br><span class="line">    turkey.gobble();</span><br><span class="line">    turkey.fly();</span><br><span class="line">    </span><br><span class="line">    System.out.println(<span class="string">"The Duck says..."</span>);</span><br><span class="line">    duck.quack();</span><br><span class="line">    duck.fly();</span><br><span class="line">    </span><br><span class="line">    System.out.println(<span class="string">"The TurkeyAdapter says..."</span>);</span><br><span class="line">    turkeyAdapter.quack();</span><br><span class="line">    turkeyAdapter.fly();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="拓展实现"><a href="#拓展实现" class="headerlink" title="拓展实现"></a>拓展实现</h3><p>参考org.apache.commons的EnumerationIterator</p>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><h3 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h3><p>客户—-&gt;request()—-&gt;Adapter—-&gt;translateRequest()—-&gt;被适配者</p>
+<h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><blockquote>
+<p>适配器模式将一个类的接口,转换成客户期望的另一个接口.适配器让原本接口不兼容的类可以合作无间.</p>
+</blockquote>
+<p>uml 类图:</p>
+<html><br><!--在这里插入内容--><br><iframe id="embed_dom" name="embed_dom" frameborder="0" style="display:block;width:100%; height:500px;" src="https://www.processon.com/embed/5d469bcae4b02c6fb7828752"></iframe><br></html>
+
+<h2 id="拓展思考"><a href="#拓展思考" class="headerlink" title="拓展思考"></a>拓展思考</h2><p>与前面的装饰者模式有何区别?</p>
+<h1 id="外观模式"><a href="#外观模式" class="headerlink" title="外观模式"></a>外观模式</h1><h2 id="思考-1"><a href="#思考-1" class="headerlink" title="思考"></a>思考</h2><p>当我们需要组装一个家庭影院并播放电影,我们需要做哪些事情呢?</p>
+<ol>
+<li>打开爆米花机</li>
+<li>开始爆米花</li>
+<li>将灯光调暗</li>
+<li>放下屏幕</li>
+<li>打开投影机</li>
+<li>将投影机输入切换到DVD</li>
+<li>设置宽屏</li>
+<li>打开功放</li>
+<li>功放输入设置为DVD</li>
+<li>将功放设置为环绕立体声</li>
+<li>设置功放音量</li>
+<li>打开DVD播放器</li>
+<li>开始播放DVD</li>
+</ol>
+<p>想一下转换成类和方法的调用:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">popper.on();</span><br><span class="line">popper.pop();</span><br><span class="line"></span><br><span class="line">lights.dim(10);</span><br><span class="line"></span><br><span class="line">screen.down();</span><br><span class="line"></span><br><span class="line">projector.on();</span><br><span class="line">projector.setInput(dvd);</span><br><span class="line">projector.wideScreenMode();</span><br><span class="line"></span><br><span class="line">amp.on();</span><br><span class="line">amp.setDvd(dvd);</span><br><span class="line">amp.setSurroundSound();</span><br><span class="line">amp.setVolumn(5);</span><br><span class="line"></span><br><span class="line">dvd.on();</span><br><span class="line">dvd.play(movie);</span><br></pre></td></tr></table></figure>
+<p>是不是很多、很混乱而且不优雅 ? </p>
+<h2 id="实现-1"><a href="#实现-1" class="headerlink" title="实现"></a>实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HomeTheaterFacade</span> </span>&#123;</span><br><span class="line">    Amplifier amp;</span><br><span class="line">    Tuner tuner;</span><br><span class="line">    DvdPlayer dvd;</span><br><span class="line">    CdPlayer cd;</span><br><span class="line">    Projector projector;</span><br><span class="line">    Lights lights;</span><br><span class="line">    Screen screen;</span><br><span class="line">    PopcornPopper popper;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">HomeTheaterFacade</span><span class="params">(Amplifier amp,</span></span></span><br><span class="line"><span class="function"><span class="params">            Tuner tuner,</span></span></span><br><span class="line"><span class="function"><span class="params">            DvdPlayer dvd,</span></span></span><br><span class="line"><span class="function"><span class="params">            CdPlayer cd,</span></span></span><br><span class="line"><span class="function"><span class="params">            Projector projector,</span></span></span><br><span class="line"><span class="function"><span class="params">            Lights lights,</span></span></span><br><span class="line"><span class="function"><span class="params">            Screen screen,</span></span></span><br><span class="line"><span class="function"><span class="params">            PopcornPopper popper)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.amp = amp;</span><br><span class="line">        <span class="keyword">this</span>.tuner = tuner;</span><br><span class="line">        <span class="keyword">this</span>.dvd = dvd;</span><br><span class="line">        <span class="keyword">this</span>.cd = cd;</span><br><span class="line">        <span class="keyword">this</span>.projector = projector;</span><br><span class="line">        <span class="keyword">this</span>.screen = screen;</span><br><span class="line">        <span class="keyword">this</span>.lights = lights;</span><br><span class="line">        <span class="keyword">this</span>.popper = popper;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">watchMovie</span><span class="params">(String movie)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Get ready 2 watch a movie.."</span>);</span><br><span class="line">        popper.on();</span><br><span class="line">        popper.pop();</span><br><span class="line"></span><br><span class="line">        lights.dim(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">        screen.down();</span><br><span class="line"></span><br><span class="line">        projector.on();</span><br><span class="line">        projector.setInput(dvd);</span><br><span class="line">        projector.wideScreenMode();</span><br><span class="line"></span><br><span class="line">        amp.on();</span><br><span class="line">        amp.setDvd(dvd);</span><br><span class="line">        amp.setSurroundSound();</span><br><span class="line">        amp.setVolumn(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line">        dvd.on();</span><br><span class="line">        dvd.play(movie);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">endMovie</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Shutting movie theater down..."</span>);</span><br><span class="line">        popper.off();</span><br><span class="line">        lights.on();</span><br><span class="line">        screen.up();</span><br><span class="line">        projector.off();</span><br><span class="line">        amp.off();</span><br><span class="line">        dvd.stop();</span><br><span class="line">        dvd.eject();</span><br><span class="line">        dvd.off();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>现在可以轻松调用:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HomeTheaterTestDrive</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 实例化组件 略</span></span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">        HomeTheaterFacade homeTheater = <span class="keyword">new</span> HomeTheaterFacade(amp, tuner, dvd, cd, projector, screen, lights, popper);</span><br><span class="line">        homeTheater.watchMovie(<span class="string">"The Avengers"</span>);</span><br><span class="line">        homeTheater.endMovie();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h2><blockquote>
+<p>外观模式提供了一个统一的接口, 用来访问子系统中的一群接口. 外观定义了一个高层接口, 让子系统更容易使用.</p>
+</blockquote>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>外观的意图是要提供一个简单的接口好让一个子系统更加易于使用, 使得客户(调用者)和子系统之间避免紧耦合.</p>
+<h1 id="最少知识原则"><a href="#最少知识原则" class="headerlink" title="最少知识原则"></a>最少知识原则</h1><p>ps:这是一个新的OO原则</p>
+<h2 id="定义-3"><a href="#定义-3" class="headerlink" title="定义"></a>定义</h2><blockquote>
+<p>最少知识原则:只和你的密友谈话</p>
+</blockquote>
+<p>怎么理解呢?</p>
+<p>我们要减少对象之间的交互, 只留下几个”密友”. </p>
+<p>在我们的设计中, 不要让太多的类耦合在一起, 免得修改系统中的一部分, 会影响到其他部分. </p>
+<p>如果许多类之间相互依赖,那么这个系统就会变成一个易碎的系统,它需要花许多成本维护,也会因为太复杂而不易被其他人了解</p>
+<h2 id="原则方针"><a href="#原则方针" class="headerlink" title="原则方针"></a>原则方针</h2><p>对于任何对象, 在该对象方法内, 我们只应该调用属于以下范围的方法:</p>
+<ul>
+<li>该对象本身的方法</li>
+<li><p>被当做方法的参数而传递进来的对象 的方法(好像有点绕, 其实很简单, 举个例子就是:)</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> class <span class="title">Boy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">play</span><span class="params">(Mp3 mp3)</span> </span>&#123;<span class="comment">// 传递进来的mp3 -&gt; 被当做方法的参数而传递进来的对象</span></span><br><span class="line">        mp3.boot();<span class="comment">// boot() -&gt; 被当做方法的参数而传递进来的对象的方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>此方法所创建或实例化的任何对象的方法</p>
+</li>
+<li>对象的任何组件(可以理解为该对象所在类所持有的属性或对另一类的引用)</li>
+</ul>
+<p>看一个例子:</p>
+<p>不采用该原则的写法:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">float</span> <span class="title">getTemp</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Thermometer thermometer = station.getThermometer(); <span class="comment">// 从气象站取得温度计</span></span><br><span class="line">    <span class="keyword">return</span> thermometer.getTemperature();<span class="comment">// 从温度计取得温度</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>采用该原则的写法:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">float</span> <span class="title">getTemp</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> station.getTemperature();<span class="comment">// 我们在气象站中加入一个向温度计请求温度的方法, 然后直接调用该方法即可, 这样可以减少所依赖的类的数目</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>用一个清晰的Car类来描述:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Car</span> </span>&#123;</span><br><span class="line">    Engine engine;<span class="comment">// 这是类的其中一个组件, 该原则允许调用它的方法</span></span><br><span class="line">    <span class="comment">// 其他实例变量 略</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Car</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">(Key key)</span> </span>&#123;</span><br><span class="line">        Doors doors = <span class="keyword">new</span> Doors(); <span class="comment">// 这里构建的新对象, 该原则允许调用它的方法</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">boolean</span> authorized = key.turns(); <span class="comment">// key这里作为参数传进来的对象, 该原则允许调用它的方法</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(authorized) &#123;</span><br><span class="line">            engine.start();</span><br><span class="line">            updateDashboardDisplay();<span class="comment">//可以调用同一个对象内的本地方法</span></span><br><span class="line">            doors.lock();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">updateDashboardDisplay</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h2><p>优点:</p>
+<ul>
+<li>减少对象间的依赖,减少软件的维护成本</li>
+</ul>
+<p>缺点:</p>
+<ul>
+<li>导致更多的”包装”类被制造出来以处理和其他组件的沟通, 可能会导致复杂度和开发时间的增加.</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>设计模式</tag>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在后台运行 docker 容器会自动退出解决方案</title>
+    <url>/2018/11/02/docker-background-run/</url>
+    <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>由于 docker 启动容器后，一旦命令完成就会自动退出容器</p>
+<p>比如我想在后台运行nginx之类的某个服务，执行下面这句：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker run --name xxx -d xxx</span><br></pre></td></tr></table></figure>
+<p>然后再执行</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure>
+<p>发现并没有刚启动的服务</p>
+<p>于是执行</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker ps -a</span><br></pre></td></tr></table></figure>
+<p>查看所有 docker 容器</p>
+<p>发现刚启动的服务xxx 已经Exit</p>
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>查了下资料</p>
+<p>发现</p>
+<blockquote>
+<p>docker run指定的命令如果不是那些一直挂起的命令（比如运行top，不断echo），就是会自动退出的。-d命令是设置detach为true，根据官方的文档，意思是让这个命令在后台运行，但并不是一直运行，Docker容器后台运行,就必须有一个前台进程。主线程结束，容器会退出。</p>
+</blockquote>
+<p>启动服务时</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker run --name alpine -d alpine tail -f /dev/null</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>docker</tag>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>VAST 3.0文档梳理</title>
     <url>/2018/07/27/VAST/</url>
     <content><![CDATA[<h1 id="VAST-3-0-概述"><a href="#VAST-3-0-概述" class="headerlink" title="VAST 3.0  概述"></a>VAST 3.0  概述</h1><h2 id="几个专业术语"><a href="#几个专业术语" class="headerlink" title="几个专业术语"></a>几个专业术语</h2><ul>
@@ -1338,199 +1534,6 @@
       </tags>
   </entry>
   <entry>
-    <title>适配器模式&amp;外观模式</title>
-    <url>/2019/05/19/adapter-facade_pattern/</url>
-    <content><![CDATA[<p>[toc]</p>
-<h1 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h1><h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><p>什么是适配器?</p>
-<p>可以理解成插头转换器</p>
-<p>现实中的插头转换器可以把你的插头转换成另一种规格的插头,比如你的标准交流电插口在欧式插座中不能使用,但是只需要加一个转换器,就可以完美匹配.</p>
-<p>OO适配器也是一样的作用:将一个接口转换成另一个接口.</p>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="简单实现"><a href="#简单实现" class="headerlink" title="简单实现"></a>简单实现</h3><p>拿一开始的策略模式时使用的Duck例子</p>
-<p>Duck接口:<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Duck</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">quack</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>绿头鸭实例:<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MallardDuck</span> <span class="keyword">implements</span> <span class="title">Duck</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">quack</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Quack"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"I'm flying"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>Turkey接口:<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Turkey</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">gobble</span><span class="params">()</span></span>;<span class="comment">// 与Duck的quack叫声不同</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>WildTurkey实例:<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WildTurkey</span> <span class="keyword">implements</span> <span class="title">Turkey</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">gobble</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Gobble gobble"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"I'm flying a short distance"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>现在我们想用火鸡对象来冒充鸭子, 简单来说就是当做鸭子来用,这时候 因为各自的接口不同,我们不能直接使用.</p>
-<p>这时候写一个适配器</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TurkeyAdapter</span> <span class="keyword">implements</span> <span class="title">Duck</span> </span>&#123;</span><br><span class="line">    Turkey turkey;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TurkeyAdapter</span><span class="params">(Turkey turkey)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.turkey = turkey;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">quack</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        turkey.gobble();</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">            turkey.fly();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这时候我们就可以使用<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Duck TurkeyAdapter = <span class="keyword">new</span> TurkeyAdapter(<span class="keyword">new</span> WildTurkey());</span><br></pre></td></tr></table></figure></p>
-<p>写一个TestCase:<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> class <span class="title">DuckTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    MallardDuck duck = <span class="keyword">new</span> MallardDuck();</span><br><span class="line">    </span><br><span class="line">    WildTurkey turkey = <span class="keyword">new</span> WildTurkey();</span><br><span class="line">    Duck turkeyAdapter = <span class="keyword">new</span> TurkeyAdapter(turkey);</span><br><span class="line">    </span><br><span class="line">    System.out.println(<span class="string">"The turkey says..."</span>)</span><br><span class="line">    turkey.gobble();</span><br><span class="line">    turkey.fly();</span><br><span class="line">    </span><br><span class="line">    System.out.println(<span class="string">"The Duck says..."</span>);</span><br><span class="line">    duck.quack();</span><br><span class="line">    duck.fly();</span><br><span class="line">    </span><br><span class="line">    System.out.println(<span class="string">"The TurkeyAdapter says..."</span>);</span><br><span class="line">    turkeyAdapter.quack();</span><br><span class="line">    turkeyAdapter.fly();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="拓展实现"><a href="#拓展实现" class="headerlink" title="拓展实现"></a>拓展实现</h3><p>参考org.apache.commons的EnumerationIterator</p>
-<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><h3 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h3><p>客户—-&gt;request()—-&gt;Adapter—-&gt;translateRequest()—-&gt;被适配者</p>
-<h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><blockquote>
-<p>适配器模式将一个类的接口,转换成客户期望的另一个接口.适配器让原本接口不兼容的类可以合作无间.</p>
-</blockquote>
-<p>uml 类图:</p>
-<html><br><!--在这里插入内容--><br><iframe id="embed_dom" name="embed_dom" frameborder="0" style="display:block;width:100%; height:500px;" src="https://www.processon.com/embed/5d469bcae4b02c6fb7828752"></iframe><br></html>
-
-<h2 id="拓展思考"><a href="#拓展思考" class="headerlink" title="拓展思考"></a>拓展思考</h2><p>与前面的装饰者模式有何区别?</p>
-<h1 id="外观模式"><a href="#外观模式" class="headerlink" title="外观模式"></a>外观模式</h1><h2 id="思考-1"><a href="#思考-1" class="headerlink" title="思考"></a>思考</h2><p>当我们需要组装一个家庭影院并播放电影,我们需要做哪些事情呢?</p>
-<ol>
-<li>打开爆米花机</li>
-<li>开始爆米花</li>
-<li>将灯光调暗</li>
-<li>放下屏幕</li>
-<li>打开投影机</li>
-<li>将投影机输入切换到DVD</li>
-<li>设置宽屏</li>
-<li>打开功放</li>
-<li>功放输入设置为DVD</li>
-<li>将功放设置为环绕立体声</li>
-<li>设置功放音量</li>
-<li>打开DVD播放器</li>
-<li>开始播放DVD</li>
-</ol>
-<p>想一下转换成类和方法的调用:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">popper.on();</span><br><span class="line">popper.pop();</span><br><span class="line"></span><br><span class="line">lights.dim(10);</span><br><span class="line"></span><br><span class="line">screen.down();</span><br><span class="line"></span><br><span class="line">projector.on();</span><br><span class="line">projector.setInput(dvd);</span><br><span class="line">projector.wideScreenMode();</span><br><span class="line"></span><br><span class="line">amp.on();</span><br><span class="line">amp.setDvd(dvd);</span><br><span class="line">amp.setSurroundSound();</span><br><span class="line">amp.setVolumn(5);</span><br><span class="line"></span><br><span class="line">dvd.on();</span><br><span class="line">dvd.play(movie);</span><br></pre></td></tr></table></figure>
-<p>是不是很多、很混乱而且不优雅 ? </p>
-<h2 id="实现-1"><a href="#实现-1" class="headerlink" title="实现"></a>实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HomeTheaterFacade</span> </span>&#123;</span><br><span class="line">    Amplifier amp;</span><br><span class="line">    Tuner tuner;</span><br><span class="line">    DvdPlayer dvd;</span><br><span class="line">    CdPlayer cd;</span><br><span class="line">    Projector projector;</span><br><span class="line">    Lights lights;</span><br><span class="line">    Screen screen;</span><br><span class="line">    PopcornPopper popper;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">HomeTheaterFacade</span><span class="params">(Amplifier amp,</span></span></span><br><span class="line"><span class="function"><span class="params">            Tuner tuner,</span></span></span><br><span class="line"><span class="function"><span class="params">            DvdPlayer dvd,</span></span></span><br><span class="line"><span class="function"><span class="params">            CdPlayer cd,</span></span></span><br><span class="line"><span class="function"><span class="params">            Projector projector,</span></span></span><br><span class="line"><span class="function"><span class="params">            Lights lights,</span></span></span><br><span class="line"><span class="function"><span class="params">            Screen screen,</span></span></span><br><span class="line"><span class="function"><span class="params">            PopcornPopper popper)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.amp = amp;</span><br><span class="line">        <span class="keyword">this</span>.tuner = tuner;</span><br><span class="line">        <span class="keyword">this</span>.dvd = dvd;</span><br><span class="line">        <span class="keyword">this</span>.cd = cd;</span><br><span class="line">        <span class="keyword">this</span>.projector = projector;</span><br><span class="line">        <span class="keyword">this</span>.screen = screen;</span><br><span class="line">        <span class="keyword">this</span>.lights = lights;</span><br><span class="line">        <span class="keyword">this</span>.popper = popper;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">watchMovie</span><span class="params">(String movie)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Get ready 2 watch a movie.."</span>);</span><br><span class="line">        popper.on();</span><br><span class="line">        popper.pop();</span><br><span class="line"></span><br><span class="line">        lights.dim(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">        screen.down();</span><br><span class="line"></span><br><span class="line">        projector.on();</span><br><span class="line">        projector.setInput(dvd);</span><br><span class="line">        projector.wideScreenMode();</span><br><span class="line"></span><br><span class="line">        amp.on();</span><br><span class="line">        amp.setDvd(dvd);</span><br><span class="line">        amp.setSurroundSound();</span><br><span class="line">        amp.setVolumn(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line">        dvd.on();</span><br><span class="line">        dvd.play(movie);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">endMovie</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Shutting movie theater down..."</span>);</span><br><span class="line">        popper.off();</span><br><span class="line">        lights.on();</span><br><span class="line">        screen.up();</span><br><span class="line">        projector.off();</span><br><span class="line">        amp.off();</span><br><span class="line">        dvd.stop();</span><br><span class="line">        dvd.eject();</span><br><span class="line">        dvd.off();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>现在可以轻松调用:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HomeTheaterTestDrive</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 实例化组件 略</span></span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">        HomeTheaterFacade homeTheater = <span class="keyword">new</span> HomeTheaterFacade(amp, tuner, dvd, cd, projector, screen, lights, popper);</span><br><span class="line">        homeTheater.watchMovie(<span class="string">"The Avengers"</span>);</span><br><span class="line">        homeTheater.endMovie();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h2><blockquote>
-<p>外观模式提供了一个统一的接口, 用来访问子系统中的一群接口. 外观定义了一个高层接口, 让子系统更容易使用.</p>
-</blockquote>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>外观的意图是要提供一个简单的接口好让一个子系统更加易于使用, 使得客户(调用者)和子系统之间避免紧耦合.</p>
-<h1 id="最少知识原则"><a href="#最少知识原则" class="headerlink" title="最少知识原则"></a>最少知识原则</h1><p>ps:这是一个新的OO原则</p>
-<h2 id="定义-3"><a href="#定义-3" class="headerlink" title="定义"></a>定义</h2><blockquote>
-<p>最少知识原则:只和你的密友谈话</p>
-</blockquote>
-<p>怎么理解呢?</p>
-<p>我们要减少对象之间的交互, 只留下几个”密友”. </p>
-<p>在我们的设计中, 不要让太多的类耦合在一起, 免得修改系统中的一部分, 会影响到其他部分. </p>
-<p>如果许多类之间相互依赖,那么这个系统就会变成一个易碎的系统,它需要花许多成本维护,也会因为太复杂而不易被其他人了解</p>
-<h2 id="原则方针"><a href="#原则方针" class="headerlink" title="原则方针"></a>原则方针</h2><p>对于任何对象, 在该对象方法内, 我们只应该调用属于以下范围的方法:</p>
-<ul>
-<li>该对象本身的方法</li>
-<li><p>被当做方法的参数而传递进来的对象 的方法(好像有点绕, 其实很简单, 举个例子就是:)</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> class <span class="title">Boy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">play</span><span class="params">(Mp3 mp3)</span> </span>&#123;<span class="comment">// 传递进来的mp3 -&gt; 被当做方法的参数而传递进来的对象</span></span><br><span class="line">        mp3.boot();<span class="comment">// boot() -&gt; 被当做方法的参数而传递进来的对象的方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>此方法所创建或实例化的任何对象的方法</p>
-</li>
-<li>对象的任何组件(可以理解为该对象所在类所持有的属性或对另一类的引用)</li>
-</ul>
-<p>看一个例子:</p>
-<p>不采用该原则的写法:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">float</span> <span class="title">getTemp</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Thermometer thermometer = station.getThermometer(); <span class="comment">// 从气象站取得温度计</span></span><br><span class="line">    <span class="keyword">return</span> thermometer.getTemperature();<span class="comment">// 从温度计取得温度</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>采用该原则的写法:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">float</span> <span class="title">getTemp</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> station.getTemperature();<span class="comment">// 我们在气象站中加入一个向温度计请求温度的方法, 然后直接调用该方法即可, 这样可以减少所依赖的类的数目</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>用一个清晰的Car类来描述:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Car</span> </span>&#123;</span><br><span class="line">    Engine engine;<span class="comment">// 这是类的其中一个组件, 该原则允许调用它的方法</span></span><br><span class="line">    <span class="comment">// 其他实例变量 略</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Car</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">(Key key)</span> </span>&#123;</span><br><span class="line">        Doors doors = <span class="keyword">new</span> Doors(); <span class="comment">// 这里构建的新对象, 该原则允许调用它的方法</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">boolean</span> authorized = key.turns(); <span class="comment">// key这里作为参数传进来的对象, 该原则允许调用它的方法</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(authorized) &#123;</span><br><span class="line">            engine.start();</span><br><span class="line">            updateDashboardDisplay();<span class="comment">//可以调用同一个对象内的本地方法</span></span><br><span class="line">            doors.lock();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">updateDashboardDisplay</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h2><p>优点:</p>
-<ul>
-<li>减少对象间的依赖,减少软件的维护成本</li>
-</ul>
-<p>缺点:</p>
-<ul>
-<li>导致更多的”包装”类被制造出来以处理和其他组件的沟通, 可能会导致复杂度和开发时间的增加.</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>设计模式</tag>
-        <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CentOS服务器部署参考笔记</title>
-    <url>/2017/07/24/centos%20server/</url>
-    <content><![CDATA[<h1 id="服务器部署"><a href="#服务器部署" class="headerlink" title="服务器部署"></a>服务器部署</h1><blockquote>
-<p><a href="http://www.cnblogs.com/shanheyongmu/p/6110580.html" target="_blank" rel="noopener">http://www.cnblogs.com/shanheyongmu/p/6110580.html</a></p>
-</blockquote>
-<blockquote>
-<p><a href="http://www.cnblogs.com/xdp-gacl/p/4097608.html" target="_blank" rel="noopener">http://www.cnblogs.com/xdp-gacl/p/4097608.html</a></p>
-</blockquote>
-<blockquote>
-<p><a href="http://www.cnblogs.com/allenblogs/archive/2010/08/12/1798247.html" target="_blank" rel="noopener">http://www.cnblogs.com/allenblogs/archive/2010/08/12/1798247.html</a></p>
-</blockquote>
-<blockquote>
-<p><a href="http://www.cnblogs.com/Lam7/p/5454163.html" target="_blank" rel="noopener">http://www.cnblogs.com/Lam7/p/5454163.html</a></p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>centos</tag>
-        <tag>linux</tag>
-        <tag>服务器</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ajax学习</title>
-    <url>/2017/07/08/ajax/</url>
-    <content><![CDATA[<h1 id="Ajax全称-Asynchronous-Javascript-And-XML（异步JavaScript和XML）"><a href="#Ajax全称-Asynchronous-Javascript-And-XML（异步JavaScript和XML）" class="headerlink" title="Ajax全称 Asynchronous Javascript And XML（异步JavaScript和XML）"></a>Ajax全称 Asynchronous Javascript And XML（异步JavaScript和XML）</h1><h1 id="XMLHttpRequest对象-以下简称xhr"><a href="#XMLHttpRequest对象-以下简称xhr" class="headerlink" title="XMLHttpRequest对象(以下简称xhr)"></a>XMLHttpRequest对象(以下简称xhr)</h1><p>XMLHttpRequest对象(以下简称xhr)</p>
-<ul>
-<li>异步 通过对象XMLHttpRequest   -&gt; 后台与服务器之间异步交换数据</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> request;</span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">window</span>.XMLHttpRequest)&#123;</span><br><span class="line"></span><br><span class="line">       request=<span class="keyword">new</span> XMLHttpRequest();   <span class="comment">//IE7+,Firefox,Chrome,Opera，Safari</span></span><br><span class="line"></span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line"></span><br><span class="line">request=<span class="keyword">new</span> ActiveXObject（<span class="string">"Microsoft.XMLHTTP"</span>）;<span class="comment">//IE6,IE5</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="一个完整的http请求过程"><a href="#一个完整的http请求过程" class="headerlink" title="一个完整的http请求过程:"></a>一个完整的http请求过程:</h2><ol>
-<li>建立TCP连接</li>
-<li>Web浏览器向Web服务器发送请求命令</li>
-<li>Web浏览器发送请求头信息</li>
-<li>Web服务器应答</li>
-<li>Web服务器发送应答头信息</li>
-<li>Web服务器向浏览器发送数据</li>
-<li>Web服务器关闭TCP连接</li>
-</ol>
-<h2 id="http请求的4部分"><a href="#http请求的4部分" class="headerlink" title="http请求的4部分"></a>http请求的4部分</h2><ol>
-<li>请求方法（post、get之类）</li>
-<li>请求的url</li>
-<li>请求头（环境信息、身份安全信息等）</li>
-<li>请求体（提交的表单、数据等）</li>
-</ol>
-<h2 id="http响应的组成"><a href="#http响应的组成" class="headerlink" title="http响应的组成"></a>http响应的组成</h2><ol>
-<li>一个由数字和文字组成的状态码 用于显示请求成功或失败</li>
-<li>响应头（服务器相关信息，类型、日期、名称之类）</li>
-<li>响应体</li>
-</ol>
-<h2 id="http状态码"><a href="#http状态码" class="headerlink" title="http状态码"></a>http状态码</h2><ul>
-<li>1开头的：信息类表示手打搜web浏览器请求，正在进一步处理中</li>
-<li>2开头的：成功，表示用户请求被正确接受，理解和处理，如 200</li>
-<li>3开头的：重定向，表示请求没有成功，客户必须采取进一步的动作</li>
-<li>4开头的：客户端错误，表示客户端提交的请求有错误404</li>
-<li>5开头的：服务器错误，表示服务器不能完成对请求的处理500</li>
-</ul>
-<h1 id="xhr发送请求"><a href="#xhr发送请求" class="headerlink" title="xhr发送请求"></a>xhr发送请求</h1><h2 id="open方法"><a href="#open方法" class="headerlink" title="open方法"></a>open方法</h2><ol>
-<li>参数：</li>
-</ol>
-<ul>
-<li>method：发送请求方法，get方式还是post方式，不区分大小写，一般使用大写。</li>
-<li>url：请求地址，可以使用相对地址，也就是相对文档的地址，也可以使用绝对地址。</li>
-<li>async：请求同步/异步，一般使用异步请求，这个参数就是true，如要使用同步的话，就是false。默认的是true(异步)，所以，如果是异步请求的话，这个参数可以不写。</li>
-</ul>
-<h2 id="send方法"><a href="#send方法" class="headerlink" title="send方法"></a>send方法</h2><ol>
-<li>send方法将请求发送到服务器上</li>
-<li>参数：</li>
-</ol>
-<ul>
-<li>string:<br>①使用get请求时，实际是没有主体的，所有的参数都拼在url中，所以send参数可以不填，或者填写null。<br>②post请求时，send请求一定要有参数。</li>
-</ul>
-<h2 id="setRequestHeader方法"><a href="#setRequestHeader方法" class="headerlink" title="setRequestHeader方法"></a>setRequestHeader方法</h2><ol>
-<li>设置http的头信息，告诉web服务器要发送一个表单的话，设置Content-type为application/x-www-form-urlencoded。</li>
-<li>Content-type有2种，一般用application/x-www-form-urlencoded，一般如果不发送文件，都采用这种方式。</li>
-<li>request.setRequestHeader()要写在open()和send（）中间，否则会抛出异常。</li>
-</ol>
-<h1 id="服务器响应"><a href="#服务器响应" class="headerlink" title="服务器响应"></a>服务器响应</h1><h2 id="服务器响应成功时得到通知"><a href="#服务器响应成功时得到通知" class="headerlink" title="服务器响应成功时得到通知"></a>服务器响应成功时得到通知</h2><p>readyState属性</p>
-<ul>
-<li>0：请求还未初始化，open还没有调用</li>
-<li>1：服务器连接已建立，open已经调用了</li>
-<li>2：请求已接收，也就是接收到头信息了</li>
-<li>3：请求处理中，也就是接收到响应主体了</li>
-<li>4：请求已完成，且响应已就绪，也就是响应完成了</li>
-</ul>
-<h2 id="获取响应值："><a href="#获取响应值：" class="headerlink" title="获取响应值："></a>获取响应值：</h2><ul>
-<li>responseText  获取字符串形式的响应数据</li>
-<li>responseXML   获得XML形式的响应数据  （一般用JSON）</li>
-<li>status和statusText   以数字和文本形式返回HTTP状态码</li>
-<li>getAllResponseHeader()   获取所有的响应报头</li>
-<li>getResponseHeader()   查询响应中的某个字段的值</li>
-</ul>
-<h1 id="总结-完整使用步骤"><a href="#总结-完整使用步骤" class="headerlink" title="总结 完整使用步骤"></a>总结 完整使用步骤</h1><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//第一步</span></span><br><span class="line">    <span class="keyword">var</span> request=<span class="keyword">new</span> XMLHttpRequest();   <span class="comment">//new一个XHR对象</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//第二步 </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    request.open(<span class="string">'GET'</span>,<span class="string">'get.php'</span>,<span class="literal">true</span>);  <span class="comment">//open一个方法</span></span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"><span class="comment">//第三步 </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    request.send();   <span class="comment">//发送数据</span></span><br><span class="line"></span><br><span class="line">   </span><br><span class="line"></span><br><span class="line"><span class="comment">//第四步 </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    request.onreadystatechange=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(request.readyState===<span class="number">4</span>&amp;&amp;request.status===<span class="number">200</span>)&#123;</span><br><span class="line">        <span class="comment">//做一些事情 </span></span><br><span class="line">        <span class="comment">//对响应进行监听：判断响应结果</span></span><br><span class="line">        request.responseText&#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><blockquote>
-<p><a href="jsonlint.com">jsonlint.com 一个很好的校验json格式的网站</a></p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>ajax</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Centos中运行jar包的几种方法</title>
     <url>/2018/01/08/centos-java-run/</url>
     <content><![CDATA[<h1 id="Centos中运行jar包的几种方法"><a href="#Centos中运行jar包的几种方法" class="headerlink" title="Centos中运行jar包的几种方法"></a>Centos中运行jar包的几种方法</h1><p>1.直接运行<br>2.后台运行</p>
@@ -1569,34 +1572,31 @@
 ]]></content>
       <tags>
         <tag>java</tag>
-        <tag>centos</tag>
         <tag>linux</tag>
+        <tag>centos</tag>
         <tag>服务器</tag>
       </tags>
   </entry>
   <entry>
-    <title>在后台运行 docker 容器会自动退出解决方案</title>
-    <url>/2018/11/02/docker-background-run/</url>
-    <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>由于 docker 启动容器后，一旦命令完成就会自动退出容器</p>
-<p>比如我想在后台运行nginx之类的某个服务，执行下面这句：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker run --name xxx -d xxx</span><br></pre></td></tr></table></figure>
-<p>然后再执行</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure>
-<p>发现并没有刚启动的服务</p>
-<p>于是执行</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker ps -a</span><br></pre></td></tr></table></figure>
-<p>查看所有 docker 容器</p>
-<p>发现刚启动的服务xxx 已经Exit</p>
-<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>查了下资料</p>
-<p>发现</p>
-<blockquote>
-<p>docker run指定的命令如果不是那些一直挂起的命令（比如运行top，不断echo），就是会自动退出的。-d命令是设置detach为true，根据官方的文档，意思是让这个命令在后台运行，但并不是一直运行，Docker容器后台运行,就必须有一个前台进程。主线程结束，容器会退出。</p>
+    <title>CentOS服务器部署参考笔记</title>
+    <url>/2017/07/24/centos%20server/</url>
+    <content><![CDATA[<h1 id="服务器部署"><a href="#服务器部署" class="headerlink" title="服务器部署"></a>服务器部署</h1><blockquote>
+<p><a href="http://www.cnblogs.com/shanheyongmu/p/6110580.html" target="_blank" rel="noopener">http://www.cnblogs.com/shanheyongmu/p/6110580.html</a></p>
 </blockquote>
-<p>启动服务时</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker run --name alpine -d alpine tail -f /dev/null</span><br></pre></td></tr></table></figure>]]></content>
+<blockquote>
+<p><a href="http://www.cnblogs.com/xdp-gacl/p/4097608.html" target="_blank" rel="noopener">http://www.cnblogs.com/xdp-gacl/p/4097608.html</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://www.cnblogs.com/allenblogs/archive/2010/08/12/1798247.html" target="_blank" rel="noopener">http://www.cnblogs.com/allenblogs/archive/2010/08/12/1798247.html</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://www.cnblogs.com/Lam7/p/5454163.html" target="_blank" rel="noopener">http://www.cnblogs.com/Lam7/p/5454163.html</a></p>
+</blockquote>
+]]></content>
       <tags>
         <tag>linux</tag>
-        <tag>docker</tag>
+        <tag>centos</tag>
+        <tag>服务器</tag>
       </tags>
   </entry>
   <entry>
@@ -1739,33 +1739,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Spring Bean生命周期</title>
-    <url>/2018/06/23/interview-about-SpringBean-s-lifecycle/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Spring Bean 的生命周期在整个 Spring 中占有很重要的位置，掌握这些可以加深对 Spring 的理解。</p>
-<p><img src="/2018/06/23/interview-about-SpringBean-s-lifecycle/1.jpg" alt="image"></p>
-<p>Spring上下文Bean的生命周期步骤如下</p>
-<p>1、实例化一个Bean－－也就是我们常说的new；</p>
-<p>2、按照Spring上下文对实例化的Bean进行配置－－也就是IOC注入；</p>
-<p>3、如果这个Bean已经实现了BeanNameAware接口，会调用它实现的setBeanName(String)方法，此处传递的就是Spring配置文件中Bean的id值</p>
-<p>4、如果这个Bean已经实现了BeanFactoryAware接口，会调用它实现的setBeanFactory(setBeanFactory(BeanFactory)传递的是Spring工厂自身（可以用这个方式来获取其它Bean，只需在Spring配置文件中配置一个普通的Bean就可以）；</p>
-<p>5、如果这个Bean已经实现了ApplicationContextAware接口，会调用setApplicationContext(ApplicationContext)方法，传入Spring上下文（同样这个方式也可以实现步骤4的内容，但比4更好，因为ApplicationContext是BeanFactory的子接口，有更多的实现方法）；</p>
-<p>6、如果这个Bean关联了BeanPostProcessor接口，将会调用postProcessBeforeInitialization(Object obj, String s)方法，BeanPostProcessor经常被用作是Bean内容的更改，并且由于这个是在Bean初始化结束时调用那个的方法，也可以被应用于内存或缓存技术；</p>
-<p>7、如果Bean实现了InitializingBean接口，Spring将调用他们的after-PropertiesSet()方法。类似地，如果Bean在Spring配置文件中配置了init-method属性会自动调用其配置的初始化方法。</p>
-<p>Bean定义文件中定义init-method<br>  在Bean定义文件中使用“init-method”属性设定方法名称，如下：<br><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"demoBean"</span> <span class="attr">class</span>=<span class="string">"com.yangsq.bean.DemoBean"</span> <span class="attr">init-method</span>=<span class="string">"initMethod"</span>&gt;</span></span><br><span class="line">  </span><br><span class="line">  .......</span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>这时会执行 <strong>initMethod()</strong> 方法，注意，这个方法是不带参数的。</p>
-<p>8、如果这个Bean关联了BeanPostProcessor接口，将会调用postProcessAfterInitialization(Object obj, String s)方法、；</p>
-<p>注：以上工作完成以后就可以应用这个Bean了，那这个Bean是一个Singleton的，所以一般情况下我们调用同一个id的Bean会是在内容地址相同的实例，当然在Spring配置文件中也可以配置非Singleton，这里我们不做赘述。</p>
-<p>9、当Bean不再需要时，会经过清理阶段，如果Bean实现了DisposableBean这个接口，会调用那个其实现的destroy()方法；</p>
-<p>10、最后，如果这个Bean的Spring配置中配置了destroy-method属性，会自动调用其配置的销毁方法。</p>
-<p>以上10步骤可以作为面试或者笔试的模板，另外我们这里描述的是应用Spring上下文Bean的生命周期，如果应用Spring的工厂也就是BeanFactory的话去掉第5步就Ok了。</p>
-]]></content>
-      <tags>
-        <tag>spring</tag>
-        <tag>ssm</tag>
-        <tag>面经</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>java后端开发实习面经</title>
     <url>/2018/07/21/interview-experience/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>快要大四了，所以趁着暑假赶集找了个java后端开发的实习，面试官非常注重基础，所以把这次面经记录下来以便之后可以补充下缺失的知识。</p>
@@ -1808,6 +1781,33 @@
         <tag>java</tag>
         <tag>面经</tag>
         <tag>数据结构与算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Spring Bean生命周期</title>
+    <url>/2018/06/23/interview-about-SpringBean-s-lifecycle/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Spring Bean 的生命周期在整个 Spring 中占有很重要的位置，掌握这些可以加深对 Spring 的理解。</p>
+<p><img src="/2018/06/23/interview-about-SpringBean-s-lifecycle/1.jpg" alt="image"></p>
+<p>Spring上下文Bean的生命周期步骤如下</p>
+<p>1、实例化一个Bean－－也就是我们常说的new；</p>
+<p>2、按照Spring上下文对实例化的Bean进行配置－－也就是IOC注入；</p>
+<p>3、如果这个Bean已经实现了BeanNameAware接口，会调用它实现的setBeanName(String)方法，此处传递的就是Spring配置文件中Bean的id值</p>
+<p>4、如果这个Bean已经实现了BeanFactoryAware接口，会调用它实现的setBeanFactory(setBeanFactory(BeanFactory)传递的是Spring工厂自身（可以用这个方式来获取其它Bean，只需在Spring配置文件中配置一个普通的Bean就可以）；</p>
+<p>5、如果这个Bean已经实现了ApplicationContextAware接口，会调用setApplicationContext(ApplicationContext)方法，传入Spring上下文（同样这个方式也可以实现步骤4的内容，但比4更好，因为ApplicationContext是BeanFactory的子接口，有更多的实现方法）；</p>
+<p>6、如果这个Bean关联了BeanPostProcessor接口，将会调用postProcessBeforeInitialization(Object obj, String s)方法，BeanPostProcessor经常被用作是Bean内容的更改，并且由于这个是在Bean初始化结束时调用那个的方法，也可以被应用于内存或缓存技术；</p>
+<p>7、如果Bean实现了InitializingBean接口，Spring将调用他们的after-PropertiesSet()方法。类似地，如果Bean在Spring配置文件中配置了init-method属性会自动调用其配置的初始化方法。</p>
+<p>Bean定义文件中定义init-method<br>  在Bean定义文件中使用“init-method”属性设定方法名称，如下：<br><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"demoBean"</span> <span class="attr">class</span>=<span class="string">"com.yangsq.bean.DemoBean"</span> <span class="attr">init-method</span>=<span class="string">"initMethod"</span>&gt;</span></span><br><span class="line">  </span><br><span class="line">  .......</span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>这时会执行 <strong>initMethod()</strong> 方法，注意，这个方法是不带参数的。</p>
+<p>8、如果这个Bean关联了BeanPostProcessor接口，将会调用postProcessAfterInitialization(Object obj, String s)方法、；</p>
+<p>注：以上工作完成以后就可以应用这个Bean了，那这个Bean是一个Singleton的，所以一般情况下我们调用同一个id的Bean会是在内容地址相同的实例，当然在Spring配置文件中也可以配置非Singleton，这里我们不做赘述。</p>
+<p>9、当Bean不再需要时，会经过清理阶段，如果Bean实现了DisposableBean这个接口，会调用那个其实现的destroy()方法；</p>
+<p>10、最后，如果这个Bean的Spring配置中配置了destroy-method属性，会自动调用其配置的销毁方法。</p>
+<p>以上10步骤可以作为面试或者笔试的模板，另外我们这里描述的是应用Spring上下文Bean的生命周期，如果应用Spring的工厂也就是BeanFactory的话去掉第5步就Ok了。</p>
+]]></content>
+      <tags>
+        <tag>面经</tag>
+        <tag>spring</tag>
+        <tag>ssm</tag>
       </tags>
   </entry>
   <entry>
@@ -2587,12 +2587,30 @@
         <tag>java</tag>
         <tag>linux</tag>
         <tag>服务器</tag>
+        <tag>面经</tag>
         <tag>spring</tag>
         <tag>ssm</tag>
-        <tag>面经</tag>
         <tag>springMVC</tag>
         <tag>Mybatis</tag>
         <tag>MVC</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于数据库写入Emoji表情的报错的解决方法</title>
+    <url>/2018/12/12/jdbc-emoji-bug/</url>
+    <content><![CDATA[<p>这两天写GooglePlay爬虫的时候发现入库数量与redis中的数量不一致, 翻看lockback日志发现部分插入语句报错，特此记录。</p>
+<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>在执行sql时， 控制台抛出异常<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">java.sql.SQLException: </span><br><span class="line">    Incorrect string value: &apos;\xF0\x9F\x92\x94&apos; for column &apos;name&apos; ...</span><br></pre></td></tr></table></figure></p>
+<h1 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h1><p>Emoji表情符号为4个字节的字符，而 utf8 字符集只支持1-3个字节的字符，导致无法写入数据库。</p>
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><ul>
+<li>修改MySQL数据库字符集， 把数据库字符集从utf8 修改为支持1-4 个字节字符的utf8mb4.</li>
+</ul>
+<p>若采用java的jdbc来进行入库操作, 则需要额外地升级驱动的版本到5.1.13版本或更高.</p>
+<p>以gradle为例(maven类似):</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    compile(&quot;mysql:mysql-connector-java:5.1.13&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>java</tag>
+        <tag>jdbc</tag>
+        <tag>mysql</tag>
       </tags>
   </entry>
   <entry>
@@ -2665,24 +2683,6 @@
       </tags>
   </entry>
   <entry>
-    <title>关于数据库写入Emoji表情的报错的解决方法</title>
-    <url>/2018/12/12/jdbc-emoji-bug/</url>
-    <content><![CDATA[<p>这两天写GooglePlay爬虫的时候发现入库数量与redis中的数量不一致, 翻看lockback日志发现部分插入语句报错，特此记录。</p>
-<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>在执行sql时， 控制台抛出异常<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">java.sql.SQLException: </span><br><span class="line">    Incorrect string value: &apos;\xF0\x9F\x92\x94&apos; for column &apos;name&apos; ...</span><br></pre></td></tr></table></figure></p>
-<h1 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h1><p>Emoji表情符号为4个字节的字符，而 utf8 字符集只支持1-3个字节的字符，导致无法写入数据库。</p>
-<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><ul>
-<li>修改MySQL数据库字符集， 把数据库字符集从utf8 修改为支持1-4 个字节字符的utf8mb4.</li>
-</ul>
-<p>若采用java的jdbc来进行入库操作, 则需要额外地升级驱动的版本到5.1.13版本或更高.</p>
-<p>以gradle为例(maven类似):</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    compile(&quot;mysql:mysql-connector-java:5.1.13&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>java</tag>
-        <tag>jdbc</tag>
-        <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>EL表达式取整</title>
     <url>/2017/11/16/jsp-jstl-el-numberformat/</url>
     <content><![CDATA[<p>今天在写页码的时候发现后台传来的数据直接在jsp的EL表达式中直接相除会出现小数点</p>
@@ -2733,6 +2733,94 @@
       <tags>
         <tag>java</tag>
         <tag>maven</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PHP 的 MVC 模式</title>
+    <url>/2017/05/31/php-mvc/</url>
+    <content><![CDATA[<h1 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h1><h2 id="基本操作步骤"><a href="#基本操作步骤" class="headerlink" title="基本操作步骤"></a>基本操作步骤</h2><ol>
+<li>浏览者  -&gt; 调用控制器 对其发出指令</li>
+<li>控制器(C)  -&gt; 按指令选取一个合适的模型(M) </li>
+<li>模型(M)  -&gt; 按控制器(C)指令取相应数据</li>
+<li>控制器(C) -&gt; 按指令选取相应视图(V)</li>
+<li>视图(V) -&gt; 把第三步取得的数据按用户想要的样子显示出来</li>
+</ol>
+<h2 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> <span class="comment">//浏览者调用控制器</span></span><br><span class="line">    <span class="keyword">require_once</span>(<span class="string">'testController.class.php'</span>);</span><br><span class="line">    <span class="keyword">require_once</span>(<span class="string">'testModel.class.php'</span>);</span><br><span class="line">    <span class="keyword">require_once</span>(<span class="string">'testView.class.php'</span>);</span><br><span class="line">    $testController = <span class="keyword">new</span> testController();<span class="comment">//**第一步**</span></span><br><span class="line">    $testController-&gt;show();</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="require-和-require-once-的区别"><a href="#require-和-require-once-的区别" class="headerlink" title="require() 和 require_once()的区别"></a>require() 和 require_once()的区别</h2><p>  require()可以多次调用相同的文件而不会提示错误，require_once则只能调用相同的文件一次，如果require_once相同的文件多次就会报错，并停止解析，从这个require_once开始后面的代码将不被解析！ </p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> <span class="comment">//控制器基本结构</span></span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">testController</span></span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">show</span><span class="params">()</span></span>&#123;</span><br><span class="line">            $testModel = <span class="keyword">new</span> testModel();<span class="comment">//**第二步**</span></span><br><span class="line">            $data =$testModel-&gt;get();<span class="comment">//**第三步**</span></span><br><span class="line">            $testView = <span class="keyword">new</span> testView();<span class="comment">//**第四步**</span></span><br><span class="line">            $testView-&gt;display($data);<span class="comment">//**第五步**</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="控制器的作用"><a href="#控制器的作用" class="headerlink" title="控制器的作用"></a>控制器的作用</h4><p> 调用模型并调用视图，将模型产生的数据传递给视图，并让相关视图去显示</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> <span class="comment">//模型基本结构</span></span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">testModel</span></span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">get</span><span class="params">()</span></span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"hello world"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="模型的作用"><a href="#模型的作用" class="headerlink" title="模型的作用"></a>模型的作用</h4><p>  获取数据并处理返回数据</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> <span class="comment">//视图基本结构</span></span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">testView</span></span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">display</span><span class="params">($data)</span></span>&#123;</span><br><span class="line">            <span class="keyword">echo</span> $data;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="视图的作用"><a href="#视图的作用" class="headerlink" title="视图的作用"></a>视图的作用</h4><p>  将取得的数据进行组织、美化等，并最终向用户端输出</p>
+<p>#smarty</p>
+<blockquote>
+<p>smarty.class.php 包含了smarty的所有功能<br>smartyBC.class.php 提升了smarty上下版本兼容性<br>smarty 五配置 两方法<br><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">//五配置</span></span><br><span class="line"></span><br><span class="line">$smarty-&gt;left_delimiter = <span class="string">"&#123;"</span>;<span class="comment">//左定界符</span></span><br><span class="line"></span><br><span class="line">$smarty-&gt;right_delimiter = <span class="string">"&#125;"</span>;<span class="comment">//右定界符</span></span><br><span class="line"><span class="comment">//括起来部分交给smarty处理</span></span><br><span class="line"></span><br><span class="line">$smarty-&gt;template_dir = <span class="string">"tpl"</span>; <span class="comment">//HTML模版</span></span><br><span class="line"></span><br><span class="line">$smarty-&gt;compile_dir =      <span class="string">"template_c"</span>;     <span class="comment">//模版编译生成的文件</span></span><br><span class="line"></span><br><span class="line">$smarty-&gt;cache_dir =  <span class="string">"cache"</span>;<span class="comment">//缓存</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//两方法</span></span><br><span class="line">$smarty-&gt;caching = <span class="keyword">true</span>;<span class="comment">//开启缓存</span></span><br><span class="line"></span><br><span class="line">$smarty-&gt;cache_lifetime = <span class="number">120</span>;<span class="comment">//缓存时间</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//这段时间不从数据库取得数据 直接从缓存获取</span></span><br><span class="line"></span><br><span class="line">$smarty-&gt;assign(<span class="string">'articleile'</span>,<span class="string">'文章标题'</span>);<span class="comment">//对smarty的模板进行赋值</span></span><br><span class="line"></span><br><span class="line">$smarty-&gt;display(<span class="string">'test.tpl'</span>);<span class="comment">//显示模板</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h2 id="smarty-的基本语法"><a href="#smarty-的基本语法" class="headerlink" title="smarty 的基本语法"></a>smarty 的基本语法</h2><h3 id="注释与变量输出"><a href="#注释与变量输出" class="headerlink" title="注释与变量输出"></a>注释与变量输出</h3><ol>
+<li>注释语句</li>
+</ol>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&#123;*这里是注释语句*&#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>在 smarty里输出赋值进来的变量</li>
+</ol>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">//主要是调用assign(string,value)方法</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//exp:</span></span><br><span class="line">$arr = <span class="keyword">array</span>(<span class="string">'title'</span>=&gt;<span class="string">'小时代的作者'</span>,<span class="string">'author'</span>=&gt;<span class="string">'小明'</span>);</span><br><span class="line"></span><br><span class="line">$smarty-&gt;assign(<span class="string">'arr'</span>,$arr);</span><br><span class="line"></span><br><span class="line"><span class="comment">//在模板tpl中</span></span><br><span class="line">&#123;$arr.title&#125;&#123;$arr.author&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//也可以这样写更接近php</span></span><br><span class="line"><span class="comment">//&#123;$arr['title']&#125;&#123;$arr['author']&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//若array是二维数组的时候</span></span><br><span class="line"><span class="comment">//&#123;$arr['xxx']['title']&#125;&#123;$arr['xxx']['author']&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="变量调节器"><a href="#变量调节器" class="headerlink" title="变量调节器"></a>变量调节器</h3><ol>
+<li><p>变量变成 首字母大写的调节器 capticalize<br>示例</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&#123;$articleTitle|capitalize&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>字符串连接cat 多个参数用冒号连接<br>示例</p>
+</li>
+</ol>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&#123;$articleTitle|cat:<span class="string">" yesterday."</span>&#125;</span><br><span class="line">&#123;$articletitle|cat:<span class="string">' yesterday'</span>:<span class="string">"."</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>3.日期格式化 date_format<br>示例</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&#123;$yesterday|date_format&#125;</span><br><span class="line">&#123;$yesterday|date_format:<span class="string">" :"</span>%A,%B %e,%Y %H:%M:%S<span class="string">"&#125;</span></span><br></pre></td></tr></table></figure>
+<p>4.为未赋值或为空的变量指定的默认值default<br>示例</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&#123;$articleTitle|<span class="keyword">default</span>:<span class="string">"no title"</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>5.转码 escape</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&#123;$url|<span class="string">"url"</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>6.大小写转换 lower upper</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&#123;$articleTitle|lower&#125;</span><br><span class="line">&#123;$articleTitle|upper&#125;</span><br></pre></td></tr></table></figure>
+<p>7.换行符替换成<br></p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&#123;$articleTitle|nl2br&#125;</span><br><span class="line"><span class="comment">//nl to br  *记忆</span></span><br></pre></td></tr></table></figure>
+<p>###smarty if 语句</p>
+<p>####Smarty的条件判断语句<br>1.基本句式</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">&#123;<span class="keyword">if</span> $name eq <span class="string">"Fred"</span>&#125;</span><br><span class="line">Welcome Sir.</span><br><span class="line"></span><br><span class="line">&#123;<span class="keyword">elseif</span> $name eq <span class="string">"Wilma"</span>&#125;</span><br><span class="line">Welcome Ma<span class="string">'am.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#123;else&#125;</span></span><br><span class="line"><span class="string">Welcome,whatever you are.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#123;/if&#125;</span></span><br></pre></td></tr></table></figure>
+<p>2.条件修饰符有很多，简单的几个eq（==） neq（！=）gt（&gt;）lt（&lt;）</p>
+<p>==3.修饰词时必须和变量或常量用空格格开==</p>
+<h3 id="smarty-循环"><a href="#smarty-循环" class="headerlink" title="smarty 循环"></a>smarty 循环</h3><ol>
+<li>section,sectionelse </li>
+<li>常用属性name loop</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">section</span> <span class="attr">name</span>=<span class="string">article</span> <span class="attr">loop</span>=<span class="string">$articlelist</span>&gt;</span></span><br><span class="line">&#123;$articlelist[article].title&#125;</span><br><span class="line">&#123;$articlelist[article].author&#125;</span><br><span class="line">&#123;$articlelist[article].content&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>其他常用属性 start step max show<br>（1）start 循环执行的初始位置。如果该值为负数，开始位置从数组的尾部算起。例如：<br>  如果数组中有7个元素，指定start为-2，那么指向当前数组的索引为5.非法值（超过了循环数组的下限）将被自动调整为最接近的合法值。</li>
+</ol>
+<p>（2）step 该值决定循环的步长。例如指定step=2将只遍历下标为0、2、4等的元素。如果step为负值，那么遍历数组的时候从后向前遍历。</p>
+<p>（3）max 设定循环最大执行次数。</p>
+<p>（4）show 决定是否显示该循环。</p>
+<h4 id="smarty-foreach"><a href="#smarty-foreach" class="headerlink" title="smarty foreach"></a>smarty foreach</h4><ul>
+<li>item 相当于php里 foreach 中的as 后面的</li>
+<li>from 被循环的数组</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">&#123;foreach item=k from=$ss&#125;</span><br><span class="line">    &#123;$k.title&#125;</span><br><span class="line">    &#123;$k.author&#125;</span><br><span class="line">    &#123;$k.content&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">&#123;foreachelse&#125;</span><br><span class="line">当前没有文章</span><br><span class="line">&#123;/foreach&#125;</span><br></pre></td></tr></table></figure>
+<p>也可以这样写</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">&#123;foreach $articlelist as $article&#125;</span><br><span class="line">    &#123;$k.title&#125;</span><br><span class="line">    &#123;$k.author&#125;</span><br><span class="line">    &#123;$k.content&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">&#123;foreachelse&#125;</span><br><span class="line">当前没有文章</span><br><span class="line">&#123;/foreach&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="smarty-模板的引用-include"><a href="#smarty-模板的引用-include" class="headerlink" title="smarty 模板的引用 include"></a>smarty 模板的引用 include</h3><ol>
+<li>和php里的include差不多</li>
+<li>具备自定义属性的功能</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">//test.tpl</span><br><span class="line">&#123;include file=“header.tpl” sitename=“百度”&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">//header.tpl</span><br><span class="line">&#123;$sitename&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="smarty-类和对象的赋值和使用"><a href="#smarty-类和对象的赋值和使用" class="headerlink" title="smarty 类和对象的赋值和使用"></a>smarty 类和对象的赋值和使用</h3><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">my_object</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">meth1</span><span class="params">($param)</span></span>&#123;</span><br><span class="line">     </span><br><span class="line">        <span class="keyword">return</span> $param[<span class="number">0</span>].<span class="string">'已经'</span>.$param[<span class="number">1</span>];</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br><span class="line">     $myobj=<span class="keyword">new</span> my_object();</span><br><span class="line">     $smarty-&gt;assign(<span class="string">'myobj'</span>,$myobj);</span><br><span class="line">     $smarty-&gt;display(<span class="string">"test.html"</span>);</span><br><span class="line"> </span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">//********test.html*******************</span><br><span class="line"> <span class="meta">&lt;!doctype <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">head</span>&gt;</span><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"> <span class="comment">&lt;!--以数组形式--&gt;</span></span><br><span class="line"> &#123;$myobj-&gt;meth1(array('苹果','熟了'))&#125;</span><br><span class="line"> <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="smarty-使用php内置函数-和-自定义函数"><a href="#smarty-使用php内置函数-和-自定义函数" class="headerlink" title="smarty 使用php内置函数 和 自定义函数"></a>smarty 使用php内置函数 和 自定义函数</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line">==|之前以第一个参数传入，后边以第二第三参数传入<span class="tag">&lt;<span class="name">br</span>&gt;</span>==</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">//格式化时间&lt;br&gt;</span><br><span class="line">&#123;&quot;Y-m-d H:i&quot;date:$time&#125;&lt;br&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">//把字符串里的d字母替换成h</span><br><span class="line">    //格式：</span><br><span class="line">    &#123;&apos;d&apos;str_replace:&apos;h&apos;:$str&#125;; </span><br><span class="line">    //d要查找的字符 h要替换的字符  $str字符串</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>MVC</tag>
+        <tag>PHP</tag>
       </tags>
   </entry>
   <entry>
@@ -3067,6 +3155,30 @@
       </tags>
   </entry>
   <entry>
+    <title>PHP加密URL地址</title>
+    <url>/2017/09/15/url-encode/</url>
+    <content><![CDATA[<h1 id="转-分享如何使用PHP将URL地址参数进行加密传输提高网站安全性"><a href="#转-分享如何使用PHP将URL地址参数进行加密传输提高网站安全性" class="headerlink" title="[转]分享如何使用PHP将URL地址参数进行加密传输提高网站安全性"></a>[转]分享如何使用PHP将URL地址参数进行加密传输提高网站安全性</h1><p> 大家在使用PHP进行GET或POST提交数据时，<br> 经常会在URL带着参数进行传递，<br> 比如<a href="http://www.mdaima.com/get.php?id=1&amp;page=5，" target="_blank" rel="noopener">www.mdaima.com/get.php?id=1&amp;page=5，</a><br> 这里就将id编号和page页码进行了参数传递，<br> 如果这样直接明文传输，<br> 会将参数直接暴露给用户，<br> 要是是比较重要的数据这样传输我觉得还是不太安全。<br> 那如果将参数变成下面这样，<br> 是不是会好点呢？</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">www.mdaima.com/get.php?VGsAYQ96VzkEaF08DTxTLQIyDmsBIQtnVj0Fe1ciAD0EN1M0X2MHMQYxDDcAOwI%2FXToBPVM5ADxfag%3D%3D</span><br></pre></td></tr></table></figure>
+<p>我们再加强一下，<br>将get.php重命名改为get_mb.php，<br>然后利用静态规则，<br>把get.html映射到get_mb.php，<br>这样即使用户试着访问get.php也无法找到真实的PHP文件了，<br>因为真实的PHP文件不是get.php而是get_mb.php，<br>以下是.htaccess规则设置</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">RewriteRule ^get.html$ get_mb.php?&amp;%&#123;QUERY_STRING&#125;   #.htaccess伪静态规则的设置（加入到.htaccess里就行）</span><br></pre></td></tr></table></figure>
+<p>利用加密再配合伪静态设置，<br>最终效果就是下面这样了，<br>即隐藏了真实php文件get_mb.php又将参数都加密传输了。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">www.mdaima.com/get.html?VGsAYQ96VzkEaF08DTxTLQIyDmsBIQtnVj0Fe1ciAD0EN1M0X2MHMQYxDDcAOwI%2FXToBPVM5ADxfag%3D%3D</span><br></pre></td></tr></table></figure>
+<p>相比之下已经好一些了吧，<br>至少看上去会好很多，<br>那如何进行加密和解密呢？<br>请看下面函数（不用细看，直接拿过去用就行了，重点看如果调用）</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">//---------------以下为加密函数（复制过去就行了）-----------------</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">keyED</span><span class="params">($txt,$encrypt_key)</span></span>&#123;       </span><br><span class="line">    $encrypt_key =    md5($encrypt_key);</span><br><span class="line">    $ctr=<span class="number">0</span>;       </span><br><span class="line">    $tmp = <span class="string">""</span>;       </span><br><span class="line">    <span class="keyword">for</span>($i=<span class="number">0</span>;$i&lt;strlen($txt);$i++)       </span><br><span class="line">    &#123;           </span><br><span class="line">        <span class="keyword">if</span> ($ctr==strlen($encrypt_key))</span><br><span class="line">        $ctr=<span class="number">0</span>;           </span><br><span class="line">        $tmp.= substr($txt,$i,<span class="number">1</span>) ^ substr($encrypt_key,$ctr,<span class="number">1</span>);</span><br><span class="line">        $ctr++;       </span><br><span class="line">    &#125;       </span><br><span class="line">    <span class="keyword">return</span> $tmp;   </span><br><span class="line">&#125;    </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">encrypt</span><span class="params">($txt,$key)</span>   </span>&#123;</span><br><span class="line">    $encrypt_key = md5(mt_rand(<span class="number">0</span>,<span class="number">100</span>));</span><br><span class="line">    $ctr=<span class="number">0</span>;       </span><br><span class="line">    $tmp = <span class="string">""</span>;      </span><br><span class="line">     <span class="keyword">for</span> ($i=<span class="number">0</span>;$i&lt;strlen($txt);$i++)       </span><br><span class="line">     &#123;</span><br><span class="line">        <span class="keyword">if</span> ($ctr==strlen($encrypt_key))</span><br><span class="line">            $ctr=<span class="number">0</span>;           </span><br><span class="line">        $tmp.=substr($encrypt_key,$ctr,<span class="number">1</span>) </span><br><span class="line">            . (substr($txt,$i,<span class="number">1</span>) </span><br><span class="line">            ^ substr($encrypt_key,$ctr,<span class="number">1</span>));</span><br><span class="line">        $ctr++;       </span><br><span class="line">     &#125;       </span><br><span class="line">     <span class="keyword">return</span> keyED($tmp,$key);</span><br><span class="line">&#125; </span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">decrypt</span><span class="params">($txt,$key)</span></span>&#123;       </span><br><span class="line">    $txt = keyED($txt,$key);       </span><br><span class="line">    $tmp = <span class="string">""</span>;       </span><br><span class="line">    <span class="keyword">for</span>($i=<span class="number">0</span>;$i&lt;strlen($txt);$i++)       </span><br><span class="line">    &#123;           </span><br><span class="line">        $md5 = substr($txt,$i,<span class="number">1</span>);</span><br><span class="line">        $i++;           </span><br><span class="line">        $tmp.= (substr($txt,$i,<span class="number">1</span>) ^ $md5);       </span><br><span class="line">    &#125;       </span><br><span class="line">    <span class="keyword">return</span> $tmp;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">encrypt_url</span><span class="params">($url,$key)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> rawurlencode(base64_encode(encrypt($url,$key)));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">decrypt_url</span><span class="params">($url,$key)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> decrypt(base64_decode(rawurldecode($url)),$key);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">geturl</span><span class="params">($str,$key)</span></span>&#123;</span><br><span class="line">    $str = decrypt_url($str,$key);</span><br><span class="line">    $url_array = explode(<span class="string">'&amp;'</span>,$str);</span><br><span class="line">    <span class="keyword">if</span> (is_array($url_array))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">foreach</span> ($url_array <span class="keyword">as</span> $var)</span><br><span class="line">        &#123;</span><br><span class="line">            $var_array = explode(<span class="string">"="</span>,$var);</span><br><span class="line">            $vars[$var_array[<span class="number">0</span>]]=$var_array[<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> $vars;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">$key_url_md_5 = <span class="string">'mdaima.com-123-scc'</span>; <span class="comment">//可以更换为其它的加密标记，可以自由发挥</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">//---------------以上为加密函数-结束（复制过去就行了）-----------------</span></span><br></pre></td></tr></table></figure>
+<p>以上这个是关键的加密与解密函数，<br>下面看一下如何调用，<br>我们举例说一下将表单action中参数id和page进行加密并加入时间戳一起，<br>这样每次的链接地址都是动态的，<br>而且可以在接收页面设置页面限制超时的有效期了。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">id</span>=<span class="string">"form1"</span> <span class="attr">name</span>=<span class="string">"form1"</span> <span class="attr">method</span>=<span class="string">"post"</span> </span></span><br><span class="line"><span class="tag"><span class="attr">action</span>=<span class="string">"?&lt;?=encrypt_url("</span><span class="attr">id</span>=<span class="string">1&amp;page</span>=<span class="string">5</span>"<span class="attr">.</span>"&amp;<span class="attr">time</span>=<span class="string">".time(),$key_url_md_5)?&gt;"</span></span></span><br><span class="line"><span class="tag"> <span class="attr">enctype</span>=<span class="string">"multipart/form-data"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>上面就是如何加密参数。再看一下如何解密接收到的参数：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">$url_info = geturl($_SERVER[QUERY_STRING],$key_url_md_5);<span class="comment">//接收所有参数</span></span><br><span class="line">$page=$url_info[<span class="string">'page'</span>];<span class="comment">//解密对应参数</span></span><br><span class="line">$id=$url_info[<span class="string">'id'</span>];</span><br><span class="line">$time=$url_info[<span class="string">'time'</span>];<span class="comment">//这个是时间戳，大家可以利用这个参数判断一下</span></span><br><span class="line"><span class="comment">//链接生成的时间，就可以判断是否超时了（此项如果不需要也可以忽略）</span></span><br></pre></td></tr></table></figure>
+<p>这样我们就得到了解密的$page和$id参数了，大家试一下吧，有问题也可以联系我！</p>
+<blockquote>
+<p>转载请注明：<a href="http://www.mdaima.com/jingyan/36.html" target="_blank" rel="noopener">分享如何使用PHP将URL地址参数进行加密传输提高网站安全性 | 码代码-李雷博客</a></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>PHP</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>模板方法模式</title>
     <url>/2019/08/18/template-method-pattern/</url>
     <content><![CDATA[<h1 id="模板方法模式"><a href="#模板方法模式" class="headerlink" title="模板方法模式"></a>模板方法模式</h1><h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><p>冲茶与冲咖啡的步骤?</p>
@@ -3122,118 +3234,6 @@
       <tags>
         <tag>设计模式</tag>
         <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>PHP 的 MVC 模式</title>
-    <url>/2017/05/31/php-mvc/</url>
-    <content><![CDATA[<h1 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h1><h2 id="基本操作步骤"><a href="#基本操作步骤" class="headerlink" title="基本操作步骤"></a>基本操作步骤</h2><ol>
-<li>浏览者  -&gt; 调用控制器 对其发出指令</li>
-<li>控制器(C)  -&gt; 按指令选取一个合适的模型(M) </li>
-<li>模型(M)  -&gt; 按控制器(C)指令取相应数据</li>
-<li>控制器(C) -&gt; 按指令选取相应视图(V)</li>
-<li>视图(V) -&gt; 把第三步取得的数据按用户想要的样子显示出来</li>
-</ol>
-<h2 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> <span class="comment">//浏览者调用控制器</span></span><br><span class="line">    <span class="keyword">require_once</span>(<span class="string">'testController.class.php'</span>);</span><br><span class="line">    <span class="keyword">require_once</span>(<span class="string">'testModel.class.php'</span>);</span><br><span class="line">    <span class="keyword">require_once</span>(<span class="string">'testView.class.php'</span>);</span><br><span class="line">    $testController = <span class="keyword">new</span> testController();<span class="comment">//**第一步**</span></span><br><span class="line">    $testController-&gt;show();</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="require-和-require-once-的区别"><a href="#require-和-require-once-的区别" class="headerlink" title="require() 和 require_once()的区别"></a>require() 和 require_once()的区别</h2><p>  require()可以多次调用相同的文件而不会提示错误，require_once则只能调用相同的文件一次，如果require_once相同的文件多次就会报错，并停止解析，从这个require_once开始后面的代码将不被解析！ </p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> <span class="comment">//控制器基本结构</span></span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">testController</span></span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">show</span><span class="params">()</span></span>&#123;</span><br><span class="line">            $testModel = <span class="keyword">new</span> testModel();<span class="comment">//**第二步**</span></span><br><span class="line">            $data =$testModel-&gt;get();<span class="comment">//**第三步**</span></span><br><span class="line">            $testView = <span class="keyword">new</span> testView();<span class="comment">//**第四步**</span></span><br><span class="line">            $testView-&gt;display($data);<span class="comment">//**第五步**</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<h4 id="控制器的作用"><a href="#控制器的作用" class="headerlink" title="控制器的作用"></a>控制器的作用</h4><p> 调用模型并调用视图，将模型产生的数据传递给视图，并让相关视图去显示</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> <span class="comment">//模型基本结构</span></span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">testModel</span></span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">get</span><span class="params">()</span></span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"hello world"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<h4 id="模型的作用"><a href="#模型的作用" class="headerlink" title="模型的作用"></a>模型的作用</h4><p>  获取数据并处理返回数据</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> <span class="comment">//视图基本结构</span></span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">testView</span></span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">display</span><span class="params">($data)</span></span>&#123;</span><br><span class="line">            <span class="keyword">echo</span> $data;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<h4 id="视图的作用"><a href="#视图的作用" class="headerlink" title="视图的作用"></a>视图的作用</h4><p>  将取得的数据进行组织、美化等，并最终向用户端输出</p>
-<p>#smarty</p>
-<blockquote>
-<p>smarty.class.php 包含了smarty的所有功能<br>smartyBC.class.php 提升了smarty上下版本兼容性<br>smarty 五配置 两方法<br><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">//五配置</span></span><br><span class="line"></span><br><span class="line">$smarty-&gt;left_delimiter = <span class="string">"&#123;"</span>;<span class="comment">//左定界符</span></span><br><span class="line"></span><br><span class="line">$smarty-&gt;right_delimiter = <span class="string">"&#125;"</span>;<span class="comment">//右定界符</span></span><br><span class="line"><span class="comment">//括起来部分交给smarty处理</span></span><br><span class="line"></span><br><span class="line">$smarty-&gt;template_dir = <span class="string">"tpl"</span>; <span class="comment">//HTML模版</span></span><br><span class="line"></span><br><span class="line">$smarty-&gt;compile_dir =      <span class="string">"template_c"</span>;     <span class="comment">//模版编译生成的文件</span></span><br><span class="line"></span><br><span class="line">$smarty-&gt;cache_dir =  <span class="string">"cache"</span>;<span class="comment">//缓存</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//两方法</span></span><br><span class="line">$smarty-&gt;caching = <span class="keyword">true</span>;<span class="comment">//开启缓存</span></span><br><span class="line"></span><br><span class="line">$smarty-&gt;cache_lifetime = <span class="number">120</span>;<span class="comment">//缓存时间</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//这段时间不从数据库取得数据 直接从缓存获取</span></span><br><span class="line"></span><br><span class="line">$smarty-&gt;assign(<span class="string">'articleile'</span>,<span class="string">'文章标题'</span>);<span class="comment">//对smarty的模板进行赋值</span></span><br><span class="line"></span><br><span class="line">$smarty-&gt;display(<span class="string">'test.tpl'</span>);<span class="comment">//显示模板</span></span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<h2 id="smarty-的基本语法"><a href="#smarty-的基本语法" class="headerlink" title="smarty 的基本语法"></a>smarty 的基本语法</h2><h3 id="注释与变量输出"><a href="#注释与变量输出" class="headerlink" title="注释与变量输出"></a>注释与变量输出</h3><ol>
-<li>注释语句</li>
-</ol>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&#123;*这里是注释语句*&#125;</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>在 smarty里输出赋值进来的变量</li>
-</ol>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">//主要是调用assign(string,value)方法</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//exp:</span></span><br><span class="line">$arr = <span class="keyword">array</span>(<span class="string">'title'</span>=&gt;<span class="string">'小时代的作者'</span>,<span class="string">'author'</span>=&gt;<span class="string">'小明'</span>);</span><br><span class="line"></span><br><span class="line">$smarty-&gt;assign(<span class="string">'arr'</span>,$arr);</span><br><span class="line"></span><br><span class="line"><span class="comment">//在模板tpl中</span></span><br><span class="line">&#123;$arr.title&#125;&#123;$arr.author&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//也可以这样写更接近php</span></span><br><span class="line"><span class="comment">//&#123;$arr['title']&#125;&#123;$arr['author']&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//若array是二维数组的时候</span></span><br><span class="line"><span class="comment">//&#123;$arr['xxx']['title']&#125;&#123;$arr['xxx']['author']&#125;</span></span><br></pre></td></tr></table></figure>
-<h3 id="变量调节器"><a href="#变量调节器" class="headerlink" title="变量调节器"></a>变量调节器</h3><ol>
-<li><p>变量变成 首字母大写的调节器 capticalize<br>示例</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&#123;$articleTitle|capitalize&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>字符串连接cat 多个参数用冒号连接<br>示例</p>
-</li>
-</ol>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&#123;$articleTitle|cat:<span class="string">" yesterday."</span>&#125;</span><br><span class="line">&#123;$articletitle|cat:<span class="string">' yesterday'</span>:<span class="string">"."</span>&#125;</span><br></pre></td></tr></table></figure>
-<p>3.日期格式化 date_format<br>示例</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&#123;$yesterday|date_format&#125;</span><br><span class="line">&#123;$yesterday|date_format:<span class="string">" :"</span>%A,%B %e,%Y %H:%M:%S<span class="string">"&#125;</span></span><br></pre></td></tr></table></figure>
-<p>4.为未赋值或为空的变量指定的默认值default<br>示例</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&#123;$articleTitle|<span class="keyword">default</span>:<span class="string">"no title"</span>&#125;</span><br></pre></td></tr></table></figure>
-<p>5.转码 escape</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&#123;$url|<span class="string">"url"</span>&#125;</span><br></pre></td></tr></table></figure>
-<p>6.大小写转换 lower upper</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&#123;$articleTitle|lower&#125;</span><br><span class="line">&#123;$articleTitle|upper&#125;</span><br></pre></td></tr></table></figure>
-<p>7.换行符替换成<br></p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&#123;$articleTitle|nl2br&#125;</span><br><span class="line"><span class="comment">//nl to br  *记忆</span></span><br></pre></td></tr></table></figure>
-<p>###smarty if 语句</p>
-<p>####Smarty的条件判断语句<br>1.基本句式</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">&#123;<span class="keyword">if</span> $name eq <span class="string">"Fred"</span>&#125;</span><br><span class="line">Welcome Sir.</span><br><span class="line"></span><br><span class="line">&#123;<span class="keyword">elseif</span> $name eq <span class="string">"Wilma"</span>&#125;</span><br><span class="line">Welcome Ma<span class="string">'am.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#123;else&#125;</span></span><br><span class="line"><span class="string">Welcome,whatever you are.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#123;/if&#125;</span></span><br></pre></td></tr></table></figure>
-<p>2.条件修饰符有很多，简单的几个eq（==） neq（！=）gt（&gt;）lt（&lt;）</p>
-<p>==3.修饰词时必须和变量或常量用空格格开==</p>
-<h3 id="smarty-循环"><a href="#smarty-循环" class="headerlink" title="smarty 循环"></a>smarty 循环</h3><ol>
-<li>section,sectionelse </li>
-<li>常用属性name loop</li>
-</ol>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">section</span> <span class="attr">name</span>=<span class="string">article</span> <span class="attr">loop</span>=<span class="string">$articlelist</span>&gt;</span></span><br><span class="line">&#123;$articlelist[article].title&#125;</span><br><span class="line">&#123;$articlelist[article].author&#125;</span><br><span class="line">&#123;$articlelist[article].content&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>其他常用属性 start step max show<br>（1）start 循环执行的初始位置。如果该值为负数，开始位置从数组的尾部算起。例如：<br>  如果数组中有7个元素，指定start为-2，那么指向当前数组的索引为5.非法值（超过了循环数组的下限）将被自动调整为最接近的合法值。</li>
-</ol>
-<p>（2）step 该值决定循环的步长。例如指定step=2将只遍历下标为0、2、4等的元素。如果step为负值，那么遍历数组的时候从后向前遍历。</p>
-<p>（3）max 设定循环最大执行次数。</p>
-<p>（4）show 决定是否显示该循环。</p>
-<h4 id="smarty-foreach"><a href="#smarty-foreach" class="headerlink" title="smarty foreach"></a>smarty foreach</h4><ul>
-<li>item 相当于php里 foreach 中的as 后面的</li>
-<li>from 被循环的数组</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">&#123;foreach item=k from=$ss&#125;</span><br><span class="line">    &#123;$k.title&#125;</span><br><span class="line">    &#123;$k.author&#125;</span><br><span class="line">    &#123;$k.content&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">&#123;foreachelse&#125;</span><br><span class="line">当前没有文章</span><br><span class="line">&#123;/foreach&#125;</span><br></pre></td></tr></table></figure>
-<p>也可以这样写</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">&#123;foreach $articlelist as $article&#125;</span><br><span class="line">    &#123;$k.title&#125;</span><br><span class="line">    &#123;$k.author&#125;</span><br><span class="line">    &#123;$k.content&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">&#123;foreachelse&#125;</span><br><span class="line">当前没有文章</span><br><span class="line">&#123;/foreach&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="smarty-模板的引用-include"><a href="#smarty-模板的引用-include" class="headerlink" title="smarty 模板的引用 include"></a>smarty 模板的引用 include</h3><ol>
-<li>和php里的include差不多</li>
-<li>具备自定义属性的功能</li>
-</ol>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">//test.tpl</span><br><span class="line">&#123;include file=“header.tpl” sitename=“百度”&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">//header.tpl</span><br><span class="line">&#123;$sitename&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="smarty-类和对象的赋值和使用"><a href="#smarty-类和对象的赋值和使用" class="headerlink" title="smarty 类和对象的赋值和使用"></a>smarty 类和对象的赋值和使用</h3><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">my_object</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">meth1</span><span class="params">($param)</span></span>&#123;</span><br><span class="line">     </span><br><span class="line">        <span class="keyword">return</span> $param[<span class="number">0</span>].<span class="string">'已经'</span>.$param[<span class="number">1</span>];</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br><span class="line">     $myobj=<span class="keyword">new</span> my_object();</span><br><span class="line">     $smarty-&gt;assign(<span class="string">'myobj'</span>,$myobj);</span><br><span class="line">     $smarty-&gt;display(<span class="string">"test.html"</span>);</span><br><span class="line"> </span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">//********test.html*******************</span><br><span class="line"> <span class="meta">&lt;!doctype <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">head</span>&gt;</span><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"> <span class="comment">&lt;!--以数组形式--&gt;</span></span><br><span class="line"> &#123;$myobj-&gt;meth1(array('苹果','熟了'))&#125;</span><br><span class="line"> <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="smarty-使用php内置函数-和-自定义函数"><a href="#smarty-使用php内置函数-和-自定义函数" class="headerlink" title="smarty 使用php内置函数 和 自定义函数"></a>smarty 使用php内置函数 和 自定义函数</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line">==|之前以第一个参数传入，后边以第二第三参数传入<span class="tag">&lt;<span class="name">br</span>&gt;</span>==</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">//格式化时间&lt;br&gt;</span><br><span class="line">&#123;&quot;Y-m-d H:i&quot;date:$time&#125;&lt;br&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">//把字符串里的d字母替换成h</span><br><span class="line">    //格式：</span><br><span class="line">    &#123;&apos;d&apos;str_replace:&apos;h&apos;:$str&#125;; </span><br><span class="line">    //d要查找的字符 h要替换的字符  $str字符串</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>MVC</tag>
-        <tag>PHP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>PHP加密URL地址</title>
-    <url>/2017/09/15/url-encode/</url>
-    <content><![CDATA[<h1 id="转-分享如何使用PHP将URL地址参数进行加密传输提高网站安全性"><a href="#转-分享如何使用PHP将URL地址参数进行加密传输提高网站安全性" class="headerlink" title="[转]分享如何使用PHP将URL地址参数进行加密传输提高网站安全性"></a>[转]分享如何使用PHP将URL地址参数进行加密传输提高网站安全性</h1><p> 大家在使用PHP进行GET或POST提交数据时，<br> 经常会在URL带着参数进行传递，<br> 比如<a href="http://www.mdaima.com/get.php?id=1&amp;page=5，" target="_blank" rel="noopener">www.mdaima.com/get.php?id=1&amp;page=5，</a><br> 这里就将id编号和page页码进行了参数传递，<br> 如果这样直接明文传输，<br> 会将参数直接暴露给用户，<br> 要是是比较重要的数据这样传输我觉得还是不太安全。<br> 那如果将参数变成下面这样，<br> 是不是会好点呢？</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">www.mdaima.com/get.php?VGsAYQ96VzkEaF08DTxTLQIyDmsBIQtnVj0Fe1ciAD0EN1M0X2MHMQYxDDcAOwI%2FXToBPVM5ADxfag%3D%3D</span><br></pre></td></tr></table></figure>
-<p>我们再加强一下，<br>将get.php重命名改为get_mb.php，<br>然后利用静态规则，<br>把get.html映射到get_mb.php，<br>这样即使用户试着访问get.php也无法找到真实的PHP文件了，<br>因为真实的PHP文件不是get.php而是get_mb.php，<br>以下是.htaccess规则设置</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">RewriteRule ^get.html$ get_mb.php?&amp;%&#123;QUERY_STRING&#125;   #.htaccess伪静态规则的设置（加入到.htaccess里就行）</span><br></pre></td></tr></table></figure>
-<p>利用加密再配合伪静态设置，<br>最终效果就是下面这样了，<br>即隐藏了真实php文件get_mb.php又将参数都加密传输了。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">www.mdaima.com/get.html?VGsAYQ96VzkEaF08DTxTLQIyDmsBIQtnVj0Fe1ciAD0EN1M0X2MHMQYxDDcAOwI%2FXToBPVM5ADxfag%3D%3D</span><br></pre></td></tr></table></figure>
-<p>相比之下已经好一些了吧，<br>至少看上去会好很多，<br>那如何进行加密和解密呢？<br>请看下面函数（不用细看，直接拿过去用就行了，重点看如果调用）</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">//---------------以下为加密函数（复制过去就行了）-----------------</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">keyED</span><span class="params">($txt,$encrypt_key)</span></span>&#123;       </span><br><span class="line">    $encrypt_key =    md5($encrypt_key);</span><br><span class="line">    $ctr=<span class="number">0</span>;       </span><br><span class="line">    $tmp = <span class="string">""</span>;       </span><br><span class="line">    <span class="keyword">for</span>($i=<span class="number">0</span>;$i&lt;strlen($txt);$i++)       </span><br><span class="line">    &#123;           </span><br><span class="line">        <span class="keyword">if</span> ($ctr==strlen($encrypt_key))</span><br><span class="line">        $ctr=<span class="number">0</span>;           </span><br><span class="line">        $tmp.= substr($txt,$i,<span class="number">1</span>) ^ substr($encrypt_key,$ctr,<span class="number">1</span>);</span><br><span class="line">        $ctr++;       </span><br><span class="line">    &#125;       </span><br><span class="line">    <span class="keyword">return</span> $tmp;   </span><br><span class="line">&#125;    </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">encrypt</span><span class="params">($txt,$key)</span>   </span>&#123;</span><br><span class="line">    $encrypt_key = md5(mt_rand(<span class="number">0</span>,<span class="number">100</span>));</span><br><span class="line">    $ctr=<span class="number">0</span>;       </span><br><span class="line">    $tmp = <span class="string">""</span>;      </span><br><span class="line">     <span class="keyword">for</span> ($i=<span class="number">0</span>;$i&lt;strlen($txt);$i++)       </span><br><span class="line">     &#123;</span><br><span class="line">        <span class="keyword">if</span> ($ctr==strlen($encrypt_key))</span><br><span class="line">            $ctr=<span class="number">0</span>;           </span><br><span class="line">        $tmp.=substr($encrypt_key,$ctr,<span class="number">1</span>) </span><br><span class="line">            . (substr($txt,$i,<span class="number">1</span>) </span><br><span class="line">            ^ substr($encrypt_key,$ctr,<span class="number">1</span>));</span><br><span class="line">        $ctr++;       </span><br><span class="line">     &#125;       </span><br><span class="line">     <span class="keyword">return</span> keyED($tmp,$key);</span><br><span class="line">&#125; </span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">decrypt</span><span class="params">($txt,$key)</span></span>&#123;       </span><br><span class="line">    $txt = keyED($txt,$key);       </span><br><span class="line">    $tmp = <span class="string">""</span>;       </span><br><span class="line">    <span class="keyword">for</span>($i=<span class="number">0</span>;$i&lt;strlen($txt);$i++)       </span><br><span class="line">    &#123;           </span><br><span class="line">        $md5 = substr($txt,$i,<span class="number">1</span>);</span><br><span class="line">        $i++;           </span><br><span class="line">        $tmp.= (substr($txt,$i,<span class="number">1</span>) ^ $md5);       </span><br><span class="line">    &#125;       </span><br><span class="line">    <span class="keyword">return</span> $tmp;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">encrypt_url</span><span class="params">($url,$key)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> rawurlencode(base64_encode(encrypt($url,$key)));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">decrypt_url</span><span class="params">($url,$key)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> decrypt(base64_decode(rawurldecode($url)),$key);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">geturl</span><span class="params">($str,$key)</span></span>&#123;</span><br><span class="line">    $str = decrypt_url($str,$key);</span><br><span class="line">    $url_array = explode(<span class="string">'&amp;'</span>,$str);</span><br><span class="line">    <span class="keyword">if</span> (is_array($url_array))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">foreach</span> ($url_array <span class="keyword">as</span> $var)</span><br><span class="line">        &#123;</span><br><span class="line">            $var_array = explode(<span class="string">"="</span>,$var);</span><br><span class="line">            $vars[$var_array[<span class="number">0</span>]]=$var_array[<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> $vars;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">$key_url_md_5 = <span class="string">'mdaima.com-123-scc'</span>; <span class="comment">//可以更换为其它的加密标记，可以自由发挥</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">//---------------以上为加密函数-结束（复制过去就行了）-----------------</span></span><br></pre></td></tr></table></figure>
-<p>以上这个是关键的加密与解密函数，<br>下面看一下如何调用，<br>我们举例说一下将表单action中参数id和page进行加密并加入时间戳一起，<br>这样每次的链接地址都是动态的，<br>而且可以在接收页面设置页面限制超时的有效期了。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">id</span>=<span class="string">"form1"</span> <span class="attr">name</span>=<span class="string">"form1"</span> <span class="attr">method</span>=<span class="string">"post"</span> </span></span><br><span class="line"><span class="tag"><span class="attr">action</span>=<span class="string">"?&lt;?=encrypt_url("</span><span class="attr">id</span>=<span class="string">1&amp;page</span>=<span class="string">5</span>"<span class="attr">.</span>"&amp;<span class="attr">time</span>=<span class="string">".time(),$key_url_md_5)?&gt;"</span></span></span><br><span class="line"><span class="tag"> <span class="attr">enctype</span>=<span class="string">"multipart/form-data"</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>上面就是如何加密参数。再看一下如何解密接收到的参数：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">$url_info = geturl($_SERVER[QUERY_STRING],$key_url_md_5);<span class="comment">//接收所有参数</span></span><br><span class="line">$page=$url_info[<span class="string">'page'</span>];<span class="comment">//解密对应参数</span></span><br><span class="line">$id=$url_info[<span class="string">'id'</span>];</span><br><span class="line">$time=$url_info[<span class="string">'time'</span>];<span class="comment">//这个是时间戳，大家可以利用这个参数判断一下</span></span><br><span class="line"><span class="comment">//链接生成的时间，就可以判断是否超时了（此项如果不需要也可以忽略）</span></span><br></pre></td></tr></table></figure>
-<p>这样我们就得到了解密的$page和$id参数了，大家试一下吧，有问题也可以联系我！</p>
-<blockquote>
-<p>转载请注明：<a href="http://www.mdaima.com/jingyan/36.html" target="_blank" rel="noopener">分享如何使用PHP将URL地址参数进行加密传输提高网站安全性 | 码代码-李雷博客</a></p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>PHP</tag>
       </tags>
   </entry>
   <entry>
